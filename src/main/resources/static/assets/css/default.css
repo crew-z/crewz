@@ -1,0 +1,47 @@
+@media screen and (max-width: 850px){
+    .header-menu{
+        display: none;
+    }
+}
+
+.header-menu{
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 0;
+}
+.header-menu ul{
+    display: inline-block;
+}
+.header-menu li{
+    display: inline-block;
+    padding-top: 10px;
+}
+.header-menu .menu-a{
+    position: relative;
+    display: inline-block;
+    background-color: #F6F6F6;
+    width: 400px;
+    height: 40px;
+    padding: 0 40px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 100px;
+}
+.search-input{
+    position: absolute;
+    top: 7px;
+    left: 37px;
+    width: 224px;
+    height:23px;
+    border: none;
+    background-color: #F6F6F6;
+}
+.search_icon{
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: -32px;
+}

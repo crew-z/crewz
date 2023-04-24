@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>crew.z Main</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- 구성하고자 하는 화면 설계 -->
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ol>
+                    <li><a th:href="@{/main}">Home</a></li>
+                    <li>Inner Page</li>
+                </ol>
+            </div>
+
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section class="inner-page">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Inner Page</h2>
+                <p>Example inner page template</p>
+            </div>
+
+            <p>
+                You can duplicate this page and create any number of pages you like!
+            </p>
+
+        </div>
+    </section><!-- End Inner Page -->
+
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+
+</body>
+
+</html>
