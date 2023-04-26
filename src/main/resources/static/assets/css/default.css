@@ -3,7 +3,9 @@
         display: none;
     }
 }
-
+.logo{
+    z-index:1
+}
 .header-menu{
     text-align: center;
     position: absolute;
@@ -30,6 +32,13 @@
     text-align: center;
     line-height: 100px;
 }
+.header-botton{
+    margin:10px;
+    cursor: pointer;
+}
+.header-right{
+    z-index:1;
+}
 .search-input{
     position: absolute;
     top: 7px;
@@ -44,4 +53,26 @@
     position: absolute;
     left: 10px;
     top: -32px;
+}
+
+#loginBtn{
+    color:#FF5A5A;
+}
+.post-title{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.moreSpan{
+    margin-left:10px;
+}
+.moreBtn{
+    font-size: 14px;
+    color: #FF5A5A;
+}
+.card-body{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.contact, .copyright, #credits{
+    color:#8E8E8E;
 }
