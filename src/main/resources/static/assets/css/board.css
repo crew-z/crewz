@@ -136,4 +136,21 @@
     color: #929292;
 }
 
+.card {
+    width: 240px;
+    height: 240px;
+    float: left;
+    box-shadow: 0 0 0 1px #ddd inset;
+    border-radius: 8px;
+    margin-right: 30px;
+
+}
+
+.card > div {
+    padding: 20px 26px;
+}
+
+.card-categories > ul {
+    list-style: none;
+}
 
