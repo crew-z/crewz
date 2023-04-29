@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,8 +17,11 @@ public class SignupController {
         return "signup";
     }
     @PostMapping("/signup")
-    public String signup(UserDTO user){
+    public ModelAndView signup(UserDTO user) {
         userService.insertUser(user);
-        return "redirect:/login";
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("name",user.getUserName());
+        mav.setViewName("signupSuccess");
+        return mav;
     }
 }
