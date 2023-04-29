@@ -12,8 +12,19 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService{
 
     private final BoardMapper boardMapper;
+
+    @Override
+    public int selectBoardCount() {
+        return boardMapper.selectCount();
+    }
+
     @Override
     public List<BoardDTO> selectBoard() {
         return boardMapper.selectService();
+    }
+
+    @Override
+    public List<BoardDTO> selectBoardToSearch(String boardTitle) {
+        return boardMapper.selectServiceToSearch(boardTitle);
     }
 }
