@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>crew.z</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- 구성하고자 하는 화면 설계 -->
+<main id="main">
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header mt-5 mb-5">
+                <div class="post-title">크루즈에는 현재 <span class="span-color">[[ ${boardCount} ]]개의 동아리</span>가 활동하고 있습니다.</div>
+                <div class="text-center fw-semibold defaultFontColor">나의 관심사와 같은 사람들과 함께해요</div>
+            </div>
+
+            <div class="container" data-aos="fade-up">
+
+                <div class="row g-5">
+
+                    <div class="col-lg-12">
+
+                        <div class="row gy-4 posts-list">
+
+                            <div class="col-lg-3" th:each="board : ${boardList}">
+
+                                <article class="d-flex flex-column card-body">
+
+                                    <h2 class="title">
+                                        <a href="blog-details.html" th:text="${board.boardTitle}"></a>
+                                    </h2>
+
+                                    <div class="content">
+                                        <p th:text="${board.boardPreContent}"></p>
+                                    </div>
+                                    <hr>
+                                    <div class="period">
+                                        <span class="me-2">모집기간</span><span class="fw-bold" th:text="|${board.endDate} 까지|"></span>
+                                    </div>
+                                </article>
+
+                            </div><!-- End post list item -->
+
+                        </div><!-- End blog posts list -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Inner Page -->
+
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+
+</body>
+
+</html>
