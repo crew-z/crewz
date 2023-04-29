@@ -19,5 +19,5 @@ public interface UserMapper {
     @Insert("INSERT INTO USER(user_id,user_name,user_password,user_tel,user_nickname,user_email)" +
             "VALUES(#{userId},#{userName},#{userPassword},#{userTel},#{userNickname},#{userEmail})")
     @Options(useGeneratedKeys = true, keyProperty = "userNo")
-    int insertUser(UserDTO userDTO);
+    void insertUser(UserDTO userDTO);
 }

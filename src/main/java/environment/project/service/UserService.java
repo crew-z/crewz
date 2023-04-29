@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface UserService {
     List<UserDTO> selectUser();
+    void insertUser(UserDTO userDTO);
 }

@@ -1,10 +1,85 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>crew.z signupPage</title>
 
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+    </style>
+    <link href="/assets/css/sign-in.css" rel="stylesheet">
+    <link th:replace="~{/module/commonCss}">
+</head>
+<body class="text-center">
+<link href="/assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- Main -->
+<main class=" w-100 m-auto">
+<form method="post" action="/signup" class="needs-validation" novalidate>
+    <div class="container">
+        <h1>회원가입</h1>
+        <div class="form-group has-validation">
+            <label for="inputName">이름</label>
+            <input type="text" class="form-control" id="inputName" name="userName" placeholder="사용자 이름" required>
+        </div>
+        <div class="form-group has-validation">
+            <label for="inputNickname">닉네임</label>
+            <input type="text" class="form-control" id="inputNickname" name="userNickname" placeholder="사용자 닉네임" required>
+        </div>
+        <div class="form-group has-validation">
+            <label for="inputID">아이디</label>
+            <input type="text" class="form-control" id="inputID" name="userId" placeholder="사용자 아이디" required>
+            <div class="invalid-feedback">
+                아이디를 입력하세요.
+            </div>
+        </div>
+        <div class="form-group has-validation">
+            <label for="inputPassword4">비밀번호</label>
+            <input type="password" class="form-control" id="inputPassword4" name="userPassword" placeholder="사용자 비밀번호" required>
+            <div class="invalid-feedback">
+                비밀번호를 입력하세요.
+            </div>
+        </div>
+        <div class="form-group has-validation">
+            <label for="inputEmail4">이메일</label>
+            <input type="email" class="form-control" id="inputEmail4" name="userEmail" placeholder="사용자 이메일" required>
+            <div class="invalid-feedback">
+                이메일을 입력하세요.
+            </div>
+        </div>
+        <div class="form-group has-validation">
+            <label for="inputTel">전화번호</label>
+            <input type="number" class="form-control" id="inputTel" name="userTel" placeholder="사용자 전화번호" required>
+            <div class="invalid-feedback">
+                전화번호를 입력하세요.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">가입 완료</button>
+    </div>
+</form>
+</main>
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
 </body>
 </html>
