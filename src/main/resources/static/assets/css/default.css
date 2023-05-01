@@ -109,6 +109,8 @@ body {
     width: 1.5rem;
     height: 1.5rem;
 }
+
+/* signup, login*/
 .bi {
     vertical-align: -.125em;
     fill: currentColor;
