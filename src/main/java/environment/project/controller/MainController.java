@@ -30,15 +30,12 @@ public class MainController {
         int limit = 4;
         ArrayList<Object> arrBoardList = new ArrayList<>();
         for (int id = 0; id < boardList.size(); id += limit) {
-
             arrBoardList.add(new ArrayList<>(boardList.subList(id, min(id + limit, boardList.size()))));
-
         }
         model.addAttribute("list", list);
         model.addAttribute("arrBoardList", arrBoardList);
 
         // 회원가입 후 로그인
-//        log.info("loginUser", session.getAttribute("loginUser"));
         Long userNo = (Long) session.getAttribute("loginUser");
 
         if (userNo != null){
