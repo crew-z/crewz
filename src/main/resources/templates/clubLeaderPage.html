@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>crew.z circleLeaderPage</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- 구성하고자 하는 화면 설계 -->
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ol>
+                    <li><a th:href="@{/main}">Home</a></li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section class="club-leader-page">
+
+        <!--동아리원 신청현황 관리-->
+
+                <div class="section-header">
+                    <h2>동아리 신청 현황</h2>
+                </div>
+
+                <div class="row gy-4">
+                        <table class="table-info table-hover text-center table-bordered">
+
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>이름</th>
+                                <th>닉네임</th>
+                                <th>전화번호</th>
+                                <th>이메일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each = "clubInfo : ${list}">
+                                <th th:text = "${clubInfo.clubApplyNo}"></th>
+                                <th th:text = "${clubInfo.userName}"></th>
+                                <th th:text = "${clubInfo.userEmail}"></th>
+                                <td th:text = "${clubInfo.clubName}"></td>
+                                <td th:text = "${clubInfo.clubActivities}"></td>
+                                <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
+                                <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-primary refuseBtn" >반려</a> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+
+                </div>
+    </section>
+
+
+
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+
+</body>
+
+<script th:inline="javascript">
+
+    const modifyUserInfoBtn = document.querySelector('#modifyUserInfoBtn');
+    modifyUserInfoBtn.addEventListener('click', function() {
+        const updateUserInfoForm = document.querySelector('form.php-email-form');
+        updateUserInfoForm.style.display = 'block';
+    });
+</script>
+
+</html>
