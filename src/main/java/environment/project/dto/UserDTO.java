@@ -1,9 +1,7 @@
 package environment.project.dto;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+
 
 @Data
 public class UserDTO {
@@ -14,4 +12,5 @@ public class UserDTO {
     private String userTel;
     private String userNickname;
     private String userEmail;
+
 }
