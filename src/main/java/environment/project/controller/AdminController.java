@@ -26,7 +26,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin")
-    public String updateClubApply(@RequestParam Integer clubApplyNo, @RequestParam String method, @RequestParam String refuseReason,Model model){
+    public String updateClubApply(@RequestParam Long clubApplyNo, @RequestParam String method, @RequestParam String refuseReason,Model model){
         ClubApplyDTO dto = new ClubApplyDTO();
         List<ClubApplyDTO> clubApplyList = clubApplyService.selectClubApply();
         model.addAttribute("list",clubApplyList);

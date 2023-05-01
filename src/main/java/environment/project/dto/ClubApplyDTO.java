@@ -6,8 +6,8 @@ import java.sql.Date;
 
 @Data
 public class ClubApplyDTO {
-    private int clubApplyNo;
-    private int userNo;
+    private Long clubApplyNo;
+    private Long userNo;
     private String clubName;
     private String clubPurpose;
     private String clubActivities;

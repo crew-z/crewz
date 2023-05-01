@@ -17,6 +17,7 @@ public class BoardDTO {
     private String boardRegularContent;
     private String boardEtcContent;
     private String boardApproveYn;
+    private int boardViews;
     private String recruitStatus;
     private LocalDateTime regdate;
     private LocalDateTime updatedate;
