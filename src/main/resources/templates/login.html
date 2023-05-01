@@ -9,14 +9,7 @@
     <meta content="" name="keywords">
 
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <style>
 
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-    </style>
     <link href="/assets/css/sign-in.css" rel="stylesheet">
 <link th:replace="~{/module/commonCss}">
 
@@ -30,21 +23,21 @@
 <!-- ======= Body ======= -->
 <!-- main -->
 <main class="form-signin w-100 m-auto">
-        <form action="/login" type="POST" class="needs-validation" novalidate>
+        <form action="/login" method="POST" class="needs-validation" novalidate>
 <!--            <img class="mb-4" src="/assets/img/crewz.png" alt="">-->
 
             <h1 class="h3 mb-3 fw-bold">로그인</h1>
-            <p class="mb-3 text-body-secondary fw-light">크루즈 여행에 참여해보세요!</p>
+            <p class="mb-3 text-body-secondary fw-light">크루즈 여행에 합류해보세요!</p>
 
             <div class="form-floating has-validation">
-                <input type="text" class="form-control " id="floatingInput" placeholder="ID" required>
+                <input type="text" class="form-control " id="floatingInput" placeholder="ID" name="loginId" required>
                 <label for="floatingInput">ID</label>
                 <div class="invalid-feedback">
                     아이디를 입력하세요.
                 </div>
             </div>
             <div class="form-floating has-validation">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="loginPassword" required>
                 <label for="floatingPassword">Password</label>
                 <div class="invalid-feedback">
                     비밀번호를 입력하세요.

@@ -25,8 +25,8 @@
     <!-- ======= Blog Section ======= -->
     <section class="inner-page">
         <div class="container" data-aos="fade-up">
-            <h1>[[${name}]]님 환영합니다!</h1>
-            <input type="button" href="/" class="btn btn-primary" value="메인으로 이동하기">
+            <h1>[[${session.name}]]님 환영합니다!</h1>
+            <input type="button" th:onclick="|location.href='@{/}'|" class="btn btn-primary" value="메인으로 이동하기">
 
         </div>
     </section><!-- End Inner Page -->

@@ -98,3 +98,11 @@
     width: 1.5rem;
     height: 1.5rem;
 }
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+#signup-con {
+    max-width: 330px!important;
+    padding: 15px;
+}

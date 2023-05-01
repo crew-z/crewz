@@ -20,9 +20,21 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void insertUser(UserDTO userDTO){
+    public Long insertUser(UserDTO userDTO){
         // To-do: Password to Hashcode
-        userMapper.insertUser(userDTO);
+        return userMapper.insertUser(userDTO);
+    }
+    @Override
+    public Long login(String loginId, String loginPassword){
+        UserDTO userDTO = userMapper.getUserByLoginId(loginId);
+        if(userDTO.getUserPassword().equals(loginPassword))
+            return userDTO.getUserNo();
+        return null;
+    }
+
+    @Override
+    public UserDTO getUserByUserNo(Long id){
+        return userMapper.getUserByUserNo(id);
     }
 
 }

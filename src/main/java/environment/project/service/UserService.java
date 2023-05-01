@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface UserService {
     List<UserDTO> selectUser();
-    void insertUser(UserDTO userDTO);
+    Long insertUser(UserDTO userDTO);
+    Long login(String loginId, String loginPassword);
+    UserDTO getUserByUserNo(Long id);
 }
