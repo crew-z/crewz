@@ -35,12 +35,12 @@ public class AdminController {
         log.info("method: {}", method);
         log.info("refuse_reason: {}",refuseReason);
         if(method.equals("approve")){
-            dto.setClubApplyNo(Long.valueOf(clubApplyNo));
+            dto.setClubApplyNo(clubApplyNo);
             dto.setClubApproveYn("Y");
             dto.setClubRefuseReason("");
             result = clubApplyService.updateApproveYn(dto);
         }else{
-            dto.setClubApplyNo(Long.valueOf(clubApplyNo));
+            dto.setClubApplyNo(clubApplyNo);
             dto.setClubApproveYn("N");
             dto.setClubRefuseReason(refuseReason);
             result = clubApplyService.updateApproveYn(dto);
