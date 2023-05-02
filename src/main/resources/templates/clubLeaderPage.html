@@ -32,6 +32,7 @@
                 <ol>
                     <li><a th:href="@{/main}">Home</a></li>
 
+
                 </ol>
             </div>
 
@@ -46,37 +47,61 @@
                 <div class="section-header">
                     <h2>동아리 신청 현황</h2>
                 </div>
-
+                <div class="container">
                 <div class="row gy-4">
-                        <table class="table-info table-hover text-center table-bordered">
+                    <form id="form" method="post" action="/applyMem">
+                        <input type="hidden" id="method" name="method" value=""/>
+                        <input type="hidden" id="userNo" name="userNo" value=""/>
+                        <input type="hidden" id="clubNo" name="clubNo" value=""/>
+                    </form>
 
+                        <table class="table table-hover text-center table-bordered">
                             <thead>
-                            <tr>
+                            <tr class="table-info ">
                                 <th>#</th>
                                 <th>이름</th>
                                 <th>닉네임</th>
                                 <th>전화번호</th>
                                 <th>이메일</th>
+                                <th>가입승인</th>
+                                <th>가입반려</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each = "clubInfo : ${list}">
-                                <th th:text = "${clubInfo.clubApplyNo}"></th>
-                                <th th:text = "${clubInfo.userName}"></th>
-                                <th th:text = "${clubInfo.userEmail}"></th>
-                                <td th:text = "${clubInfo.clubName}"></td>
-                                <td th:text = "${clubInfo.clubActivities}"></td>
-                                <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
-                                <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-primary refuseBtn" >반려</a> </td>
+                            <tr th:each = "clubInfo, clubState : ${clubInfo}" >
+                                <th th:text = "${clubState.count}"></th>
+                                <th th:text = "${clubInfo.user_name}"></th>
+                                <td th:text = "${clubInfo.user_nickname}"></td>
+                                <td th:text = "${clubInfo.user_tel}"></td>
+                                <th th:text = "${clubInfo.user_email}"></th>
+                                <td class="joinBtn"><button th:onclick="|javascript:upgradeUserGrade('${clubInfo.user_no}','${clubInfo.club_no}','ok')|" type="button" class="btn btn-outline-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                    </svg>
+                                    승인
+                                </button></td>
+                                <td class="joinBtn"><button th:onclick="|javascript:upgradeUserGrade('${clubInfo.user_no}','${clubInfo.club_no}','nok')|" type="button" class="btn btn-outline-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+                                    </svg>
+                                    반려
+                                </button></td>
                             </tr>
                             </tbody>
                         </table>
-
-
-
+                    <!-- 반려 확인 모달 -->
+                    <div id="prompt-modal" class="modal">
+                        <div class="modal-content">
+                            <span class="modal-close" onclick="closePrompt()">&times;</span>
+                            <h4><span style="color: red">반려버튼</span>을 클릭하시면 해당 유저에 대한 정보는 모두 사라집니다.</h4>
+                            <button type="button" class="btn btn-outline-warning" onclick="closePrompt()">보류</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="submitPrompt()">반려</button>
+                        </div>
+                    </div>
+                    <!-- 모달 END    -->
+                </div>
                 </div>
     </section>
-
 
 
 </main><!-- End #main -->
@@ -95,12 +120,30 @@
 </body>
 
 <script th:inline="javascript">
+    function upgradeUserGrade(userNo,clubNo,method){
+        document.getElementById("userNo").value = userNo;
+        document.getElementById("clubNo").value = clubNo;
+        document.getElementById("method").value = method;
 
-    const modifyUserInfoBtn = document.querySelector('#modifyUserInfoBtn');
-    modifyUserInfoBtn.addEventListener('click', function() {
-        const updateUserInfoForm = document.querySelector('form.php-email-form');
-        updateUserInfoForm.style.display = 'block';
-    });
+        if(method === 'nok') {
+            openPrompt();
+        } else {
+            document.getElementById("form").submit();
+        }
+
+    }
+
+    function openPrompt(){
+        document.getElementById("prompt-modal").style.display = "block";
+    }
+
+    function closePrompt(){
+        document.getElementById("prompt-modal").style.display = "none";
+    }
+    function submitPrompt(){
+        document.getElementById("form").submit();
+    }
+
 </script>
 
 </html>
