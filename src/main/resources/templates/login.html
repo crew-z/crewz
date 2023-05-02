@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>crew.z loginPage</title>
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/sign-in.css" rel="stylesheet">
+<link th:replace="~{/module/commonCss}">
+
+</head>
+<body class="text-center">
+<link href="/assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- main -->
+<main class="form-signin w-100 m-auto">
+        <form action="/login" method="POST" class="needs-validation" novalidate>
+<!--            <img class="mb-4" src="/assets/img/crewz.png" alt="">-->
+
+            <h1 class="h3 mb-3 fw-bold">로그인</h1>
+            <p class="mb-3 text-body-secondary fw-light">크루즈 여행에 합류해보세요!</p>
+
+            <div class="form-floating has-validation">
+                <input type="text" class="form-control " id="floatingInput" placeholder="ID" name="loginId" required>
+                <label for="floatingInput">ID</label>
+                <div class="invalid-feedback">
+                    아이디를 입력하세요.
+                </div>
+            </div>
+            <div class="form-floating has-validation">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="loginPassword" required>
+                <label for="floatingPassword">Password</label>
+                <div class="invalid-feedback">
+                    비밀번호를 입력하세요.
+                </div>
+            </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+            <div class="text-center">
+                <br>
+                <p>처음이신가요? <a href="/signup">회원가입</a></p>
+            </div>
+        </form>
+</main><!-- End #main -->
+<!-- End -->
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+</body>
+</html>

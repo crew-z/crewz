@@ -1,7 +1,6 @@
 <header id="header" class="header fixed-top" data-scrollto-offset="0">
     <div class="container">
         <div class="container-fluid d-flex align-items-center justify-content-between">
-
             <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
@@ -21,11 +20,12 @@
             </div>
             <!--        <a class="btn-getstarted scrollto" href="/loginForm">동아리 만들기</a>-->
             <!--        <a class="btn-getstarted scrollto" href="/loginForm">로그인</a>-->
-            <div class="header-right">
-                <a href="/all" class="header-botton">모든 동아리</a>
-                <a href="/" class="header-botton">동아리 만들기</a>
-                <a href="/loginForm" class="header-botton" id="loginBtn">로그인</a>
-            </div>
+        <div class="header-right">
+            <a href="/all" class="header-botton">모든 동아리</a>
+            <a href="/" class="header-botton">동아리 만들기</a>
+            <a th:if="${session.loginUser==null}" href="/login" class="header-botton" id="loginBtn">로그인</a>
+            <a th:unless="${session.loginUser==null}" href="/mypageMain" class="header-botton" id="mypageBtn">마이페이지</a>
+            <a th:if="${session.loginUser!=null}" href="/logout" class="header-botton" id="logoutBtn">로그아웃</a>
         </div>
     </div>
     <script>
