@@ -24,9 +24,9 @@ public class MypageController {
 
     @GetMapping(path = {  "/mypagemain" })
     public String loadMypageMain(Model model, HttpSession session) {
-        String userId = (String) session.getAttribute("userId");
-        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage(userId);
-        List<HashMap<String, Object>> userClub = mypageMapper.selectUserClub();
+        Long userNo = (Long) session.getAttribute("loginUser");
+        UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
+        List<HashMap<String, Object>> userClub = mypageService.selectUserJoinClub(userNo);
         model.addAttribute("user", userInfo);
         model.addAttribute("club", userClub);
         return "mypageMain";
@@ -34,8 +34,8 @@ public class MypageController {
 
     @PostMapping(path = {"/mypagemain"})
     public String modifyUserInfo(@RequestParam(required = false) String userNickname,@RequestParam(required = false) String userTel,@RequestParam(required = false) String userEmail, HttpSession session, Model model){
-        String userId = (String) session.getAttribute("userId");
-        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage(userId);
+        Long userNo = (Long) session.getAttribute("loginUser");
+        UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
         userInfo.setUserNickname(userNickname);
         userInfo.setUserEmail(userEmail);
         userInfo.setUserTel(userTel);

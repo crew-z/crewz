@@ -9,7 +9,9 @@ import java.util.List;
 public interface MypageService {
     UserDTO selectUserInfoFromMypage(String userId);
 
-    void updateUserInfo(UserDTO userDTO, String userId);
+    void updateUserInfo(UserDTO userDTO);
 
-    List<HashMap<String, Object>> selectUserJoinClub(String userId);
+    List<HashMap<String, Object>> selectUserJoinClub(Long userNo);
+
+    UserDTO selectUserInfoByUserNo(Long userNo);
 }
