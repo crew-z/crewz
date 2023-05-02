@@ -21,14 +21,12 @@ import java.util.List;
 import static java.lang.Math.min;
 @Slf4j
 @Controller
-@Slf4j
 public class MainController {
     @Autowired
     private UserService userService;
     @Autowired
     private BoardService boardService;
     @GetMapping(path = { "/", "/main" })
-
     public String mainPage(Model model, HttpSession session) {
         List<UserDTO> list = userService.selectUser();
         List<BoardDTO> boardList = boardService.selectBoard();
@@ -43,7 +41,6 @@ public class MainController {
         if (userNo != null){
             UserDTO userDTO = userService.getUserByUserNo(userNo);
             model.addAttribute("user", userDTO);
-            return "main";
         }
 
         model.addAttribute("list", list);

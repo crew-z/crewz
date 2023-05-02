@@ -22,10 +22,9 @@
 <!-- ======= Body ======= -->
 <!-- Main -->
 <main class="w-100 m-auto">
-    <form method="POST" action="/signup" class="needs-validation" novalidate>
-        <div class="container" id="signup-con">
-            <h1 class="h3 mb-3 fw-bold">회원가입</h1>
-
+    <div class="container" id="signup-con">
+        <h1 class="h3 mb-3 fw-bold">회원가입</h1>
+            <form method="POST" action="/signup" class="needs-validation" novalidate>
                 <div class="row mb-3 form-floating form-group has-validation">
                     <input type="text" class="form-control" id="inputName" name="userName" placeholder="사용자 이름" required>
                     <label for="inputName">이름</label>
@@ -73,30 +72,9 @@
                     </div>
                 </div>
             <button type="submit" class="btn btn-primary">가입 완료</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </main>
-<script>
-    (function () {
-        'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
 <!-- ======= Footer ======= -->
 <div th:replace="~{/include/footer}"></div>
 <!-- End Footer -->
