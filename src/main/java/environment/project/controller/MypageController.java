@@ -1,5 +1,6 @@
 package environment.project.controller;
 
+import environment.project.dto.ClubInfoDTO;
 import environment.project.dto.UserDTO;
 import environment.project.mapper.MypageMapper;
 import environment.project.service.MypageService;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
-//@Slf4j
+@Slf4j
 @Controller
 public class MypageController {
 
@@ -45,9 +46,26 @@ public class MypageController {
     }
 
     @GetMapping(path = {  "/clubleaderpage" })
-    public String loadClubleaderPage() {
+    public String loadClubleaderPage(Model model) {
+        List<HashMap<String, Object>> applicateClubMem = mypageMapper.selectClubApplicationMemInfo();
+        log.info("applicateClubMem: {}",applicateClubMem);
+        model.addAttribute("clubInfo", applicateClubMem);
 
         return "clubLeaderPage";
+    }
+
+    @RequestMapping(value = "/applyMem", method = RequestMethod.POST)
+    public String updateClubMem(Long userNo,Long clubNo, String method, Model model){
+        log.info("userNo: {}",userNo);
+        log.info("method: {}",method);
+        log.info("clubNo: {}",clubNo);
+        int result;
+        if(method.equals("ok")){
+            result = mypageService.updateClubMemGrade(userNo,clubNo);
+        } else if (method.equals("nok")) {
+            result = mypageService.delteApplicatedUserInfo(userNo,clubNo);
+        }
+        return "redirect:clubleaderpage";
     }
 
 }

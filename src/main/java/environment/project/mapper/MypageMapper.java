@@ -1,6 +1,8 @@
 package environment.project.mapper;
 
+import environment.project.dto.ClubInfoDTO;
 import environment.project.dto.UserDTO;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -40,6 +42,26 @@ public interface MypageMapper {
     List<HashMap<String, Object>> selectUserClub(@Param("userNo") Long userNo);
 
     // 동아리신청 회원 정보 불러오기
+
     @Select("SELECT user_name, club_join_date,user_email,user_nickname,user_tel FROM club_info JOIN user ON club_info.user_no = user.user_no WHERE user_no = #{ userNo } ")
     List<HashMap<String,Object>> selectClubApplicationMemInfo(@Param("userNo") Long userNo);
+
+    @Select("SELECT u.user_no, u.user_name, u.user_email, u.user_tel, u.user_nickname, ci.club_join_date, ca.club_name, ci.club_user_grade, ci.club_no " +
+            "FROM club_info ci " +
+            "JOIN club c ON ci.club_no = c.club_no " +
+            "JOIN club_apply ca ON c.club_apply_no = ca.club_apply_no " +
+            "JOIN user u ON ci.user_no = u.user_no " +
+            "WHERE ci.club_user_grade = 0 AND c.club_no IN ( " +
+            "SELECT ci2.club_no " +
+            "FROM club_info ci2 " +
+            "WHERE ci2.user_no = 2 ) ")
+    List<HashMap<String,Object>> selectClubApplicationMemInfo();
+
+    // 동아리신청 회원 수락
+    @Update("UPDATE club_info SET club_user_grade = 1 , club_approve_date = now() WHERE user_no = #{ userNo } AND club_no = #{ clubNo } ")
+    int updateUserClubJoin(Long userNo, Long clubNo);
+
+    @Delete("DELETE FROM club_info WHERE user_no = #{ userNo } AND club_no = #{ clubNo }")
+    int delteApplicatedUserJoinClub(Long userNo, Long clubNo);
+
 }
