@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 //@Slf4j
@@ -22,9 +23,9 @@ public class MypageController {
     private MypageService mypageService;
 
     @GetMapping(path = {  "/mypagemain" })
-    public String loadMypageMain(Model model) {
-//        List<UserDTO> userInfo = mypageMapper.selectUserInfoFromMypage(userId);
-        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage();
+    public String loadMypageMain(Model model, HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage(userId);
         List<HashMap<String, Object>> userClub = mypageMapper.selectUserClub();
         model.addAttribute("user", userInfo);
         model.addAttribute("club", userClub);
@@ -32,8 +33,9 @@ public class MypageController {
     }
 
     @PostMapping(path = {"/mypagemain"})
-    public String modifyUserInfo(@RequestParam(required = false) String userNickname,@RequestParam(required = false) String userTel,@RequestParam(required = false) String userEmail, Model model){
-        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage();
+    public String modifyUserInfo(@RequestParam(required = false) String userNickname,@RequestParam(required = false) String userTel,@RequestParam(required = false) String userEmail, HttpSession session, Model model){
+        String userId = (String) session.getAttribute("userId");
+        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage(userId);
         userInfo.setUserNickname(userNickname);
         userInfo.setUserEmail(userEmail);
         userInfo.setUserTel(userTel);
@@ -44,7 +46,7 @@ public class MypageController {
 
     @GetMapping(path = {  "/clubleaderpage" })
     public String loadClubleaderPage() {
-//
+
         return "clubLeaderPage";
     }
 

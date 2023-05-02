@@ -14,24 +14,20 @@ public class MypageServiceImpl implements MypageService{
 
     private final MypageMapper mypageMapper;
 
-
-//    @Override
-//    public List<UserDTO> selectUserInfoFromMypage(String userId) {
-//        return mypageMapper.selectUserInfoFromMypage(userId);
-//    }
     @Override
-    public UserDTO selectUserInfoFromMypage() {
-        return mypageMapper.selectUserInfoFromMypage();
+    public UserDTO selectUserInfoFromMypage(String userId) {
+        return mypageMapper.selectUserInfoFromMypage(userId);
     }
 
     @Override
-    public void updateUserInfo(UserDTO userDTO) {
-        mypageMapper.updateUserInfo(userDTO);
+    public void updateUserInfo(UserDTO userDTO, String userId) {
+        mypageMapper.updateUserInfo(userDTO, userId);
     }
 
     @Override
-    public List<HashMap<String, Object>> selectUserJoinClub() {
-        return mypageMapper.selectUserClub();
+    public List<HashMap<String, Object>> selectUserJoinClub(String userId) {
+
+        return mypageMapper.selectUserClub(userId);
     }
 
 }

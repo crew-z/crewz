@@ -7,10 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface MypageService {
-//    List<UserDTO> selectUserInfoFromMypage(String userId);
-    UserDTO selectUserInfoFromMypage();
+    UserDTO selectUserInfoFromMypage(String userId);
 
-    void updateUserInfo(UserDTO userDTO);
+    void updateUserInfo(UserDTO userDTO, String userId);
 
-    List<HashMap<String, Object>> selectUserJoinClub();
+    List<HashMap<String, Object>> selectUserJoinClub(String userId);
 }
