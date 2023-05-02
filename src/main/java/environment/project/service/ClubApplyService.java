@@ -8,5 +8,7 @@ import java.util.List;
 public interface ClubApplyService {
     List<ClubApplyDTO> selectClubApply();
 
+    List<ClubApplyDTO> selectClubApplyListToApproveYn(String approveYn);
+
     int updateApproveYn(ClubApplyDTO clubApplyDTO);
 }

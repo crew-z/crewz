@@ -19,7 +19,15 @@
 <!-- ======= Body ======= -->
 <!-- 구성하고자 하는 화면 설계 -->
 <main id="main">
-
+  <header>
+    <div class="container">
+      <div class="admin-tap-list">
+        <a th:href="@{/admin(viewType='all')}">전체 리스트</a>
+        <a th:href="@{/admin(viewType='approve')}">승인 리스트</a>
+        <a th:href="@{/admin(viewType='refuse')}">반려 리스트</a>
+      </div>
+    </div>
+  </header>
   <!-- ======= Blog Section ======= -->
   <section class="inner-page">
     <div class="container" data-aos="fade-up">
@@ -48,8 +56,10 @@
             <td th:text = "${clubApply.clubName}"></td>
             <td th:text = "${clubApply.clubPurpose}"></td>
             <td th:text = "${clubApply.clubActivities}"></td>
-            <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
-            <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-primary refuseBtn" >반려</a> </td>
+            <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
+            <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-danger" >반려</a> </td>
+            <td th:if="${clubApply.clubApproveYn} == 'Y' " class="tdBtnAdmin" colspan="2"><a class="btn btn-primary" >승인</a></td>
+            <td th:if="${clubApply.clubApproveYn} == 'N' " class="tdBtnAdmin" colspan="2"><a class="btn btn-danger" >반려</a></td>
           </tr>
           </tbody>
         </table>
