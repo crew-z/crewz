@@ -8,8 +8,7 @@ body {
     align-items: normal;
     padding-top: 40px;
 }
-
-@media screen and (max-width: 850px){
+@media screen and (max-width: 1200px){
     .header-menu{
         display: none;
     }
@@ -93,7 +92,7 @@ body {
     color: #8E8E8E;
 }
 /*carousel*/
-.carousel-control-prev{
+.board-carousel-control-prev{
     background-color: #e1e1e1;
     width: 6vh;
     height: 6vh;
@@ -101,7 +100,7 @@ body {
     top: 50%;
     transform: translate(-125%);
 }
-.carousel-control-next{
+.board-carousel-control-next{
     background-color: #e1e1e1;
     width: 6vh;
     height: 6vh;
@@ -109,8 +108,8 @@ body {
     top: 50%;
     transform: translate(125%);
 }
-.carousel-control-prev span,
-.carousel-control-next span{
+.board-carousel-control-prev span,
+.board-carousel-control-next span{
     width: 1.5rem;
     height: 1.5rem;
 }

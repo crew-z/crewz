@@ -26,7 +26,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin")
-    public String updateClubApply(@RequestParam Integer clubApplyNo, @RequestParam String method, @RequestParam String refuseReason,Model model){
+    public String updateClubApply(@RequestParam Long clubApplyNo, @RequestParam String method, @RequestParam String refuseReason,Model model){
         ClubApplyDTO dto = new ClubApplyDTO();
         List<ClubApplyDTO> clubApplyList = clubApplyService.selectClubApply();
         model.addAttribute("list",clubApplyList);
@@ -35,12 +35,12 @@ public class AdminController {
         log.info("method: {}", method);
         log.info("refuse_reason: {}",refuseReason);
         if(method.equals("approve")){
-            dto.setClubApplyNo(Long.valueOf(clubApplyNo));
+            dto.setClubApplyNo(clubApplyNo);
             dto.setClubApproveYn("Y");
             dto.setClubRefuseReason("");
             result = clubApplyService.updateApproveYn(dto);
         }else{
-            dto.setClubApplyNo(Long.valueOf(clubApplyNo));
+            dto.setClubApplyNo(clubApplyNo);
             dto.setClubApproveYn("N");
             dto.setClubRefuseReason(refuseReason);
             result = clubApplyService.updateApproveYn(dto);
