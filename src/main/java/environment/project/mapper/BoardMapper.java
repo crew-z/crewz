@@ -5,13 +5,19 @@ import environment.project.dto.BoardDTO;
 import environment.project.dto.BoardUpdateDTO;
 import org.apache.ibatis.annotations.*;
 
+
 import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+    // SELECT Count
+    @Select("SELECT COUNT(*) FROM BOARD ")
+    int selectCount();
+  
     // SELECT
-    @Select("SELECT * FROM BOARD bo LEFT JOIN BOARD_PERIOD bp on bo.board_no = bp.board_no") // sql문 그대로 작성
+    @Select("SELECT * FROM BOARD bo LEFT JOIN BOARD_PERIOD bp on bo.board_no = bp.board_no")
     List<BoardDTO> selectService();
+
 
     /**
      * GET: 동아리 상세 페이지 read
@@ -34,5 +40,11 @@ public interface BoardMapper {
      */
     @Update("UPDATE board SET board_title = #{boardTitle}, board_pre_content = #{boardPreContent}, board_content = #{boardContent}, board_active_content = #{boardActiveContent}, board_regular_content = #{boardRegularContent}, board_etc_content = #{boardEtcContent} WHERE board_no = #{boardNo}")
     int updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO);
+
+    @Select("SELECT * FROM BOARD bo LEFT JOIN BOARD_PERIOD bp on bo.board_no = bp.board_no WHERE board_title LIKE '%${boardTitle}%'")
+    List<BoardDTO> selectServiceToSearch(String boardTitle);
+
+    @Update("UPDATE board_views SET board_views = board_views +1  WHERE board_no = #{boardNo} ")
+    void clickCount(Long boardNo);
 
 }

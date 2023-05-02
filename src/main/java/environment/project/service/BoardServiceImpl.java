@@ -16,6 +16,11 @@ public class BoardServiceImpl implements BoardService {
     private final BoardMapper boardMapper;
 
     @Override
+    public int selectBoardCount() {
+        return boardMapper.selectCount();
+    }
+
+    @Override
     public List<BoardDTO> selectBoard() {
         return boardMapper.selectService();
     }
@@ -24,6 +29,7 @@ public class BoardServiceImpl implements BoardService {
     public BoardDTO getBoardById(Long boardNo) {
         return boardMapper.getBoardById(boardNo);
     }
+    
     @Override
     public int createBoard(BoardCreateDTO boardCreateDTO) {
         return boardMapper.createBoard(boardCreateDTO);
@@ -33,5 +39,15 @@ public class BoardServiceImpl implements BoardService {
     public boolean updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO) {
         int rowsAffected = boardMapper.updateBoardByBoardNo(boardUpdateDTO);
         return rowsAffected > 0;
+
+    public List<BoardDTO> selectBoardToSearch(String boardTitle) {
+        return boardMapper.selectServiceToSearch(boardTitle);
     }
+
+    //조회수 카운트 메서드
+    @Override
+    public void clickCount(Long boardNo) {
+        boardMapper.clickCount(boardNo);
+    }
+    
 }
