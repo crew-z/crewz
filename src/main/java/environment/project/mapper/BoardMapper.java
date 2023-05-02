@@ -2,6 +2,7 @@ package environment.project.mapper;
 
 import environment.project.dto.BoardCreateDTO;
 import environment.project.dto.BoardDTO;
+import environment.project.dto.BoardGetDTO;
 import environment.project.dto.BoardUpdateDTO;
 import org.apache.ibatis.annotations.*;
 
@@ -23,8 +24,16 @@ public interface BoardMapper {
      * GET: 동아리 상세 페이지 read
      * @author 이권석
      */
-    @Select("SELECT * FROM board WHERE board_no = #{boardNo}")
-    BoardDTO getBoardById(Long boardNo);
+    @Select("SELECT b.*, bp.start_date, bp.end_date FROM board b JOIN board_period bp ON b.board_no = bp.board_no WHERE b.board_no = #{boardNo}")
+    BoardGetDTO getBoardByBoardNo(Long boardNo);
+//    @Select("SELECT * FROM board WHERE board_no = #{boardNo};")
+//    BoardGetDTO getBoardByBoardNo(Long boardNo);
+//    @Select("SELECT b.board_no, b.board_title, b.board_content, b.regdate, br.reply_no, br.reply_content, br.regdate AS reply_regdate FROM board AS b LEFT JOIN board_reply AS br ON b.board_no = br.board_no WHERE b.board_no = 3;")
+//    BoardGetDTO getBoardByBoardNo(Long boardNo);
+
+//    @Select("SELECT * FROM board WHERE board_no = #{boardNo}")
+//    BoardGetDTO getBoardByBoardNo(Long boardNo);
+
 
     /**
      * POST: 동아리 상세 페이지 create

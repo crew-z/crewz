@@ -2,6 +2,7 @@ package environment.project.service;
 
 import environment.project.dto.BoardCreateDTO;
 import environment.project.dto.BoardDTO;
+import environment.project.dto.BoardGetDTO;
 import environment.project.dto.BoardUpdateDTO;
 import environment.project.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardDTO getBoardById(Long boardNo) {
-        return boardMapper.getBoardById(boardNo);
+    public BoardGetDTO getBoardByBoardNo(Long boardNo) {
+        return boardMapper.getBoardByBoardNo(boardNo);
     }
     
     @Override
@@ -39,6 +40,7 @@ public class BoardServiceImpl implements BoardService {
     public boolean updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO) {
         int rowsAffected = boardMapper.updateBoardByBoardNo(boardUpdateDTO);
         return rowsAffected > 0;
+    }
 
     public List<BoardDTO> selectBoardToSearch(String boardTitle) {
         return boardMapper.selectServiceToSearch(boardTitle);

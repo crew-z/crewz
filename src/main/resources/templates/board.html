@@ -34,27 +34,21 @@
                 <p class="board-contents-p" th:text="${board.boardEtcContent}"></p>
             </div>
             <div id="board-review">
-                <h3><span>4개</span>의 크루원 리뷰가 있습니다</h3>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
+                <h3><span th:text="${replyCount}"></span>개의 크루원 리뷰가 있습니다</h3>
+                <div class="board-reviews" th:each="reply : ${replys}">
+                    <h4 th:text="${reply.getUserId()}"><span>동아리장</span></h4>
+                    <p th:text="${reply.getReplyContent()}"></p>
+                    <div>
+                        <button class="update-review">수정</button>
+                        <button class="delete-review">삭제</button>
+                    </div>
                 </div>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
-                </div>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
-                </div>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
-                </div>
-                <div id="create-review">
-                    <textarea placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)"></textarea>
-                    <button>댓글 작성</button>
-                </div>
+                <form method="POST" th:action="@{'/boards/' + ${board.boardNo} + '/replys'}">
+                    <div id="create-review">
+                        <textarea name="replyContent" placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)"></textarea>
+                        <button type="submit">댓글 작성</button>
+                    </div>
+                </form>
             </div>
 
             <div id="board-recommand">
@@ -124,15 +118,17 @@
         </div>
         <div id="aside">
             <div id="aside-card">
-                <p>[[${board.boardTitle}]]은 현재</p>
-                <p>크루 모집중입니다</p>
-                <div>
+                <p class="aside-card-title">[[${board.boardTitle}]]은 현재</p>
+                <p class="aside-card-title" th:if="${dDay != null}">크루 모집중입니다</p>
+                <p class="aside-card-title" th:unless="${dDay != null}">크루 모집중이 아닙니다</p>
+
+                <div id="join-period">
                     <p>모집기간</p>
                     <p>2023.04.02</p>
-                    <p>(6일 남았어요)</p>
+                    <p th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
                 </div>
                 <div>
-                    <button>동아리에 합류하기</button>
+                    <button id="club-join-btn">동아리에 합류하기</button>
                 </div>
             </div>
         </div>
