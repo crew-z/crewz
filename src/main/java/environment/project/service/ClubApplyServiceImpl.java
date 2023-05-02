@@ -19,6 +19,14 @@ public class ClubApplyServiceImpl implements ClubApplyService{
     }
 
     @Override
+    public List<ClubApplyDTO> selectClubApplyListToApproveYn(String approveYn) {
+        return clubApplyMapper.selectClubApplyListToApproveYn(approveYn);
+    }
+    @Override
+    public List<ClubApplyDTO> selectClubApplyListToIsNull() {
+        return clubApplyMapper.selectClubApplyListToIsNull();
+    }
+    @Override
     public int updateApproveYn(ClubApplyDTO clubApplyDTO) {
         return clubApplyMapper.updateService(clubApplyDTO);
     }

@@ -123,11 +123,6 @@ body {
     max-width: 330px!important;
     padding: 15px;
 }
-/* admin CSS*/
-.refuseBtn{
-    background-color:red;
-    border-color: red;
-}
 .tdBtnAdmin{
     width: 100px;
 }
@@ -187,4 +182,20 @@ body {
 }
 .span-color{
     color: #FF5A5A;
+}
+/* 어드민 탭 스타일링 코드 */
+.admin-tap-list {
+    text-align: center;
+    margin: 20px;
+}
+.admin-tap-list > a {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+.admin-tap-list > a:hover {
+    background-color: lightgray;
 }

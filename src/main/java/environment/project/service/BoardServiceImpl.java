@@ -39,7 +39,6 @@ public class BoardServiceImpl implements BoardService {
     public boolean updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO) {
         int rowsAffected = boardMapper.updateBoardByBoardNo(boardUpdateDTO);
         return rowsAffected > 0;
-
     }
 
     @Override
