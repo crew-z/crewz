@@ -27,4 +27,10 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardDTO> selectBoardToSearch(String boardTitle) {
         return boardMapper.selectServiceToSearch(boardTitle);
     }
+
+    //조회수 카운트 메서드
+    @Override
+    public void clickCount(Long boardNo) {
+        boardMapper.clickCount(boardNo);
+    }
 }

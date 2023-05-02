@@ -10,4 +10,6 @@ public interface BoardService {
     List<BoardDTO> selectBoard();
 
     List<BoardDTO> selectBoardToSearch(String boardTitle);
+
+    void clickCount(Long boardNo);
 }
