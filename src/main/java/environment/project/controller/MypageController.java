@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 @Slf4j
@@ -23,18 +24,19 @@ public class MypageController {
     private MypageService mypageService;
 
     @GetMapping(path = {  "/mypagemain" })
-    public String loadMypageMain(Model model) {
-//        List<UserDTO> userInfo = mypageMapper.selectUserInfoFromMypage(userId);
-        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage();
-        List<HashMap<String, Object>> userClub = mypageMapper.selectUserClub();
+    public String loadMypageMain(Model model, HttpSession session) {
+        Long userNo = (Long) session.getAttribute("loginUser");
+        UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
+        List<HashMap<String, Object>> userClub = mypageService.selectUserJoinClub(userNo);
         model.addAttribute("user", userInfo);
         model.addAttribute("club", userClub);
         return "mypageMain";
     }
 
     @PostMapping(path = {"/mypagemain"})
-    public String modifyUserInfo(@RequestParam(required = false) String userNickname,@RequestParam(required = false) String userTel,@RequestParam(required = false) String userEmail, Model model){
-        UserDTO userInfo = mypageMapper.selectUserInfoFromMypage();
+    public String modifyUserInfo(@RequestParam(required = false) String userNickname,@RequestParam(required = false) String userTel,@RequestParam(required = false) String userEmail, HttpSession session, Model model){
+        Long userNo = (Long) session.getAttribute("loginUser");
+        UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
         userInfo.setUserNickname(userNickname);
         userInfo.setUserEmail(userEmail);
         userInfo.setUserTel(userTel);
@@ -48,6 +50,7 @@ public class MypageController {
         List<HashMap<String, Object>> applicateClubMem = mypageMapper.selectClubApplicationMemInfo();
         log.info("applicateClubMem: {}",applicateClubMem);
         model.addAttribute("clubInfo", applicateClubMem);
+
         return "clubLeaderPage";
     }
 

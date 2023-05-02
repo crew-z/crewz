@@ -21,6 +21,7 @@ import java.util.List;
 import static java.lang.Math.min;
 @Slf4j
 @Controller
+
 public class MainController {
     @Autowired
     private UserService userService;
