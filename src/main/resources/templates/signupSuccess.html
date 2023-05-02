@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>crew.z New User</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body class="text-center">
+<link href="/assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<main class="w-100 m-auto">
+    <!-- ======= Blog Section ======= -->
+<!--    <img class="d-block mx-auto mb-4" src="/assets/img/crewz.png" alt="">-->
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="green" class="bi bi-check2-circle d-block mx-auto mb-4" viewBox="0 0 16 16">
+        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+    </svg>
+    <h1 class="display-5 fw-bold mb-3 text-body-emphasis">[[${session.name}]]님 환영합니다!</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-5">크루즈에서는 새로운 동료를 만나고, 다양한 활동을 즐길 수 있습니다.<br>앞으로 크루즈에서 멋진 경험을 누리세요.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-primary">메인으로 이동하기</button>
+        </div>
+    </div>
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+<link th:replace="~{/module/commonJs}">
+<!-- End Body -->
+</body>
+</html>

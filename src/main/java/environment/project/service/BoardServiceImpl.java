@@ -27,4 +27,5 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardDTO> selectBoardToSearch(String boardTitle) {
         return boardMapper.selectServiceToSearch(boardTitle);
     }
+
 }

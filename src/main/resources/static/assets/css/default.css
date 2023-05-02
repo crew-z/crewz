@@ -1,3 +1,14 @@
+html,
+body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    padding-top: 40px;
+}
+
 @media screen and (max-width: 850px){
     .header-menu{
         display: none;
@@ -6,9 +17,11 @@
 .logo{
     z-index:1
 }
+
 .defaultFontColor{
     color: #2E2E2E;
 }
+
 .header-menu{
     text-align: center;
     position: absolute;
@@ -102,6 +115,15 @@
     height: 1.5rem;
 }
 
+/* signup, login*/
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+#signup-con {
+    max-width: 330px!important;
+    padding: 15px;
+}
 /* admin CSS*/
 .refuseBtn{
     background-color:red;
