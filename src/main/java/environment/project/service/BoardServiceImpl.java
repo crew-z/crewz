@@ -1,6 +1,8 @@
 package environment.project.service;
 
+import environment.project.dto.BoardCreateDTO;
 import environment.project.dto.BoardDTO;
+import environment.project.dto.BoardUpdateDTO;
 import environment.project.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 
     private final BoardMapper boardMapper;
 
@@ -24,6 +26,20 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public BoardDTO getBoardById(Long boardNo) {
+        return boardMapper.getBoardById(boardNo);
+    }
+    
+    @Override
+    public int createBoard(BoardCreateDTO boardCreateDTO) {
+        return boardMapper.createBoard(boardCreateDTO);
+    }
+
+    @Override
+    public boolean updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO) {
+        int rowsAffected = boardMapper.updateBoardByBoardNo(boardUpdateDTO);
+        return rowsAffected > 0;
+
     public List<BoardDTO> selectBoardToSearch(String boardTitle) {
         return boardMapper.selectServiceToSearch(boardTitle);
     }
@@ -33,4 +49,5 @@ public class BoardServiceImpl implements BoardService{
     public void clickCount(Long boardNo) {
         boardMapper.clickCount(boardNo);
     }
+    
 }
