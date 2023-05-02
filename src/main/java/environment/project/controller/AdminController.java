@@ -27,6 +27,8 @@ public class AdminController {
             clubApplyList = clubApplyService.selectClubApplyListToApproveYn("Y");
         }else if(viewType.equals("refuse")){
             clubApplyList = clubApplyService.selectClubApplyListToApproveYn("N");
+        }else if(viewType.equals("wait")){
+            clubApplyList = clubApplyService.selectClubApplyListToIsNull();
         }else {
             clubApplyList = clubApplyService.selectClubApply();
         }

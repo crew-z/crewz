@@ -23,6 +23,7 @@
     <div class="container">
       <div class="admin-tap-list">
         <a th:href="@{/admin(viewType='all')}">전체 리스트</a>
+        <a th:href="@{/admin(viewType='wait')}">대기 리스트</a>
         <a th:href="@{/admin(viewType='approve')}">승인 리스트</a>
         <a th:href="@{/admin(viewType='refuse')}">반려 리스트</a>
       </div>
@@ -40,22 +41,24 @@
 
           <thead>
           <tr>
-            <th>고유 번호</th>
-            <th>신청 유저</th>
-            <th>신청 유저 이메일</th>
-            <th>동아리 명</th>
+            <th>#</th>
+            <th>신청자</th>
+            <th>이메일</th>
+            <th>동아리 이름</th>
             <th>개설 목적</th>
             <th>활동 내용</th>
+            <th>신청 일자</th>
           </tr>
           </thead>
           <tbody>
           <tr th:each = "clubApply : ${list}">
-            <th th:text = "${clubApply.clubApplyNo}"></th>
+            <th th:text = "${clubApplyStat.count}"></th>
             <th th:text = "${clubApply.userName}"></th>
             <th th:text = "${clubApply.userEmail}"></th>
             <td th:text = "${clubApply.clubName}"></td>
             <td th:text = "${clubApply.clubPurpose}"></td>
             <td th:text = "${clubApply.clubActivities}"></td>
+            <td th:text = "${clubApply.regdate}"></td>
             <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
             <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-danger" >반려</a> </td>
             <td th:if="${clubApply.clubApproveYn} == 'Y' " class="tdBtnAdmin" colspan="2"><a class="btn btn-outline-success disabled" >승인됨</a></td>
