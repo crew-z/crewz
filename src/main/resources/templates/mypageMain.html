@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>crew.z Mypage</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- 구성하고자 하는 화면 설계 -->
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ol>
+                    <li><a th:href="@{/main}">Home</a></li>
+                    <li>[[${user.userName}]]님의 Mypage</li>
+                </ol>
+            </div>
+
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section class="mypage-main">
+        <!--나의 정보-->
+        <section id="userInfo" class="contact">
+            <div class="container">
+                <div class="row gy-5 gx-lg-5">
+                    <div class="col-lg-4">
+                        <div class="info">
+                            <h3>[[${user.userName}]]님의 회원정보</h3>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-emoji-wink flex-shrink-0"></i>
+                                <div>
+                                    <h4>Nickname : [[${user.userNickname}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-envelope flex-shrink-0"></i>
+                                <div>
+                                    <h4>Email : [[${user.userEmail}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-phone flex-shrink-0"></i>
+                                <div>
+                                    <h4>Tel : [[${user.userTel}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <div>
+                                    <button id="modifyUserInfoBtn" type="button" class="btn btn-outline-info">회원정보 수정</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <form th:action="@{/mypagemain}" th:method="post" role="form" class="php-email-form" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <h5 style="color:#000;">이름</h5>
+                                    <input type="text" class="form-control" name="userName" id="userName" th:field="*{user.userName}" th:readonly="readonly">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h5 style="color:#000;">아이디</h5>
+                                    <input type="text" class="form-control" name="userId" id="userId" th:field="*{user.userId}" th:readonly="readonly">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h5>닉네임</h5>
+                                    <input type="text" class="form-control" name="userNickname" id="userNickname" th:field="*{user.userNickname}">
+<!--                                    <span class="nickname_ok">사용 가능한 이름입니다.</span>-->
+<!--                                    <span class="nickname_already">누군가 이 이름을 사용하고 있어요.</span>-->
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <h5>이메일</h5>
+                                    <input type="email" class="form-control" name="userEmail" id="userEmail" th:field="*{user.userEmail}" >
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h5>전화번호</h5>
+                                    <input type="text" class="form-control" name="userTel" id="userTel" th:field="*{user.userTel}">
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="text-center"><button type="submit">변경내용 저장</button></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End UerInfo Section -->
+        <!--내가 활동중인 동아리-->
+        <section id="userClub" class="contact">
+            <div class="clubBox">
+            <th:block th:each="club:${club}">
+            <div class="container">
+                <div class="row gy-5 gx-lg-5">
+                    <div class="col-lg-4">
+                        <div class="info">
+                            <h3>[[${club.user_name}]]님이 활동중인 동아리</h3>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-suit-club flex-shrink-0"></i>
+                                <div>
+                                    <h4>[[${club.club_name}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
+                                <div>
+                                    <h4>[[${club.club_activities}]]</h4>
+                                </div>
+                            </div>
+
+                            <div class="info-item d-flex">
+                                <div>
+                                    <button onclick="loadClubInfo" type="button" class="btn btn-outline-info">동아리 리뷰남기기</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            </th:block>
+            </div>
+        </section><!-- End UerClub Section -->
+        <!--내 동아리 관리-->
+
+    </section><!-- End Inner Page -->
+
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+
+</body>
+
+<script th:inline="javascript">
+
+    const modifyUserInfoBtn = document.querySelector('#modifyUserInfoBtn');
+    modifyUserInfoBtn.addEventListener('click', function() {
+        const updateUserInfoForm = document.querySelector('form.php-email-form');
+        updateUserInfoForm.style.display = 'block';
+    });
+</script>
+
+</html>

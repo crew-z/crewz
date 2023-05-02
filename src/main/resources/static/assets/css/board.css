@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    line-height:145%;
+    color: #2e2e2e;
+}
+
+#wrap {
+    min-height:100%;
+    position: relative;
+}
+
+#header {
+    height: 80px;
+    background-color: #fff;
+    box-shadow: 0 -1px 0 #ddd inset;
+}
+
+#container {
+    width: 1152px;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+#contents {
+    width: 780px;
+    height: 100%;
+    margin-right: 36px;
+    margin-bottom: 80px;
+    background-color: #fff;
+    float: left;
+}
+
+#aside {
+    width: 300px;
+    height: 200px;
+    margin-left: 36px;
+    float: left;
+    box-shadow: 0 0 0 1px #ddd inset;
+    border-radius: 8px;
+}
+
+#aside-card {
+    padding: 24px 26px;
+}
+
+#footer {
+    width: 100%;
+    height: 160px;
+    background-color: #f6f6f6;
+    clear: both;
+    bottom: 0;
+}
+
+#board-title {
+    margin-bottom: 20px;
+}
+
+#board-title > h1 {
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+#board-categories {
+    margin-bottom: 40px;
+}
+
+#board-content {
+    margin-bottom: 20px;
+}
+
+.board-contents {
+    margin-bottom: 20px;
+}
+
+.board-contents-p {
+    margin-bottom: 40px;
+}
+
+#board-reviews {
+    margin-bottom: 40px;
+}
+
+#board-review > h3 {
+    margin-bottom: 20px;
+}
+
+#board-review > h3 > span {
+    color: #FF5A5A;
+}
+
+#board-content > h3, #board-review > h3, #board-recommand > h3 {
+    font-size: 20px;
+}
+
+#board-title > h2 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#board-categories > ul {
+    list-style: none;
+}
+
+#board-categories > ul > li {
+    display: inline-block;
+}
+
+#board-categories > ul > li > a {
+    margin-right: 6px;
+    padding: 9px 14px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #4b4b4b;
+    background-color: #F1F4F7;
+    border-radius: 25px;
+}
+
+#create-review > input {
+    width: 100%;
+    font-size: 16px;
+    text-align: left;
+    height: 120px;
+    padding: 16px;
+    border: none;
+    box-shadow: 0 0 0 1px #ddd inset;
+    border-radius: 8px;
+}
+
+#create-review > input:focus {
+    outline: none;
+}
+
+#create-review > input::placeholder {
+    color: #929292;
+}
+
+.card {
+    width: 240px;
+    height: 240px;
+    float: left;
+    box-shadow: 0 0 0 1px #ddd inset;
+    border-radius: 8px;
+    margin-right: 30px;
+
+}
+
+.card > div {
+    padding: 20px 26px;
+}
+
+.card-categories > ul {
+    list-style: none;
+}
+

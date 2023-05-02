@@ -5,8 +5,8 @@ import environment.project.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
         // To-do: Password to Hashcode
         return userMapper.insertUser(userDTO);
     }
+  
     @Override
     public Long login(String loginId, String loginPassword){
         UserDTO userDTO = userMapper.getUserByLoginId(loginId);

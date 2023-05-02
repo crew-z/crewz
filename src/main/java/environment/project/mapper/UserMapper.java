@@ -5,13 +5,15 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.List;
 
 @Mapper
 public interface UserMapper {
     // SELECT
-    @Select("SELECT * " + "FROM USER") // sql문 그대로 작성
+    @Select("SELECT * " + "FROM USER")
     List<UserDTO> selectService();
 
     // INSERT
@@ -25,6 +27,5 @@ public interface UserMapper {
 
     @Select("SELECT * FROM USER WHERE user_no=#{id}")
     UserDTO getUserByUserNo(Long id);
-
-
+  
 }

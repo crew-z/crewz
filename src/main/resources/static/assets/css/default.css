@@ -17,6 +17,11 @@ body {
 .logo{
     z-index:1
 }
+
+.defaultFontColor{
+    color: #2E2E2E;
+}
+
 .header-menu{
     text-align: center;
     position: absolute;
@@ -109,6 +114,7 @@ body {
     width: 1.5rem;
     height: 1.5rem;
 }
+
 /* signup, login*/
 .bi {
     vertical-align: -.125em;
@@ -117,4 +123,69 @@ body {
 #signup-con {
     max-width: 330px!important;
     padding: 15px;
+}
+/* admin CSS*/
+.refuseBtn{
+    background-color:red;
+    border-color: red;
+}
+.tdBtnAdmin{
+    width: 100px;
+}
+/* admin CSS END*/
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+}
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+}
+#prompt-input{
+    height: 200px;
+    margin-bottom: 30px;
+}
+/* 버튼 스타일 */
+.modalBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* 전체동아리 페이지 CSS */
+.all-post-title{
+    width: auto;
+    height:35px;
+    font-size: 24px;
+    text-align: center;
+}
+.span-color{
+    color: #FF5A5A;
 }

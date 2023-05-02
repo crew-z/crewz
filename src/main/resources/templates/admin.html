@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>crew.z Admin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+
+<!-- ======= Body ======= -->
+<!-- 구성하고자 하는 화면 설계 -->
+<main id="main">
+
+  <!-- ======= Blog Section ======= -->
+  <section class="inner-page">
+    <div class="container" data-aos="fade-up">
+        <form id="form" method="post" action="/admin">
+          <input type="hidden" id="clubApplyNo" name="clubApplyNo" value=""/>
+          <input type="hidden" id="method" name="method" value=""/>
+          <input type="hidden" id="refuseReason" name="refuseReason" value=""/>
+        </form>
+        <table class="table table-striped table-hover text-center table-bordered">
+
+          <thead>
+          <tr>
+            <th>고유 번호</th>
+            <th>신청 유저</th>
+            <th>신청 유저 이메일</th>
+            <th>동아리 명</th>
+            <th>개설 목적</th>
+            <th>활동 내용</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each = "clubApply : ${list}">
+            <th th:text = "${clubApply.clubApplyNo}"></th>
+            <th th:text = "${clubApply.userName}"></th>
+            <th th:text = "${clubApply.userEmail}"></th>
+            <td th:text = "${clubApply.clubName}"></td>
+            <td th:text = "${clubApply.clubPurpose}"></td>
+            <td th:text = "${clubApply.clubActivities}"></td>
+            <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
+            <td class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-primary refuseBtn" >반려</a> </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <!-- 모달 창 -->
+        <div id="prompt-modal" class="modal">
+          <div class="modal-content">
+            <span class="modal-close" onclick="closePrompt()">&times;</span>
+            <p>반려 사유를 등록해주세요</p>
+            <label for="prompt-input"></label><textarea id="prompt-input"></textarea>
+            <button class="modalBtn" onclick="submitPrompt()">등록</button>
+          </div>
+        </div>
+        <!-- 모달 창 END    -->
+
+    </div>
+  </section><!-- End Inner Page -->
+
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+
+</body>
+<script>
+  function clubApply(clubApplyNo,method){
+    document.getElementById("clubApplyNo").value = clubApplyNo;
+    document.getElementById("method").value = method;
+
+    if(method === 'refuse'){
+      openPrompt();
+    }else{
+      document.getElementById("form").submit();
+    }
+
+  }
+
+  // 모달 열기
+  function openPrompt() {
+    document.getElementById("prompt-modal").style.display = "block";
+  }
+
+  // 모달 닫기
+  function closePrompt() {
+    document.getElementById("prompt-input").value = '';
+    document.getElementById("prompt-modal").style.display = "none";
+  }
+
+  // 입력값 Submit
+  function submitPrompt() {
+    const inputVal = document.getElementById("prompt-input").value;
+    if(inputVal === ''){
+      alert("반려 사유를 입력해주세요.");
+      false;
+    }else{
+      document.getElementById("refuseReason").value = inputVal;
+      document.getElementById("form").submit();
+    }
+  }
+
+</script>
+
+</html>
