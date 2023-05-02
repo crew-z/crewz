@@ -39,7 +39,8 @@
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="userName" class="col-form-label">신청자 *</label>
-                  <input type="text" class="form-control" name="userName" id="userName" readonly th:value="${name}" required>
+                  <input type="hidden" class="form-control" name="userNo" id="userNo" th:value="${session.loginUser}" required>
+                  <input type="text" class="form-control" id="userName" readonly th:value="${name}" required>
                 </div>
               </div>
 

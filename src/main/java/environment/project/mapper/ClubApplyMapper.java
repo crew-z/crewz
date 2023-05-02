@@ -1,7 +1,6 @@
 package environment.project.mapper;
 
 import environment.project.dto.ClubApplyDTO;
-import environment.project.dto.UserDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
