@@ -40,6 +40,8 @@ public class BoardServiceImpl implements BoardService {
         int rowsAffected = boardMapper.updateBoardByBoardNo(boardUpdateDTO);
         return rowsAffected > 0;
     }
+
+    @Override
     public List<BoardDTO> selectBoardToSearch(String boardTitle) {
         return boardMapper.selectServiceToSearch(boardTitle);
     }
