@@ -104,22 +104,6 @@ public class BoardController {
     }
 
     /**
-     * POST: 동아리 상세 페이지 delete
-     *
-     * @author 이권석
-     */
-    @DeleteMapping("/{boardNo}")
-    public String deleteBoardByBoardNo(@PathVariable String boardNo) {
-        Long boardNoNum = parseboardNo(boardNo);
-
-        if(!boardService.deleteBoardByBoardNo(boardNoNum)) {
-            throw new IllegalStateException("Failed to delete with id: " + boardNo);
-        }
-        System.out.println("보드 삭제 완료" + boardNo);
-        return "redirect:/";
-    }
-
-    /**
      * 메서드: String -> Long 타입 변환
      *
      * @author 이권석
