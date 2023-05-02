@@ -58,8 +58,8 @@
             <td th:text = "${clubApply.clubActivities}"></td>
             <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
             <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-danger" >반려</a> </td>
-            <td th:if="${clubApply.clubApproveYn} == 'Y' " class="tdBtnAdmin" colspan="2"><a class="btn btn-primary" >승인</a></td>
-            <td th:if="${clubApply.clubApproveYn} == 'N' " class="tdBtnAdmin" colspan="2"><a class="btn btn-danger" >반려</a></td>
+            <td th:if="${clubApply.clubApproveYn} == 'Y' " class="tdBtnAdmin" colspan="2"><a class="btn btn-outline-success disabled" >승인됨</a></td>
+            <td th:if="${clubApply.clubApproveYn} == 'N' " class="tdBtnAdmin" colspan="2"><a class="btn btn-outline-danger disabled" >반려됨</a></td>
           </tr>
           </tbody>
         </table>
