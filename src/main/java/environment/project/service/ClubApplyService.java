@@ -9,4 +9,8 @@ public interface ClubApplyService {
     List<ClubApplyDTO> selectClubApply();
 
     int updateApproveYn(ClubApplyDTO clubApplyDTO);
+
+    Long insertClubApply(ClubApplyDTO clubApplyDTO);
+
+    ClubApplyDTO getApplicationByApplyNo(Long clubApplyNo);
 }
