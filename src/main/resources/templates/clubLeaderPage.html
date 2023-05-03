@@ -23,7 +23,9 @@
 <!-- ======= Body ======= -->
 <!-- 구성하고자 하는 화면 설계 -->
 <main id="main">
-
+    <form id="form2" action="/clubleaderpage" method="post">
+        <input type="hidden" name="clubNo" id="clubNo2" value="">
+    </form>
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
         <div class="container">
@@ -31,7 +33,9 @@
             <div class="d-flex justify-content-between align-items-center">
                 <ol>
                     <li><a th:href="@{/main}">Home</a></li>
-
+                    <th:block th:each="clubLeader:${clubLeader}">
+                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #FF5A5A"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
+                    </th:block>
 
                 </ol>
             </div>
@@ -84,23 +88,24 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
                                     </svg>
-                                    반려
+                                    거절
                                 </button></td>
                             </tr>
                             </tbody>
                         </table>
-                    <!-- 반려 확인 모달 -->
+                    <!-- 거절 확인 모달 -->
                     <div id="prompt-modal" class="modal">
                         <div class="modal-content">
                             <span class="modal-close" onclick="closePrompt()">&times;</span>
-                            <h4><span style="color: red">반려버튼</span>을 클릭하시면 해당 유저에 대한 정보는 모두 사라집니다.</h4>
+                            <h4><span style="color: red">거절버튼</span>을 클릭하시면 해당 유저에 대한 정보는 모두 사라집니다.</h4>
                             <button type="button" class="btn btn-outline-warning" onclick="closePrompt()">보류</button>
-                            <button type="button" class="btn btn-outline-danger" onclick="submitPrompt()">반려</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="submitPrompt()">거절</button>
                         </div>
                     </div>
                     <!-- 모달 END    -->
                 </div>
                 </div>
+
     </section>
 
 
@@ -142,6 +147,11 @@
     }
     function submitPrompt(){
         document.getElementById("form").submit();
+    }
+
+    function goLeaderPage(clubNo){
+        document.getElementById("clubNo2").value = clubNo;
+        document.getElementById("form2").submit();
     }
 
 </script>

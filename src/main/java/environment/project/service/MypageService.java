@@ -8,16 +8,17 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface MypageService {
-    UserDTO selectUserInfoFromMypage(String userId);
-
-    void updateUserInfo(UserDTO userDTO);
-
-
-    List<HashMap<String, Object>> selectUserJoinClub(Long userNo);
 
     UserDTO selectUserInfoByUserNo(Long userNo);
 
-    List<HashMap<String, Object>> selectUserJoinClub();
+    void updateUserInfo(UserDTO userDTO);
+
+    List<HashMap<String, Object>> selectUserJoinClub(Long userNo);
+
+    List<HashMap<String,Object>> selectClubApplicatedMemList(int clubUserGrade, Long clubNo);
+
+    List<HashMap<String, Object>> checkMemGrade(Long userNo);
+
     int updateClubMemGrade(Long userNo, Long clubNo);
 
     int delteApplicatedUserInfo(Long userNo, Long clubNo);

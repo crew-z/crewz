@@ -6,14 +6,14 @@ import java.util.Date;
 
 @Data
 public class ClubInfoDTO {
-    private int idx;
-    private int clubUserGrade;
+    private Long idx;
+    private Long clubUserGrade;
     private boolean clubUsed;
     private Date clubJoinDate;
     private Date clubApproveDate;
     private Date clubOutDate;
 
     // JoinData
-    private int clubNo;
-    private int userNo;
+    private Long clubNo;
+    private Long userNo;
 }
