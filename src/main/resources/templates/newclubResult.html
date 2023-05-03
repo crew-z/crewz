@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>crew.z Main</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<main class="w-100 m-auto text-center" data-aos="fade-up">
+  <!-- ======= Blog Section ======= -->
+<!--  심사중, 승인되었습니다, 반려되었습니다. 반려 사유 -->
+  <div class="display-5 fw-bold mb-3 text-body-emphasis">
+    <th:block th:switch="${clubApply.clubApproveYn}">
+      <th:block th:case="Y">
+        <h1>[[${clubApply.clubName}]] 동아리 개설 <span class="text-success">승인</span>되었습니다!</h1>
+        <p class="lead mb-5">앞으로 [[${clubApply.clubName}]]에서 동료들과 함께 새로운 경험과 추억을 만들어보세요!</p>
+      </th:block>
+      <th:block th:case="N">
+        <h1>[[${clubApply.clubName}]] 동아리 개설 <span class="text-danger">반려</span>되었습니다.</h1>
+        <p class="lead mb-5"> 반려 사유 : [[${clubApply.clubRefuseReason}]]</p>
+      </th:block>
+    </th:block>
+    <th:block th:if="${#strings.isEmpty(clubApply.clubApproveYn)}">
+      <h1>[[${clubApply.clubName}]] 동아리 개설 <span class="text-warning">심사 중</span>입니다.</h1>
+      <p class="lead mb-5">조금만 기다려 주시면, 곧 심사 결과를 알려드리겠습니다.</p>
+    </th:block>
+  </div>
+  <div class="col-lg-6 mx-auto">
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-primary">메인으로 이동하기</button>
+    </div>
+  </div>
+</main><!-- End #main -->
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+
+</body>
+
+</html>
