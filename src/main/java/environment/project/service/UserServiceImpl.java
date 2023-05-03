@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public Long insertUser(UserDTO userDTO){
+    public int insertUser(UserDTO userDTO){
         // To-do: Password to Hashcode
         return userMapper.insertUser(userDTO);
     }

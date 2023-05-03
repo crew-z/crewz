@@ -10,7 +10,7 @@ public interface ClubApplyService {
 
     int updateApproveYn(ClubApplyDTO clubApplyDTO);
 
-    Long insertClubApply(ClubApplyDTO clubApplyDTO);
+    int insertClubApply(ClubApplyDTO clubApplyDTO);
 
     ClubApplyDTO getApplicationByApplyNo(Long clubApplyNo);
 }

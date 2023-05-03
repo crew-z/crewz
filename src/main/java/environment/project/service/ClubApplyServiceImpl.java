@@ -24,7 +24,7 @@ public class ClubApplyServiceImpl implements ClubApplyService{
     }
 
     @Override
-    public Long insertClubApply(ClubApplyDTO clubApplyDTO){
+    public int insertClubApply(ClubApplyDTO clubApplyDTO){
         return clubApplyMapper.insertClubApply(clubApplyDTO);
     }
 

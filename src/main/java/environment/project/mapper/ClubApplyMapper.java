@@ -19,8 +19,8 @@ public interface ClubApplyMapper {
     // INSERT // for 동아리 개설 폼
     @Insert("INSERT INTO club_apply(user_no, club_name, club_purpose, club_activities, regdate) " +
             "VALUES(#{userNo},#{clubName},#{clubPurpose},#{clubActivities},now())")
-    @Options(useGeneratedKeys = true, keyProperty = "clubApplyNo")
-    Long insertClubApply(ClubApplyDTO clubApplyDTO);
+    @Options(useGeneratedKeys = true, keyProperty = "clubApplyNo", keyColumn = "club_apply_no")
+    int insertClubApply(ClubApplyDTO clubApplyDTO);
 
     // SELECT // for 개설 신청서 조회
     @Select("SELECT club_apply_no, user_no, club_name, club_purpose, club_activities, club_approve_yn, club_refuse_reason, regdate " +
