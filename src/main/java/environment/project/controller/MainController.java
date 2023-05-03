@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 import static java.lang.Math.min;
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.Math.min;
+
 @Slf4j
 @Controller
 public class MainController {
