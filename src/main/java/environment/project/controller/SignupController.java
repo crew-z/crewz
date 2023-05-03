@@ -3,6 +3,7 @@ package environment.project.controller;
 import environment.project.dto.UserDTO;
 import environment.project.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class SignupController {
     final UserService userService;
     @GetMapping(path = { "/signup" })
@@ -41,9 +43,11 @@ public class SignupController {
         }
 
         // 회원가입 성공시
-        Long id = userService.insertUser(user);
+        int result = userService.insertUser(user);
 
-        session.setAttribute("loginUser", id);
+        session.setAttribute("loginUser", user.getUserNo());
+        log.info("userService.insertUser: {}",result);
+        log.info("id: {}",user.getUserNo());
         session.setAttribute("name",user.getUserName());
 
         return "signupSuccess";
