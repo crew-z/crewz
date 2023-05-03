@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,8 +20,19 @@ public class AdminController {
     private ClubApplyService clubApplyService;
 
     @GetMapping("/admin")
-    public String admin(Model model){
-        List<ClubApplyDTO> clubApplyList = clubApplyService.selectClubApply();
+    public String admin(@RequestParam(defaultValue = "all",required = false) String viewType,Model model){
+        List<ClubApplyDTO> clubApplyList = null;
+
+        if(viewType.equals("approve")){
+            clubApplyList = clubApplyService.selectClubApplyListToApproveYn("Y");
+        }else if(viewType.equals("refuse")){
+            clubApplyList = clubApplyService.selectClubApplyListToApproveYn("N");
+        }else if(viewType.equals("wait")){
+            clubApplyList = clubApplyService.selectClubApplyListToIsNull();
+        }else {
+            clubApplyList = clubApplyService.selectClubApply();
+        }
+
         model.addAttribute("list",clubApplyList);
         return "admin";
     }
@@ -56,5 +68,6 @@ public class AdminController {
 
         return "redirect:admin";
     }
+
 
 }

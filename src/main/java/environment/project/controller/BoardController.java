@@ -118,4 +118,19 @@ public class BoardController {
 
         return "redirect:/boards/" + boardUpdateDTO.getBoardNo();
     }
+
+    /**
+     * 메서드: String -> Long 타입 변환
+     *
+     * @author 이권석
+     */
+    private Long parseboardNo(String boardNo) {
+        Long boardNoNum;
+        try {
+            boardNoNum = Long.parseLong(boardNo);
+        } catch (NumberFormatException e) {
+            throw new ResourceNotFoundException("Board id must be a numeric string: " + boardNo);
+        }
+        return boardNoNum;
+    }
 }
