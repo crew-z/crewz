@@ -42,10 +42,6 @@ public interface MypageMapper {
     List<HashMap<String, Object>> selectUserClub(@Param("userNo") Long userNo);
 
     // 동아리신청 회원 정보 불러오기
-
-    @Select("SELECT user_name, club_join_date,user_email,user_nickname,user_tel FROM club_info JOIN user ON club_info.user_no = user.user_no WHERE user_no = #{ userNo } ")
-    List<HashMap<String,Object>> selectClubApplicationMemInfo(@Param("userNo") Long userNo);
-
     @Select("SELECT u.user_no, u.user_name, u.user_email, u.user_tel, u.user_nickname, ci.club_join_date, ca.club_name, ci.club_user_grade, ci.club_no " +
             "FROM club_info ci " +
             "JOIN club c ON ci.club_no = c.club_no " +
@@ -55,7 +51,7 @@ public interface MypageMapper {
             "SELECT ci2.club_no " +
             "FROM club_info ci2 " +
             "WHERE ci2.user_no = 2 ) ")
-    List<HashMap<String,Object>> selectClubApplicationMemInfo();
+    List<HashMap<String,Object>> selectClubApplicationMemInfo(Long userNo);
 
     // 동아리신청 회원 수락
     @Update("UPDATE club_info SET club_user_grade = 1 , club_approve_date = now() WHERE user_no = #{ userNo } AND club_no = #{ clubNo } ")

@@ -199,3 +199,9 @@ body {
 .admin-tap-list > a:hover {
     background-color: lightgray;
 }
+
+.apply-subject {
+    text-decoration: #FF5A5A underline 5px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: all;
+}

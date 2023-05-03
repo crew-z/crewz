@@ -12,9 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
 public class MypageServiceImpl implements MypageService{
-
     private final MypageMapper mypageMapper;
 
     @Override
@@ -29,7 +27,6 @@ public class MypageServiceImpl implements MypageService{
 
     @Override
     public List<HashMap<String, Object>> selectUserJoinClub(Long userNo) {
-
         return mypageMapper.selectUserClub(userNo);
     }
 

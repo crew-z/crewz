@@ -25,7 +25,7 @@ public class ClubApplyController {
         Long id = (Long) session.getAttribute("loginUser");
         UserDTO user = userService.getUserByUserNo(id);
         log.info("user: {}",user);
-        model.addAttribute("name",user.getUserName());
+        model.addAttribute("user",user);
         return "newclub";
     }
 
@@ -37,5 +37,14 @@ public class ClubApplyController {
         model.addAttribute("clubApply",clubApply);
         return "newclubview";
     }
+
+    @PostMapping("/newclubresult")
+    public String applyResult(ClubApplyDTO clubApplyDTO, Model model){
+        ClubApplyDTO clubApply = clubapplyService.getApplicationByApplyNo(clubApplyDTO.getClubApplyNo());
+        log.info("clubApply : {}", clubApply);
+        model.addAttribute("clubApply",clubApply);
+        return "newclubresult";
+    }
+
 
 }

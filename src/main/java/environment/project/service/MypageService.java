@@ -17,7 +17,6 @@ public interface MypageService {
 
     UserDTO selectUserInfoByUserNo(Long userNo);
 
-    List<HashMap<String, Object>> selectUserJoinClub();
     int updateClubMemGrade(Long userNo, Long clubNo);
 
     int delteApplicatedUserInfo(Long userNo, Long clubNo);
