@@ -12,4 +12,8 @@ public interface ClubApplyService {
     List<ClubApplyDTO> selectClubApplyListToIsNull();
 
     int updateApproveYn(ClubApplyDTO clubApplyDTO);
+
+    int insertClubApply(ClubApplyDTO clubApplyDTO);
+
+    ClubApplyDTO getApplicationByApplyNo(Long clubApplyNo);
 }

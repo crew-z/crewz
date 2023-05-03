@@ -20,7 +20,7 @@ public interface UserMapper {
     @Insert("INSERT INTO USER(user_id,user_name,user_password,user_tel,user_nickname,user_email)" +
             "VALUES(#{userId},#{userName},#{userPassword},#{userTel},#{userNickname},#{userEmail})")
     @Options(useGeneratedKeys = true, keyProperty = "userNo", keyColumn = "user_no")
-    Long insertUser(UserDTO userDTO);
+    int insertUser(UserDTO userDTO);
 
     @Select("SELECT * FROM USER WHERE user_id=#{loginId}")
     UserDTO getUserByLoginId(String loginId);

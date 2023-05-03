@@ -30,4 +30,14 @@ public class ClubApplyServiceImpl implements ClubApplyService{
     public int updateApproveYn(ClubApplyDTO clubApplyDTO) {
         return clubApplyMapper.updateService(clubApplyDTO);
     }
+
+    @Override
+    public int insertClubApply(ClubApplyDTO clubApplyDTO){
+        return clubApplyMapper.insertClubApply(clubApplyDTO);
+    }
+
+    @Override
+    public ClubApplyDTO getApplicationByApplyNo(Long clubApplyNo){
+        return clubApplyMapper.getApplicationByApplyNo(clubApplyNo);
+    }
 }
