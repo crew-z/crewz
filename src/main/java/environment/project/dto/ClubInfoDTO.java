@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class ClubInfoDTO {
     private Long idx;
-    private Long clubUserGrade;
+    private int clubUserGrade;
     private boolean clubUsed;
     private Date clubJoinDate;
     private Date clubApproveDate;

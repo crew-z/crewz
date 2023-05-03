@@ -49,7 +49,6 @@ public interface MypageMapper {
             "WHERE ci.club_user_grade = #{ clubUserGrade } AND c.club_no = #{ clubNo }")
     List<HashMap<String,Object>> selectClubApplicationMemInfo(int clubUserGrade, Long clubNo);
 
-
     // 동아리신청 회원 수락
     @Update("UPDATE club_info SET club_user_grade = 1 , club_approve_date = now() WHERE user_no = #{ userNo } AND club_no = #{ clubNo } ")
     int updateUserClubJoin(Long userNo, Long clubNo);

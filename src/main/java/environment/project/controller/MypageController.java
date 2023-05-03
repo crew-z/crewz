@@ -68,6 +68,7 @@ public class MypageController {
         return "clubLeaderPage";
     }
 
+
     @RequestMapping(value = "/applyMem", method = RequestMethod.POST)
     public String updateClubMem(Long userNo,Long clubNo, String method, RedirectAttributes redirectAttributes){
         int result;

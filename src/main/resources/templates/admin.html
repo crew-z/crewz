@@ -34,6 +34,7 @@
     <div class="container" data-aos="fade-up">
         <form id="form" method="post" action="/admin">
           <input type="hidden" id="clubApplyNo" name="clubApplyNo" value=""/>
+          <input type="hidden" id="userNo" name="userNo" value=""/>
           <input type="hidden" id="method" name="method" value=""/>
           <input type="hidden" id="refuseReason" name="refuseReason" value=""/>
         </form>
@@ -59,8 +60,8 @@
             <td th:text = "${clubApply.clubPurpose}"></td>
             <td th:text = "${clubApply.clubActivities}"></td>
             <td th:text = "${clubApply.regdate}"></td>
-            <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','approve')|" class="btn btn-primary">승인</a></td>
-            <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','refuse')|" class="btn btn-danger" >반려</a> </td>
+            <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','${clubApply.userNo}','approve')|" class="btn btn-primary">승인</a></td>
+            <td th:if="${clubApply.clubApproveYn} == null" class="tdBtnAdmin"><a th:onclick="|javascript:clubApply('${clubApply.clubApplyNo}','${clubApply.userNo}','refuse')|" class="btn btn-danger" >반려</a> </td>
             <td th:if="${clubApply.clubApproveYn} == 'Y' " class="tdBtnAdmin" colspan="2"><a class="btn btn-outline-success disabled" >승인됨</a></td>
             <td th:if="${clubApply.clubApproveYn} == 'N' " class="tdBtnAdmin" colspan="2"><a class="btn btn-outline-danger disabled" >반려됨</a></td>
           </tr>
@@ -96,8 +97,9 @@
 
 </body>
 <script>
-  function clubApply(clubApplyNo,method){
+  function clubApply(clubApplyNo,userNo,method){
     document.getElementById("clubApplyNo").value = clubApplyNo;
+    document.getElementById("userNo").value = userNo;
     document.getElementById("method").value = method;
 
     if(method === 'refuse'){
