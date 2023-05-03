@@ -24,12 +24,12 @@ public interface MypageMapper {
     void updateUserInfo(UserDTO userDTO);
 
     // 유저가 활동중인 동아리 정보 불러오기
-    @Select("SELECT user_name, club_name, club_activities FROM club " +
-            "JOIN club_info ON club.club_no = club_info.club_no " +
-            "JOIN user ON club_info.user_no = user.user_no " +
-            "JOIN club_apply ON club_apply.club_apply_no = club.club_apply_no " +
-            "WHERE user.user_no = #{ userNo } ")
-    List<HashMap<String, Object>> selectUserClub(Long userNo);
+    @Select("SELECT user_name, club_name, club_activities, club_user_grade FROM club " +
+            "            JOIN club_info ON club.club_no = club_info.club_no " +
+            "            JOIN user ON club_info.user_no = user.user_no  " +
+            "            JOIN club_apply ON club_apply.club_apply_no = club.club_apply_no " +
+            "            WHERE user.user_no = #{ userNo } AND club_info.club_user_grade = #{ clubUserGrade }")
+    List<HashMap<String, Object>> selectUserClub(Long userNo, int clubUserGrade);
 
     // 동아리장인 경우에 동아리별로 동아리페이지 보기
     @Select("SELECT ca.club_name, ci.club_user_grade, ci.user_no, c.club_no " +

@@ -12,7 +12,7 @@ public interface MypageService {
 
     void updateUserInfo(UserDTO userDTO);
 
-    List<HashMap<String, Object>> selectUserJoinClub(Long userNo);
+    List<HashMap<String, Object>> selectUserJoinClub(Long userNo, int clubUserGrade);
 
     List<HashMap<String,Object>> selectClubApplicatedMemList(int clubUserGrade, Long clubNo);
 

@@ -25,7 +25,11 @@
 <main id="main">
     <form id="form2" action="/clubleaderpage" method="post">
         <input type="hidden" name="clubNo" id="clubNo2" value="">
+        <!--<input type="hidden" name="userGrade" id="userGrade" value="">-->
+
     </form>
+
+
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
         <div class="container">
@@ -34,7 +38,7 @@
                 <ol>
                     <li><a th:href="@{/main}">Home</a></li>
                     <th:block th:each="clubLeader:${clubLeader}">
-                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #FF5A5A"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
+                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #25cff2"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
                     </th:block>
 
                 </ol>
@@ -43,6 +47,12 @@
         </div>
     </div><!-- End Breadcrumbs -->
 
+  <!--  <div class="container">
+        <div class="clubinfo-list">
+            <a th:onclick="|javascript:selectList('0')|">동아리 신청회원 리스트</a>
+            <a th:onclick="|javascript:selectList('1')|">동아리원 리스트</a>
+        </div>
+    </div>-->
     <!-- ======= Blog Section ======= -->
     <section class="club-leader-page">
 
@@ -78,13 +88,13 @@
                                 <td th:text = "${clubInfo.user_nickname}"></td>
                                 <td th:text = "${clubInfo.user_tel}"></td>
                                 <th th:text = "${clubInfo.user_email}"></th>
-                                <td class="joinBtn"><button th:onclick="|javascript:upgradeUserGrade('${clubInfo.user_no}','${clubInfo.club_no}','ok')|" type="button" class="btn btn-outline-primary">
+                                <td th:if="${clubInfo.club_user_grade} == 0" class="joinBtn"><button th:onclick="|javascript:upgradeUserGrade('${clubInfo.user_no}','${clubInfo.club_no}','ok')|" type="button" class="btn btn-outline-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
                                         <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
                                     </svg>
                                     승인
                                 </button></td>
-                                <td class="joinBtn"><button th:onclick="|javascript:upgradeUserGrade('${clubInfo.user_no}','${clubInfo.club_no}','nok')|" type="button" class="btn btn-outline-danger">
+                                <td th:if="${clubInfo.club_user_grade} == 0" class="joinBtn"><button th:onclick="|javascript:upgradeUserGrade('${clubInfo.user_no}','${clubInfo.club_no}','nok')|" type="button" class="btn btn-outline-danger">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
                                     </svg>
@@ -154,6 +164,10 @@
         document.getElementById("form2").submit();
     }
 
+  /*  function selectList(clubUserGrade) {
+        document.getElementById("userGrade").value = clubUserGrade;
+        document.getElementById("form2").submit();
+    }*/
 </script>
 
 </html>
