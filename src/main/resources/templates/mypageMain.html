@@ -23,7 +23,9 @@
 <!-- ======= Body ======= -->
 <!-- 구성하고자 하는 화면 설계 -->
 <main id="main">
-
+    <form id="form" action="/clubleaderpage" method="post">
+        <input type="hidden" name="clubNo" id="clubNo" value="">
+    </form>
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
         <div class="container">
@@ -32,6 +34,9 @@
                 <ol>
                     <li><a th:href="@{/main}">Home</a></li>
                     <li>[[${user.userName}]]님의 Mypage</li>
+                    <th:block th:each="clubLeader:${clubLeader}">
+                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #FF5A5A"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
+                    </th:block>
                 </ol>
             </div>
 
@@ -165,11 +170,11 @@
 
 <script th:inline="javascript">
 
-    const modifyUserInfoBtn = document.querySelector('#modifyUserInfoBtn');
-    modifyUserInfoBtn.addEventListener('click', function() {
-        const updateUserInfoForm = document.querySelector('form.php-email-form');
-        updateUserInfoForm.style.display = 'block';
-    });
+    function goLeaderPage(clubNo){
+        document.getElementById("clubNo").value = clubNo;
+        document.getElementById("form").submit();
+    }
+
 </script>
 
 </html>

@@ -18,8 +18,8 @@ public class MypageServiceImpl implements MypageService{
     private final MypageMapper mypageMapper;
 
     @Override
-    public UserDTO selectUserInfoFromMypage(String userId) {
-        return mypageMapper.selectUserInfoFromMypage(userId);
+    public UserDTO selectUserInfoByUserNo(Long userNo) {
+        return mypageMapper.selectUserInfoByUserNo(userNo);
     }
 
     @Override
@@ -29,13 +29,17 @@ public class MypageServiceImpl implements MypageService{
 
     @Override
     public List<HashMap<String, Object>> selectUserJoinClub(Long userNo) {
-
         return mypageMapper.selectUserClub(userNo);
     }
 
     @Override
-    public UserDTO selectUserInfoByUserNo(Long userNo) {
-        return mypageMapper.selectUserInfoByUserNo(userNo);
+    public List<HashMap<String,Object>> selectClubApplicatedMemList(int clubUserGrade, Long clubNo) {
+        return mypageMapper.selectClubApplicationMemInfo(clubUserGrade,clubNo);
+    }
+
+    @Override
+    public List<HashMap<String, Object>> checkMemGrade(Long userNo){
+        return mypageMapper.selectLeaderGradeByClubName(userNo);
     }
 
     @Override
