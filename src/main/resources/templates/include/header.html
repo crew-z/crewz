@@ -23,7 +23,7 @@
                 <a href="/all" class="header-botton">모든 동아리</a>
                 <a th:if="${session.loginUser!=null}" href="/newclub" class="header-botton">동아리 만들기</a>
                 <a th:if="${session.loginUser==null}" href="/login" class="header-botton" id="loginBtn">로그인</a>
-                <a th:unless="${session.loginUser==null}" href="/mypageMain" class="header-botton" id="mypageBtn">마이페이지</a>
+                <a th:unless="${session.loginUser==null}" href="/mypagemain" class="header-botton" id="mypageBtn">마이페이지</a>
                 <a th:if="${session.loginUser!=null}" href="/logout" class="header-botton" id="logoutBtn">로그아웃</a>
             </div>
             

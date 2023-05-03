@@ -1,6 +1,5 @@
 package environment.project.controller;
 
-import environment.project.dto.ClubInfoDTO;
 import environment.project.dto.UserDTO;
 import environment.project.mapper.MypageMapper;
 import environment.project.service.MypageService;
@@ -20,20 +19,23 @@ import java.util.List;
 public class MypageController {
 
     @Autowired
-    private MypageMapper mypageMapper;
-    @Autowired
     private MypageService mypageService;
-    @Autowired
-    private HttpSession httpSession;
 
     @GetMapping(path = {  "/mypagemain" })
     public String loadMypageMain(Model model, HttpSession session) {
         Long userNo = (Long) session.getAttribute("loginUser");
         UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
-        List<HashMap<String, Object>> userClub = mypageService.selectUserJoinClub(userNo);
+        log.info("userInfo: {}",userInfo);
+
+            List<HashMap<String, Object>> userJoinClub = mypageService.selectUserJoinClub(userNo,1);
+            model.addAttribute("joinClub", userJoinClub);
+
+            List<HashMap<String, Object>> userWaitingClub = mypageService.selectUserJoinClub(userNo, 0);
+            model.addAttribute("waitclub", userWaitingClub);
+
+
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         model.addAttribute("user", userInfo);
-        model.addAttribute("club", userClub);
         model.addAttribute("clubLeader", clubLeader);
         return "mypageMain";
     }
@@ -56,15 +58,18 @@ public class MypageController {
     }
 
     @PostMapping(path = {  "/clubleaderpage" })
-    public String loadClubleaderPage(@RequestParam Long clubNo,@RequestParam(defaultValue = "0") int clubUSerGrade, Model model, HttpSession session) {
+    public String loadClubleaderPage(@RequestParam(required = false) Long clubNo,@RequestParam(defaultValue = "0",required = false) int clubUSerGrade, Model model, HttpSession session) {
         Long userNo = (Long) session.getAttribute("loginUser");
-        List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(clubUSerGrade, clubNo);
-        log.info("clubNo: {}",clubNo);
-        log.info("clubUSerGrade: {}",clubUSerGrade);
-        log.info("applicateClubMem: {}",applicateClubMem);
+
+        if(clubUSerGrade == 1){
+            List<HashMap<String, Object>> JoinClubMem = mypageService.selectClubApplicatedMemList(1, clubNo);
+            model.addAttribute("clubInfo", JoinClubMem);
+        } else if (clubUSerGrade == 0) {
+            List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
+            model.addAttribute("clubInfo", applicateClubMem);
+        }
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         model.addAttribute("clubLeader", clubLeader);
-        model.addAttribute("clubInfo", applicateClubMem);
         return "clubLeaderPage";
     }
 

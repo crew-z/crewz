@@ -93,8 +93,6 @@
                                 <div class="col-md-6 form-group">
                                     <h5>닉네임</h5>
                                     <input type="text" class="form-control" name="userNickname" id="userNickname" th:field="*{user.userNickname}">
-<!--                                    <span class="nickname_ok">사용 가능한 이름입니다.</span>-->
-<!--                                    <span class="nickname_already">누군가 이 이름을 사용하고 있어요.</span>-->
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <h5>이메일</h5>
@@ -116,22 +114,21 @@
         <!--내가 활동중인 동아리-->
         <section id="userClub" class="contact">
             <div class="clubBox">
-            <th:block th:each="club:${club}">
             <div class="container">
-                <div class="row gy-5 gx-lg-5">
-                    <div class="col-lg-4">
-                        <div class="info">
-                            <h3>[[${club.user_name}]]님이 활동중인 동아리</h3>
+                <div class="row gy-5 gx-lg-5 posts-list">
+                    <div class="col-lg-4" th:each="joinClub:${joinClub}">
+                        <div class="d-flex flex-column info">
+                            <h3>[[${joinClub.user_name}]]님이 활동중인 동아리</h3>
                             <div class="info-item d-flex">
                                 <i class="bi bi-suit-club flex-shrink-0"></i>
                                 <div>
-                                    <h4>[[${club.club_name}]]</h4>
+                                    <h4>[[${joinClub.club_name}]]</h4>
                                 </div>
                             </div>
                             <div class="info-item d-flex">
                                 <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
                                 <div>
-                                    <h4>[[${club.club_activities}]]</h4>
+                                    <h4>[[${joinClub.club_activities}]]</h4>
                                 </div>
                             </div>
 
@@ -146,12 +143,41 @@
                 </div>
 
             </div>
-            </th:block>
             </div>
-        </section><!-- End UerClub Section -->
-        <!--내 동아리 관리-->
+        </section>
 
-    </section><!-- End Inner Page -->
+        <!--내가 신청한 동아리-->
+        <section id="waitingClub" class="contact">
+            <div class="clubBox">
+
+                    <div class="container">
+                        <div class="row gy-5 gx-lg-5">
+                            <div class="col-lg-4" th:each="waitclub:${waitclub}">
+                                <div class="d-flex flex-column info">
+                                    <h3>[[${waitclub.user_name}]]님이 신청한 동아리</h3>
+                                    <div class="info-item d-flex">
+                                        <i class="bi bi-suit-club flex-shrink-0"></i>
+                                        <div>
+                                            <h4>[[${waitclub.club_name}]]</h4>
+                                        </div>
+                                    </div>
+                                    <div class="info-item d-flex">
+                                        <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
+                                        <div>
+                                            <h4>[[${waitclub.club_activities}]]</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+        </section>
+            <!-- End UerClub Section -->
+
 
 </main><!-- End #main -->
 <!-- End Body -->
@@ -169,6 +195,12 @@
 </body>
 
 <script th:inline="javascript">
+
+    const modifyUserInfoBtn = document.querySelector('#modifyUserInfoBtn');
+    modifyUserInfoBtn.addEventListener('click', function() {
+        const updateUserInfoForm = document.querySelector('form.php-email-form');
+        updateUserInfoForm.style.display = 'block';
+    });
 
     function goLeaderPage(clubNo){
         document.getElementById("clubNo").value = clubNo;

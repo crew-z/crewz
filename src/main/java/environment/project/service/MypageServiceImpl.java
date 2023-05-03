@@ -26,8 +26,8 @@ public class MypageServiceImpl implements MypageService{
     }
 
     @Override
-    public List<HashMap<String, Object>> selectUserJoinClub(Long userNo) {
-        return mypageMapper.selectUserClub(userNo);
+    public List<HashMap<String, Object>> selectUserJoinClub(Long userNo, int clubUserGrade) {
+        return mypageMapper.selectUserClub(userNo, clubUserGrade);
     }
 
     @Override
