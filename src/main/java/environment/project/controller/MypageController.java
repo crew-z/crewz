@@ -45,14 +45,6 @@ public class MypageController {
         return "redirect:mypagemain";
     }
 
-    @GetMapping(path = {  "/clubleaderpage" })
-    public String loadClubleaderPage(Model model) {
-        List<HashMap<String, Object>> applicateClubMem = mypageMapper.selectClubApplicationMemInfo();
-        log.info("applicateClubMem: {}",applicateClubMem);
-        model.addAttribute("clubInfo", applicateClubMem);
-
-        return "clubLeaderPage";
-    }
 
     @RequestMapping(value = "/applyMem", method = RequestMethod.POST)
     public String updateClubMem(Long userNo,Long clubNo, String method, Model model){
