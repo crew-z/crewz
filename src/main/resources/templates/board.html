@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="/assets/css/board.css" />
 </head>
 <body>
-<div id="wrap">
-    <div id="header">
+<div class="wrap">
+    <div class="header">
         <div></div>
     </div>
-    <div id="container">
+    <div id="board-container">
         <div id="contents">
             <div id="board-title">
                 <h1 th:text="${board.boardTitle}"></h1>
@@ -33,112 +33,117 @@
                 <h3 class="board-contents">기타</h3>
                 <p class="board-contents-p" th:text="${board.boardEtcContent}"></p>
             </div>
+            <hr>
             <div id="board-review">
-                <h3><span>4개</span>의 크루원 리뷰가 있습니다</h3>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
+                <h3><span th:text="${replyCount}"></span>개의 크루원 리뷰가 있습니다</h3>
+                <div class="board-reviews" th:each="reply, status : ${replys}">
+                    <h4 th:text="${reply.getUserId()}"><span>동아리장</span></h4>
+                    <p th:text="${reply.getReplyContent()}"></p>
+                    <div>
+<!--                        <a th:href="" class="update-review">수정</a>-->
+                        <a class="update-review" th:data-reply-no="${reply.replyNo}" th:data-board-no="${board.boardNo}">수정</a>
+                        <a class="delete-review" th:data-reply-no="${reply.replyNo}" th:data-board-no="${board.boardNo}">삭제</a>
+                    </div>
+                    <hr th:unless="${status.last}">
                 </div>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
-                </div>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
-                </div>
-                <div class="board-reviews">
-                    <h4>leestart1023<span>동아리장</span></h4>
-                    <p>운동이 재밌습니다</p>
-                </div>
-                <div id="create-review">
-                    <textarea placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)"></textarea>
-                    <button>댓글 작성</button>
-                </div>
+                <form method="POST" th:action="@{'/boards/' + ${board.boardNo} + '/replys'}">
+                    <div id="create-review">
+                        <textarea name="replyContent" placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)"></textarea>
+                        <button type="submit">댓글 작성</button>
+                    </div>
+                </form>
             </div>
 
-            <div id="board-recommand">
-                <h3>현재 모집중인 다른 동아리도 추천해드려요</h3>
-                <div>
-                    <div class="card">
-                        <div>
-                            <div>
-                                <h4>크로스핏 동아리</h4>
-                                <p>크로스핏 동아리입니다. 현재 2기 모집중입니다</p>
-                                <hr>
-                                <span>모집기간</span>
-                                <p>2023.04.02</p>
-                                <span>까지</span>
-                            </div>
-                            <div class="card-categories">
-                                <ul>
-                                    <li><a>카테고리1</a></li>
-                                    <li><a>카테고리2</a></li>
-                                    <li><a>카테고리3</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div>
-                            <div>
-                                <h4>크로스핏 동아리</h4>
-                                <p>크로스핏 동아리입니다. 현재 2기 모집중입니다(3줄까지 작성 가능하게 만들어봅시다)</p>
-                                <hr>
-                                <span>모집기간</span>
-                                <p>2023.04.02</p>
-                                <span>까지</span>
-                            </div>
-                            <div class="card-categories">
-                                <ul>
-                                    <li><a>카테고리1</a></li>
-                                    <li><a>카테고리2</a></li>
-                                    <li><a>카테고리3</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div>
-                            <div>
-                                <h4>크로스핏 동아리</h4>
-                                <p>크로스핏 동아리입니다. 현재 2기 모집중입니다(3줄까지 작성 가능하게 만들어봅시다)</p>
-                                <hr>
-                                <span>모집기간</span>
-                                <p>2023.04.02</p>
-                                <span>까지</span>
-                            </div>
-                            <div class="card-categories">
-                                <ul>
-                                    <li><a>카테고리1</a></li>
-                                    <li><a>카테고리2</a></li>
-                                    <li><a>카테고리3</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="aside">
             <div id="aside-card">
-                <p>[[${board.boardTitle}]]은 현재</p>
-                <p>크루 모집중입니다</p>
-                <div>
+                <p class="aside-card-title">[[${board.boardTitle}]]은 현재</p>
+                <p class="aside-card-title" th:if="${dDay != null}">크루 모집중입니다</p>
+                <p class="aside-card-title" th:unless="${dDay != null}">크루 모집중이 아닙니다</p>
+
+                <div id="join-period">
                     <p>모집기간</p>
                     <p>2023.04.02</p>
-                    <p>(6일 남았어요)</p>
+                    <p th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
                 </div>
                 <div>
-                    <button>동아리에 합류하기</button>
+                    <button id="club-join-btn">동아리에 합류하기</button>
                 </div>
             </div>
         </div>
     </div>
     <div id="footer">footer</div>
 </div>
+<script>
+    document.querySelectorAll('.update-review').forEach(function(updateBtn) {
+        updateBtn.addEventListener('click', function(event) {
+            console.log("event start!");
+            const replyNo = event.target.getAttribute('data-reply-no');
+            const boardNo = event.target.getAttribute('data-board-no');
+            const replyElement = event.target.parentElement.parentElement;
+            const replyContentElement = replyElement.querySelector('p');
+            const originalContent = replyContentElement.textContent;
+            const textarea = document.createElement('textarea');
+
+            textarea.value = originalContent;
+            replyContentElement.replaceWith(textarea);
+
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = '저장';
+            event.target.replaceWith(saveBtn);
+
+            saveBtn.addEventListener('click', function() {
+                const replyContent = textarea.value;
+
+                // AJAX를 사용하여 서버에 댓글 수정 요청을 전송합니다.
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', `/boards/${boardNo}/replys/${replyNo}`);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.send(JSON.stringify({ replyContent: replyContent }));
+                console.log(xhr);
+
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        // 수정이 성공적으로 완료된 경우, textarea를 다시 p 태그로 변경하고 버튼도 되돌립니다.
+                        const newContentElement = document.createElement('p');
+                        newContentElement.textContent = replyContent;
+                        textarea.replaceWith(newContentElement);
+                        saveBtn.replaceWith(updateBtn);
+                    } else {
+                        alert('댓글 수정에 실패했습니다.');
+                    }
+                };
+            });
+        });
+    });
+
+    document.querySelectorAll('.delete-review').forEach(function(deleteBtn) {
+        deleteBtn.addEventListener('click', function(event) {
+            const replyNo = event.target.getAttribute('data-reply-no');
+            const boardNo = event.target.getAttribute('data-board-no');
+            const replyElement = event.target.parentElement.parentElement;
+
+            // 삭제 확인 창을 표시합니다.
+            if (!confirm('댓글을 삭제하시겠습니까?')) {
+                return;
+            }
+
+            // AJAX를 사용하여 서버에 댓글 삭제 요청을 전송합니다.
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `/boards/${boardNo}/replys/delete/${replyNo}`);
+            xhr.send();
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // 삭제가 성공적으로 완료된 경우, 해당 댓글 요소를 제거합니다.
+                    replyElement.remove();
+                } else {
+                    alert('댓글 삭제에 실패했습니다.');
+                }
+            };
+        });
+    });
+</script>
 
 </body>
 </html>

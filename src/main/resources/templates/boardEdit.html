@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>동아리 수정 페이지</title>
+    <link rel="stylesheet" href="/assets/css/board.css" />
 </head>
 <body>
-<div class="container">
-    <h1>동아리 수정 페이지</h1>
-    <form method="POST" th:action="@{'/boards/' + ${board.boardNo}}">
-        <div id="update-board">
-            <div>
-                <p>동아리 이름</p>
-                <textarea name="boardTitle" placeholder="동아리명을 입력해주세요" th:text="${board.boardTitle}"></textarea>
-            </div>
-            <div>
-                <p>동아리 짧은 소개</p>
-                <textarea name="boardPreContent" placeholder="동아리 짧은 소개를 입력해주세요" th:text="${board.boardPreContent}"></textarea>
-            </div>
-            <div>
-                <p>동아리 소개</p>
-                <textarea name="boardContent" placeholder="boardContent" th:text="${board.boardContent}"></textarea>
-            </div>
-            <div>
-                <p>활동 내용</p>
-                <textarea name="boardActiveContent" placeholder="boardActiveContent" th:text="${board.boardActiveContent}"></textarea>
-            </div>
-            <div>
-                <p>정기 모임</p>
-                <textarea name="boardRegularContent" placeholder="boardRegularContent" th:text="${board.boardRegularContent}"></textarea>
-            </div>
-            <div>
-                <p>기타</p>
-                <textarea name="boardEtcContent" placeholder="boardEtcContent" th:text="${board.boardEtcContent}"></textarea>
-            </div>
+<div class="wrap">
+    <div class="header">
+        <div></div>
+    </div>
+    <div class="editing-container">
+        <div class="editing-title">
+            <h1>동아리 정보 수정하기</h1>
         </div>
-        <button type="submit">동아리 정보 수정 완료</button>
-    </form>
+        <form method="POST" th:action="@{'/boards/' + ${board.boardNo}}">
+            <div class="editing-contents">
+                <div class="editing-content-s">
+                    <p>동아리 이름</p>
+                    <textarea name="boardTitle" placeholder="동아리명을 입력해주세요" th:text="${board.boardTitle}"></textarea>
+                </div>
+                <div class="editing-content-s">
+                    <p>동아리 짧은 소개</p>
+                    <textarea name="boardPreContent" placeholder="동아리 짧은 소개를 입력해주세요" th:text="${board.boardPreContent}"></textarea>
+                </div>
+                <div class="editing-content-l">
+                    <p>동아리 소개</p>
+                    <textarea name="boardContent" placeholder="boardContent" th:text="${board.boardContent}"></textarea>
+                </div>
+                <div class="editing-content-l">
+                    <p>활동 내용</p>
+                    <textarea name="boardActiveContent" placeholder="boardActiveContent" th:text="${board.boardActiveContent}"></textarea>
+                </div>
+                <div class="editing-content-l">
+                    <p>정기 모임</p>
+                    <textarea name="boardRegularContent" placeholder="boardRegularContent" th:text="${board.boardRegularContent}"></textarea>
+                </div>
+                <div class="editing-content-l">
+                    <p>기타</p>
+                    <textarea name="boardEtcContent" placeholder="boardEtcContent" th:text="${board.boardEtcContent}"></textarea>
+                </div>
+            </div>
+            <button type="submit">동아리 정보 수정 완료</button>
+        </form>
+    </div>
 
+    <div id="footer">footer</div>
 </div>
+
 </body>
 </html>

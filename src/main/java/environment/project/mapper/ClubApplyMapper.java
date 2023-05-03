@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface ClubApplyMapper {
 
-    // SELECT for AdminPage
+    // SELECT 
     @Select("SELECT club_apply_no, us.user_no, club_name, club_purpose, club_activities, club_approve_yn, club_refuse_reason, regdate, updatedate, user_id, user_name, user_email" +
             " FROM club_apply ca LEFT JOIN user us on ca.user_no = us.user_no")
     List<ClubApplyDTO> selectService();

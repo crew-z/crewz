@@ -1,17 +1,19 @@
 package environment.project.controller;
 
-import environment.project.dto.BoardCreateDTO;
-import environment.project.dto.BoardDTO;
-import environment.project.dto.BoardUpdateDTO;
+import environment.project.dto.*;
 import environment.project.exception.ResourceNotFoundException;
+import environment.project.service.BoardReplyService;
 import environment.project.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.SessionScope;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+
+import static environment.project.util.BoardUtil.parseboardNo;
+import static environment.project.util.DateUtil.dateDifference;
 
 @Controller
 @RequestMapping("/boards")
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Slf4j
 public class BoardController {
     private final BoardService boardService;
+    private final BoardReplyService boardReplyService;
 
     /**
      * GET: 동아리 상세 페이지 read
@@ -28,13 +31,26 @@ public class BoardController {
     @GetMapping("/{boardNo}")
     public String getBoardByBoardNo(@PathVariable String boardNo, Model model) {
         Long boardNoNum = parseboardNo(boardNo);
-        BoardDTO boardDTO = boardService.getBoardById(boardNoNum);
+        //BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
+
+        // board 정보 불러오는 것
+        BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
+
+        // boardNo를 가지고 있는 reply
+        List<BoardReplyGetDTO> boardReplyGetDTOS = boardReplyService.getAllReplyByBoardNo(boardNoNum);
+        int replyCount = boardReplyGetDTOS.size();
 
         // 404 예외처리
-        if (boardDTO == null) {
+        if (boardGetDTO == null) {
             throw new ResourceNotFoundException("Board not found with id: " + boardNo);
         }
-        model.addAttribute("board", boardDTO);
+
+        long dDay = dateDifference(boardGetDTO.getEndDate());
+        if (dDay >= 0) model.addAttribute("dDay", dDay);
+        model.addAttribute("board", boardGetDTO);
+        model.addAttribute("replys", boardReplyGetDTOS);
+        model.addAttribute("replyCount", replyCount);
+
         return "board";
     }
 
@@ -57,13 +73,13 @@ public class BoardController {
             @PathVariable String boardNo,
             Model model) {
         Long boardNoNum = parseboardNo(boardNo);
-        BoardDTO boardDTO = boardService.getBoardById(boardNoNum);
+        BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
 
         // 404 예외처리
-        if (boardDTO == null) {
+        if (boardGetDTO == null) {
             throw new ResourceNotFoundException("Board not found with id: " + boardNo);
         }
-        model.addAttribute("board", boardDTO);
+        model.addAttribute("board", boardGetDTO);
         return "boardEdit";
     }
 
