@@ -29,4 +29,9 @@ public class BoardReplyServiceImpl implements BoardReplyService {
         int rowsAffected =  boardReplyMapper.updateReplyByReplyNo(boardReplyUpdateDTO);
         return rowsAffected > 0;
     }
+
+    @Override
+    public void deleteReplyByReplyNo(Long boardNo, Long replyNo) {
+        boardReplyMapper.deleteReplyByReplyNo(boardNo, replyNo);
+    }
 }

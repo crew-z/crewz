@@ -3,10 +3,7 @@ package environment.project.mapper;
 import environment.project.dto.BoardReplyCreateDTO;
 import environment.project.dto.BoardReplyGetDTO;
 import environment.project.dto.BoardReplyUpdateDTO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -36,4 +33,7 @@ public interface BoardReplyMapper {
      */
     @Update("UPDATE board_reply SET reply_content = #{replyContent}, updatedate = NOW() WHERE reply_no = #{replyNo}")
     int updateReplyByReplyNo(BoardReplyUpdateDTO boardReplyUpdateDTO);
+
+    @Delete("DELETE FROM board_reply WHERE board_no = #{boardNo} AND reply_no = #{replyNo}")
+    void deleteReplyByReplyNo(Long boardNo, Long replyNo);
 }

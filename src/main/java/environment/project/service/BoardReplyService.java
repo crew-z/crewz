@@ -12,4 +12,6 @@ public interface BoardReplyService {
     int createReplyByBoardNo(BoardReplyCreateDTO boardReplyCreateDTO);
 
     boolean updateReplyByReplyNo(BoardReplyUpdateDTO boardReplyUpdateDTO);
+
+    void deleteReplyByReplyNo(Long boardNo, Long replyNo);
 }
