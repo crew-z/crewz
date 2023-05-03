@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>crew.z Main</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link th:replace="~{/module/commonCss}">
+
+</head>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<div th:replace="~{/include/header}"></div>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- 구성하고자 하는 화면 설계 -->
+<main id="main">
+
+    <!-- ======= Blog Section ======= -->
+    <section class="inner-page">
+        <div class="container" >
+            <div class="row align-items-stretch justify-content-center no-gutters">
+                <div class="col-md-7">
+                    <div class="form h-100 contact-wrap shadow border border-light p-5">
+                        <h3 class="text-center mb-5">동아리 개설 신청서</h3>
+                        <div class="row">
+                            <div class="form-group row mb-5">
+                                <label for="colFormName" class="apply-subject col-md-4 col-form-label col-form-label-lg">동아리 이름</label>
+                                <label class="col-sm-6 col-form-label " id="colFormName" th:text="${clubApply.clubName}"></label>
+                            </div>
+                            <div class="form-group row mb-5">
+                                <label for="colFormPurpose" class="apply-subject col-md-4 col-form-label col-form-label-lg">동아리 개설 목적</label>
+                                <label class="col-sm-6 col-form-label " id="colFormPurpose" th:text="${clubApply.clubPurpose}"></label>
+                            </div>
+                            <div class="form-group row mb-5">
+                                <label for="colFormActivities" class="apply-subject col-md-4 col-form-label col-form-label-lg">동아리 활동 계획</label>
+                                <label class="col-sm-6 col-form-label " id="colFormActivities" th:text="${clubApply.clubActivities}"></label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 form-group text-center mt-3">
+                                <form method="post" action="/newclubresult">
+                                    <input type="hidden" name="clubApplyNo" th:value="${clubApply.clubApplyNo}">
+                                    <input type="submit" class="btn btn-block btn-primary rounded-0 py-2 px-4" value="심사 결과">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Inner Page -->
+
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="~{/include/footer}"></div>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<link th:replace="~{/module/commonJs}">
+
+</body>
+
+</html>

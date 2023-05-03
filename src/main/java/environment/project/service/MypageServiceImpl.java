@@ -12,9 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
 public class MypageServiceImpl implements MypageService{
-
     private final MypageMapper mypageMapper;
 
     @Override
