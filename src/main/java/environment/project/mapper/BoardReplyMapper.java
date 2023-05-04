@@ -19,5 +19,6 @@ public interface BoardReplyMapper {
     int updateReplyByReplyNo(BoardReplyUpdateDTO boardReplyUpdateDTO);
 
     @Delete("DELETE FROM board_reply WHERE board_no = #{boardNo} AND reply_no = #{replyNo}")
-    void deleteReplyByReplyNo(Long boardNo, Long replyNo);
+    void deleteReplyByReplyNo(@Param("boardNo") Long boardNo,
+                              @Param("replyNo") Long replyNo);
 }

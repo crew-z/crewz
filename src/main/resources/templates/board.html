@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>동아리 상세 페이지</title>
-    <link rel="stylesheet" href="/assets/css/board.css" />
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!--    <link rel="stylesheet" href="/assets/css/board.css" />-->
+    <link th:replace="~{/module/commonCss}">
 </head>
 <body>
+<link href="/assets/css/default.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/board.css" />
+
+<div th:replace="~{/include/header}"></div>
+
 <div class="wrap">
-    <div class="header">
-        <div></div>
-    </div>
+
     <div id="board-container">
         <div id="contents">
             <div id="board-title">
@@ -75,26 +86,36 @@
         </div>
     </div>
 
-    <div id="footer">footer</div>
+    <!-- ======= Footer ======= -->
+    <div th:replace="~{/include/footer}"></div>
+    <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader"></div>
+
+    <link th:replace="~{/module/commonJs}">
+
 </div>
 <script>
     document.querySelectorAll('.update-review').forEach(function(updateBtn) {
         updateBtn.addEventListener('click', function(event) {
-            console.log("event start!");
             const replyNo = event.target.getAttribute('data-reply-no');
             const boardNo = event.target.getAttribute('data-board-no');
             const replyElement = event.target.parentElement.parentElement;
             const replyContentElement = replyElement.querySelector('p');
             const originalContent = replyContentElement.textContent;
             const textarea = document.createElement('textarea');
+            textarea.classList.add('editing-review-textarea');
 
             textarea.value = originalContent;
             replyContentElement.replaceWith(textarea);
 
-            const saveBtn = document.createElement('button');
+            const saveBtn = document.createElement('a');
+
             saveBtn.textContent = '저장';
             event.target.replaceWith(saveBtn);
-
+            saveBtn.classList.add('review-btn');
             saveBtn.addEventListener('click', function() {
                 const replyContent = textarea.value;
 

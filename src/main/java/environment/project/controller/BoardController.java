@@ -66,12 +66,14 @@ public class BoardController {
     // 동아리 상세 내용 생성 페이지 READ
     // GET: /boards/new
     @GetMapping("/new")
-    public String getBoardCreationPage() {
+    public String getBoardCreationPage(@RequestParam Long clubNo) {
+
         return "boardCreate";
     }
 
     // 동아리 상세 내용 수정 페이지 READ
     // GET: /boards/edit/{boardNo}
+    // GET: /boards/edit 으로 변경
     @GetMapping("/edit/{boardNo}")
     public String getBoardEditPageByBoardNo(
             @PathVariable String boardNo,
