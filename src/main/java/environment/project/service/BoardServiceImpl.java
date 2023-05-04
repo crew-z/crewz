@@ -1,9 +1,6 @@
 package environment.project.service;
 
-import environment.project.dto.BoardCreateDTO;
-import environment.project.dto.BoardDTO;
-import environment.project.dto.BoardGetDTO;
-import environment.project.dto.BoardUpdateDTO;
+import environment.project.dto.*;
 import environment.project.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,9 +34,19 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public int createBoardPeriod(BoardCreateDTO boardCreateDTO) {
+        return boardMapper.createBoardPeriod(boardCreateDTO);
+    }
+
+    @Override
     public boolean updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO) {
         int rowsAffected = boardMapper.updateBoardByBoardNo(boardUpdateDTO);
         return rowsAffected > 0;
+    }
+
+    @Override
+    public BoardPeriodGetDTO getBoardPeriodByBoardNo(Long boardNo) {
+        return boardMapper.getBoardPeriodByBoardNo(boardNo);
     }
 
     @Override
@@ -47,7 +54,6 @@ public class BoardServiceImpl implements BoardService {
         return boardMapper.selectServiceToSearch(boardTitle);
     }
 
-    //조회수 카운트 메서드
     @Override
     public void clickCount(Long boardNo) {
         boardMapper.clickCount(boardNo);

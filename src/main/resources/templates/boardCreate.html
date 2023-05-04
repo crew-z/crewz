@@ -3,41 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>동아리 생성 페이지</title>
+  <link rel="stylesheet" href="/assets/css/board.css" />
 </head>
 <body>
-<div class="container">
-  <h1>동아리 생성 페이지</h1>
-  <form th:method="POST" th:action="@{/boards}" th:object="${boardDTO}">
-    <div id="create-board">
-      <div>
-        <p>동아리 이름</p>
-        <label>
-          <input type="text" name="boardTitle" placeholder="boardTitle">
-        </label>
-      </div>
-      <div>
-        <p>동아리 짧은 소개</p>
-        <input type="text"  name="boardPreContent" placeholder="boardPreContent">
-      </div>
-      <div>
-        <p>동아리 소개</p>
-        <input type="text"  name="boardContent" placeholder="boardContent">
-      </div>
-      <div>
-        <p>활동 내용</p>
-        <input type="text"  name="boardActiveContent" placeholder="boardActiveContent">
-      </div>
-      <div>
-        <p>정기 모임</p>
-        <input type="text"  name="boardRegularContent" placeholder="boardRegularContent">
-      </div>
-      <div>
-        <p>기타</p>
-        <input type="text"  name="boardEtcContent" placeholder="boardEtcContent">
-      </div>
+
+<div class="wrap">
+  <div class="header">
+    <div></div>
+  </div>
+  <div class="editing-container">
+    <div class="editing-title">
+      <h1>
+        동아리 게시글 생성하기
+      </h1>
     </div>
-    <button type="submit">new 동아리 생성 완료</button>
-  </form>
+    <form th:method="POST" th:action="@{/boards}" th:object="${boardCreateDTO}">
+      <div class="editing-contents">
+        <div class="editing-content-s">
+          <p>동아리 이름</p>
+          <textarea name="boardTitle" placeholder="동아리명을 입력해주세요"></textarea>
+        </div>
+        <div class="editing-content-s">
+          <p>동아리 짧은 소개</p>
+          <textarea name="boardPreContent" placeholder="동아리 짧은 소개를 입력해주세요"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>동아리 소개</p>
+          <textarea name="boardContent" placeholder="boardContent"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>활동 내용</p>
+          <textarea name="boardActiveContent" placeholder="boardActiveContent"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>정기 모임</p>
+          <textarea name="boardRegularContent" placeholder="boardRegularContent"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>기타</p>
+          <textarea name="boardEtcContent" placeholder="boardEtcContent"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>모집기간</p>
+          <input name="startDate" type="date">
+          <input name="endDate" type="date">
+        </div>
+      </div>
+      <button type="submit">new 동아리 생성 완료</button>
+    </form>
+  </div>
 </div>
+
 </body>
 </html>

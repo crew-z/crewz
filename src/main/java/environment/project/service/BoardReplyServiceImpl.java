@@ -34,4 +34,5 @@ public class BoardReplyServiceImpl implements BoardReplyService {
     public void deleteReplyByReplyNo(Long boardNo, Long replyNo) {
         boardReplyMapper.deleteReplyByReplyNo(boardNo, replyNo);
     }
+
 }

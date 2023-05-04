@@ -1,14 +1,10 @@
 package environment.project.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+import java.sql.Date;
+
+@Data
 public class BoardCreateDTO {
     private Long boardNo;
     private Long userNo;
@@ -19,4 +15,8 @@ public class BoardCreateDTO {
     private String boardActiveContent;
     private String boardRegularContent;
     private String boardEtcContent;
+
+    // board_period TB
+    private Date startDate;
+    private Date endDate;
 }

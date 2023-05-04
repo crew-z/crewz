@@ -1,20 +1,13 @@
 package environment.project.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.sql.Date;
+import lombok.*;
 import java.time.LocalDateTime;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class BoardGetDTO {
     private Long boardNo;
     private Long userNo;
+    private Long clubNo;
     private String boardTitle;
     private String boardPreContent;
     private String boardContent;
@@ -26,8 +19,4 @@ public class BoardGetDTO {
     private String recruitStatus;
     private LocalDateTime regdate;
     private LocalDateTime updatedate;
-
-    // board_period TB
-    private Date startDate;
-    private Date endDate;
 }
