@@ -37,8 +37,9 @@
             <div class="d-flex justify-content-between align-items-center">
                 <ol>
                     <li><a th:href="@{/main}">Home</a></li>
-                    <th:block th:each="clubLeader:${clubLeader}">
-                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #25cff2"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
+                        <li><a th:href="@{/mypagemain}">Mypage</a></li>
+                        <th:block th:each="clubLeader:${clubLeader}">
+                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #FF5A5A"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
                     </th:block>
 
                 </ol>
@@ -59,8 +60,9 @@
         <!--동아리원 신청현황 관리-->
 
                 <div class="section-header">
-                    <h2>동아리 신청 현황</h2>
+                    <h2><span style="color: salmon; font-weight: bold">[[${clubName.clubName}]]</span>동아리 신청현황</h2>
                 </div>
+
                 <div class="container">
                 <div class="row gy-4">
                     <form id="form" method="post" action="/applyMem">

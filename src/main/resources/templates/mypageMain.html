@@ -175,7 +175,52 @@
 
             </div>
         </section>
+        <!--내가 신설 요청한 동아리-->
+        <section id="approveClubResult" class="contact">
+            <div class="clubBox">
+
+                <div class="container">
+                    <div class="row gy-5 gx-lg-5">
+                        <div class="col-lg-4" th:each="clubResult:${clubResult}">
+                            <div class="d-flex flex-column info">
+                                <h3>신설 요청 동아리</h3>
+                                <div class="info-item d-flex">
+                                    <i class="bi bi-suit-club flex-shrink-0"></i>
+                                    <div>
+                                        <h4>[[${clubResult.clubName}]]</h4>
+                                    </div>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
+                                    <div>
+                                        <h4>[[${clubResult.clubPurpose}]]</h4>
+                                    </div>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
+                                    <div>
+                                        <h4>[[${clubResult.clubActivities}]]</h4>
+                                    </div>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <div>
+                                        <form th:action="@{/newclubresult}" method="post">
+                                            <input type="hidden" name="clubApplyNo" th:value="${clubResult.clubApplyNo}" />
+                                            <button type="submit" class="btn btn-outline-info">동아리 심사결과 조회</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
             <!-- End UerClub Section -->
+
 
     </section>
 </main><!-- End #main -->
