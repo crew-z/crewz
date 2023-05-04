@@ -10,4 +10,5 @@ public interface UserService {
     int insertUser(UserDTO userDTO);
     Long login(String loginId, String loginPassword);
     UserDTO getUserByUserNo(Long id);
+    UserDTO getUserByLoginId(String loginId);
 }
