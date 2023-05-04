@@ -49,11 +49,9 @@ public interface MypageMapper {
             "FROM club_info ci " +
             "LEFT JOIN club c ON ci.club_no = c.club_no " +
             "LEFT JOIN club_apply ca ON c.club_apply_no = ca.club_apply_no " +
-            "WHERE c.club_no = #{clubNo} " +
+            "WHERE c.club_no = #{ clubNo } " +
             "GROUP BY ca.club_name")
     ClubNameDTO selectClubName(Long clubNo);
-
-
 
     // 동아리신청 회원 정보 불러오기
     @Select("SELECT u.user_no, u.user_name, u.user_email, u.user_tel, u.user_nickname, ci.club_join_date, ca.club_name, ci.club_user_grade, ci.club_no " +
@@ -69,6 +67,6 @@ public interface MypageMapper {
     int updateUserClubJoin(@Param("userNo") Long userNo, @Param("clubNo") Long clubNo);
 
     @Delete("DELETE FROM club_info WHERE user_no = #{ userNo } AND club_no = #{ clubNo }")
-    int delteApplicatedUserJoinClub(@Param("useNo") Long userNo, @Param("clubNo") Long clubNo);
+    int delteApplicatedUserJoinClub(@Param("userNo") Long userNo, @Param("clubNo") Long clubNo);
 
 }
