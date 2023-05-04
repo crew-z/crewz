@@ -20,4 +20,5 @@ public class ClubApplyDTO {
     private String userId;
     private String userName;
     private String userEmail;
+
 }

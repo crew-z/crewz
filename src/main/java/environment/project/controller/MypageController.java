@@ -1,11 +1,11 @@
 package environment.project.controller;
 
-import environment.project.dto.BoardDTO;
+import environment.project.dto.ClubApplyDTO;
+import environment.project.dto.ClubNameDTO;
 import environment.project.dto.UserDTO;
-import environment.project.mapper.MypageMapper;
+import environment.project.service.ClubApplyService;
 import environment.project.service.MypageService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +22,8 @@ public class MypageController {
 
     @Autowired
     private MypageService mypageService;
+    @Autowired
+    private ClubApplyService clubApplyService;
 
     @GetMapping(path = {  "/mypagemain" })
     public String loadMypageMain(Model model, HttpSession session) {
@@ -30,10 +32,12 @@ public class MypageController {
         List<HashMap<String, Object>> userJoinClub = mypageService.selectUserJoinClub(userNo,1);
         List<HashMap<String, Object>> userWaitingClub = mypageService.selectUserJoinClub(userNo, 0);
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
+        List<ClubApplyDTO> clubResult = mypageService.loadClubApproveResult(userNo);
         model.addAttribute("user", userInfo);
         model.addAttribute("clubLeader", clubLeader);
         model.addAttribute("waitclub", userWaitingClub);
         model.addAttribute("joinClub", userJoinClub);
+        model.addAttribute("clubResult", clubResult);
         return "mypageMain";
     }
 
@@ -47,6 +51,12 @@ public class MypageController {
         mypageService.updateUserInfo(userInfo);
         model.addAttribute("user", userInfo);
         return "redirect:mypagemain";
+    }
+    @PostMapping(path = {"result"})
+    public String newClubResult(@RequestParam("clubApplyNo") Long clubApplyNo, Model model) {
+        ClubApplyDTO clubApply = clubApplyService.getApplicationByApplyNo(clubApplyNo);
+        model.addAttribute("clubApply", clubApply);
+        return "newclubresult";
     }
 
     @GetMapping(path = {"/clubleaderpage"})
@@ -66,7 +76,9 @@ public class MypageController {
             model.addAttribute("clubInfo", applicateClubMem);
         }
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
+        ClubNameDTO clubName = mypageService.viewClubNameByClubNo(clubNo);
         model.addAttribute("clubLeader", clubLeader);
+        model.addAttribute("clubName", clubName);
         return "clubLeaderPage";
     }
 
