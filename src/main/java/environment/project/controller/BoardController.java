@@ -33,7 +33,7 @@ public class BoardController {
         Long boardNoNum = parseStringtoLong(boardNo);
         Long userNo = (Long) httpSession.getAttribute("loginUser");
 
-
+        log.info("test: {}","testsrest12");
         // board 정보 불러오는 것
         BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
         BoardPeriodGetDTO boardPeriodGetDTO = boardService.getBoardPeriodByBoardNo(boardNoNum);
@@ -48,6 +48,7 @@ public class BoardController {
         int replyCount = boardReplyGetDTOS.size();
 
         boolean hasApplied = clubInfoService.checkUserInClub(boardGetDTO.getClubNo(), userNo);
+
         model.addAttribute("hasApplied", hasApplied);
 
         // D-day 구현

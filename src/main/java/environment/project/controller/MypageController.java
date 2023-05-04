@@ -33,6 +33,7 @@ public class MypageController {
         List<HashMap<String, Object>> userWaitingClub = mypageService.selectUserJoinClub(userNo, 0);
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         List<ClubApplyDTO> clubResult = mypageService.loadClubApproveResult(userNo);
+
         model.addAttribute("user", userInfo);
         model.addAttribute("clubLeader", clubLeader);
         model.addAttribute("waitclub", userWaitingClub);
@@ -50,7 +51,7 @@ public class MypageController {
         userInfo.setUserTel(userTel);
         mypageService.updateUserInfo(userInfo);
         model.addAttribute("user", userInfo);
-        return "redirect:mypagemain";
+        return "redirect:/mypagemain";
     }
     @PostMapping(path = {"result"})
     public String newClubResult(@RequestParam("clubApplyNo") Long clubApplyNo, Model model) {

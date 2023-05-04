@@ -204,9 +204,16 @@
                                 </div>
                                 <div class="info-item d-flex">
                                     <div>
-                                        <form th:action="@{/newclubresult}" method="post">
+                                        <form id="postClubInfo" method="post">
                                             <input type="hidden" name="clubApplyNo" th:value="${clubResult.clubApplyNo}" />
-                                            <button type="submit" class="btn btn-outline-info">동아리 심사결과 조회</button>
+                                            <input type="hidden" name="clubNo" th:value="${clubResult.clubNo}" />
+                                            <button type="submit" class="btn btn-outline-info" th:formaction="@{/newclubresult}">동아리 심사결과 조회</button>
+                                            <th:block th:if="${clubResult.boardNo==null}">
+                                            <button type="submit" class="btn btn-outline-success ms-4" th:formaction="@{/boards/new}">게시물 작성</button>
+                                            </th:block>
+                                            <th:block th:unless="${clubResult.boardNo==null}">
+                                                <button type="submit" class="btn btn-outline-success ms-4" th:formaction="@{/boards/edit}">게시물 수정</button>
+                                            </th:block>
                                         </form>
                                     </div>
                                 </div>
@@ -248,6 +255,12 @@
 
     function goLeaderPage(clubNo){
         document.getElementById("clubNo").value = clubNo;
+        document.getElementById("form").submit();
+    }
+
+    function goCreateBoard(clubNo){
+        document.getElementById("clubNo").value = clubNo;
+        document.getElementById("form").action = "/boards/new";
         document.getElementById("form").submit();
     }
 
