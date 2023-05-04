@@ -1,6 +1,5 @@
 package environment.project.service;
 
-import environment.project.dto.ClubInfoDTO;
 import environment.project.dto.UserDTO;
 import environment.project.mapper.MypageMapper;
 import lombok.RequiredArgsConstructor;

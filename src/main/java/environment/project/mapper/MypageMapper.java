@@ -1,5 +1,6 @@
 package environment.project.mapper;
 
+import environment.project.dto.BoardDTO;
 import environment.project.dto.ClubInfoDTO;
 import environment.project.dto.UserDTO;
 import org.apache.ibatis.annotations.Delete;
@@ -24,10 +25,11 @@ public interface MypageMapper {
     void updateUserInfo(UserDTO userDTO);
 
     // 유저가 활동중인 동아리 정보 불러오기
-    @Select("SELECT user_name, club_name, club_activities, club_user_grade FROM club " +
+    @Select("SELECT user_name, club_name, club_activities, club_user_grade, club.club_no, board.board_no FROM club " +
             "            JOIN club_info ON club.club_no = club_info.club_no " +
             "            JOIN user ON club_info.user_no = user.user_no  " +
             "            JOIN club_apply ON club_apply.club_apply_no = club.club_apply_no " +
+            "            JOIN board ON club.club_no = board.club_no " +
             "            WHERE user.user_no = #{ userNo } AND club_info.club_user_grade = #{ clubUserGrade }")
     List<HashMap<String, Object>> selectUserClub(Long userNo, int clubUserGrade);
 

@@ -1,9 +1,11 @@
 package environment.project.controller;
 
+import environment.project.dto.BoardDTO;
 import environment.project.dto.UserDTO;
 import environment.project.mapper.MypageMapper;
 import environment.project.service.MypageService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,18 +27,13 @@ public class MypageController {
     public String loadMypageMain(Model model, HttpSession session) {
         Long userNo = (Long) session.getAttribute("loginUser");
         UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
-        log.info("userInfo: {}",userInfo);
-
-            List<HashMap<String, Object>> userJoinClub = mypageService.selectUserJoinClub(userNo,1);
-            model.addAttribute("joinClub", userJoinClub);
-
-            List<HashMap<String, Object>> userWaitingClub = mypageService.selectUserJoinClub(userNo, 0);
-            model.addAttribute("waitclub", userWaitingClub);
-
-
+        List<HashMap<String, Object>> userJoinClub = mypageService.selectUserJoinClub(userNo,1);
+        List<HashMap<String, Object>> userWaitingClub = mypageService.selectUserJoinClub(userNo, 0);
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         model.addAttribute("user", userInfo);
         model.addAttribute("clubLeader", clubLeader);
+        model.addAttribute("waitclub", userWaitingClub);
+        model.addAttribute("joinClub", userJoinClub);
         return "mypageMain";
     }
 
