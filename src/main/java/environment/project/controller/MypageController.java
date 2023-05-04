@@ -67,23 +67,17 @@ public class MypageController {
     @PostMapping(path = {  "/clubleaderpage" })
     public String loadClubleaderPage(@RequestParam(required = false) Long clubNo,@RequestParam(defaultValue = "0",required = false) int clubUSerGrade, Model model, HttpSession session) {
         Long userNo = (Long) session.getAttribute("loginUser");
-
-        if(clubUSerGrade == 1){
-            List<HashMap<String, Object>> JoinClubMem = mypageService.selectClubApplicatedMemList(1, clubNo);
-            model.addAttribute("clubInfo", JoinClubMem);
-        } else if (clubUSerGrade == 0) {
-            List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
-            model.addAttribute("clubInfo", applicateClubMem);
-        }
+        List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         ClubNameDTO clubName = mypageService.viewClubNameByClubNo(clubNo);
         model.addAttribute("clubLeader", clubLeader);
+        model.addAttribute("clubInfo", applicateClubMem);
         model.addAttribute("clubName", clubName);
         return "clubLeaderPage";
     }
 
     @RequestMapping(value = "/applyMem", method = RequestMethod.POST)
-    public String updateClubMem(Long userNo,Long clubNo, String method, RedirectAttributes redirectAttributes){
+    public String updateClubMem(Long userNo, Long clubNo, String method, RedirectAttributes redirectAttributes){
         int result;
         if(method.equals("ok")){
             result = mypageService.updateClubMemGrade(userNo,clubNo);
@@ -91,7 +85,9 @@ public class MypageController {
             result = mypageService.delteApplicatedUserInfo(userNo,clubNo);
         }
         List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
+        ClubNameDTO clubName = mypageService.viewClubNameByClubNo(clubNo);
         redirectAttributes.addFlashAttribute("clubInfo", applicateClubMem);
+        redirectAttributes.addFlashAttribute("clubName", clubName);
         return "redirect:/clubleaderpage";
     }
 
