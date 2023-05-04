@@ -134,7 +134,7 @@
 
                             <div class="info-item d-flex">
                                 <div>
-                                    <button onclick="loadClubInfo" type="button" class="btn btn-outline-info">동아리 리뷰남기기</button>
+                                    <button th:onclick="|location.href='@{/boards/{boardNo}(boardNo=${joinClub.board_no})}'|" type="button" class="btn btn-outline-info">동아리 리뷰남기기</button>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +145,6 @@
             </div>
             </div>
         </section>
-
         <!--내가 신청한 동아리-->
         <section id="waitingClub" class="contact">
             <div class="clubBox">
@@ -178,7 +177,7 @@
         </section>
             <!-- End UerClub Section -->
 
-
+    </section>
 </main><!-- End #main -->
 <!-- End Body -->
 

@@ -1,5 +1,6 @@
 package environment.project.service;
 
+import environment.project.dto.BoardDTO;
 import environment.project.dto.ClubInfoDTO;
 import environment.project.dto.UserDTO;
 
