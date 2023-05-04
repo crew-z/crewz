@@ -20,29 +20,28 @@
 <!-- End Header -->
 
 <!-- ======= Body ======= -->
-<main class="w-100 m-auto text-center" data-aos="fade-up">
+<main class="w-100 m-auto text-center" data-aos="fade-in">
   <!-- ======= Blog Section ======= -->
 <!--  심사중, 승인되었습니다, 반려되었습니다. 반려 사유 -->
   <div class="display-5 fw-bold mb-3 text-body-emphasis">
     <th:block th:switch="${clubApply.clubApproveYn}">
       <th:block th:case="Y">
-        <h1>[[${clubApply.clubName}]] 동아리 개설 <span class="text-success">승인</span>되었습니다!</h1>
+        <h1><span class="club-subject-success"> [[${clubApply.clubName}]]</span> 동아리 개설 <span class="text-success fw-bolder">승인</span>되었습니다!</h1>
         <p class="lead mb-5">앞으로 [[${clubApply.clubName}]]에서 동료들과 함께 새로운 경험과 추억을 만들어보세요!</p>
       </th:block>
       <th:block th:case="N">
-        <h1>[[${clubApply.clubName}]] 동아리 개설 <span class="text-danger">반려</span>되었습니다.</h1>
-        <p class="lead mb-5"> 반려 사유 : [[${clubApply.clubRefuseReason}]]</p>
+        <h1><span class="club-subject-danger"> [[${clubApply.clubName}]]</span> 동아리 개설 <span class="text-danger fw-bolder">반려</span>되었습니다.</h1>
+        <p class="lead mb-5"> 반려 사유 : <span class="fw-bolder">[[${clubApply.clubRefuseReason}]]</span></p>
       </th:block>
     </th:block>
     <th:block th:if="${#strings.isEmpty(clubApply.clubApproveYn)}">
-      <h1>[[${clubApply.clubName}]] 동아리 개설 <span class="text-warning">심사 중</span>입니다.</h1>
+      <h1><span class="club-subject-warning"> [[${clubApply.clubName}]]</span> 동아리 개설 <span class="text-warning fw-bolder">심사 중</span>입니다.</h1>
       <p class="lead mb-5">조금만 기다려 주시면, 곧 심사 결과를 알려드리겠습니다.</p>
     </th:block>
   </div>
   <div class="col-lg-6 mx-auto">
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-primary">메인페이지로 이동하기</button>
-      <button type="button" th:onclick="|location.href='@{/mypagemain}'|" class="btn btn-primary">마이페이지로 이동하기</button>
+      <button type="button" th:onclick="|location.href='@{/mypagemain}'|" class="btn btn-y">마이페이지로 이동하기</button>
     </div>
   </div>
 </main><!-- End #main -->
