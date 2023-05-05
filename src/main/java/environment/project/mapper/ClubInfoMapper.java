@@ -3,6 +3,7 @@ package environment.project.mapper;
 import environment.project.dto.ClubInfoCreateDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
@@ -15,5 +16,5 @@ public interface ClubInfoMapper {
 
     // 이미 가입 신청 했는지 CHECK
     @Select("SELECT COUNT(*) FROM club_info WHERE club_no = #{clubNo} AND user_no = #{userNo}")
-    int checkUserInClub(Long clubNo, Long userNo);
+    int checkUserInClub(@Param("clubNo") Long clubNo,@Param("userNo") Long userNo);
 }

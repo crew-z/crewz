@@ -1,9 +1,9 @@
-* {
-    margin: 0;
-    padding: 0;
-    line-height:145%;
-    color: #2e2e2e;
-}
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    line-height:145%;*/
+/*    color: #2e2e2e;*/
+/*}*/
 
 hr {
     height: 1px; /* 선의 높이를 조절합니다. */
@@ -17,15 +17,15 @@ hr {
     position: relative;
 }
 
-.header {
-    position: fixed;
-    top: 0; left: 0;
-    height: 80px;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 -1px 0 #ddd inset;
-    z-index: 1000;
-}
+/*.header {*/
+/*    position: fixed;*/
+/*    top: 0; left: 0;*/
+/*    height: 80px;*/
+/*    width: 100%;*/
+/*    background-color: #fff;*/
+/*    box-shadow: 0 -1px 0 #ddd inset;*/
+/*    z-index: 1000;*/
+/*}*/
 
 #board-container {
     width: 1152px;
