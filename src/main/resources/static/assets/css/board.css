@@ -116,10 +116,17 @@ hr {
     margin-right: 10px;
 }
 
+#join-period > p {
+    margin-bottom: -2px;
+}
+
 .aside-card-title {
     font-size: 16px;
     font-weight: bold;
+    margin-bottom: -2px;
 }
+
+
 
 #club-join-btn {
     cursor: pointer;

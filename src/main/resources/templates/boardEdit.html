@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <title>동아리 수정 페이지</title>
 
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/default.css" rel="stylesheet">
+    <link href="/assets/css/default.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/board.css" />
+
+    <link th:replace="~{/module/commonCss}">
 </head>
 <body>
 <div class="wrap">
-    <!-- ======= Header ======= -->
     <div th:replace="~{/include/header}"></div>
-    <!-- End Header -->
-<!--    <div class="header">-->
-<!--        <div></div>-->
-<!--    </div>-->
     <div class="editing-container">
         <div class="editing-title">
             <h1>동아리 게시글 정보 수정하기</h1>
@@ -51,7 +51,11 @@
         </form>
     </div>
 
-    <div id="footer">footer</div>
+    <div th:replace="~{/include/footer}"></div>
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <link th:replace="~{/module/commonJs}">
 </div>
 
 </body>
