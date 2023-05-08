@@ -45,7 +45,7 @@
             </div>
             <hr>
             <div id="board-review">
-                <h3><span th:text="${replyCount}"></span>개의 크루원 리뷰가 있습니다</h3>
+                <h3><span>[[${replyCount}]]개</span>의 크루원 리뷰가 있습니다</h3>
                 <div class="board-reviews" th:each="reply, status : ${replys}">
                     <h4 th:text="${reply.getUserId()}"><span>동아리장</span></h4>
                     <p th:text="${reply.getReplyContent()}"></p>

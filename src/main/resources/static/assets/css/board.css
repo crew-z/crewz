@@ -91,12 +91,14 @@ hr {
 }
 
 #board-title > h1 {
+    font-weight: bold;
     margin-bottom: 10px;
     font-size: 32px;
 }
 
 #board-categories {
     margin-bottom: 40px;
+    margin-left: -30px;
 }
 
 #board-content {
@@ -104,6 +106,7 @@ hr {
 }
 
 .board-contents {
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
@@ -168,6 +171,7 @@ hr {
 
 
 #board-review > h3 {
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
