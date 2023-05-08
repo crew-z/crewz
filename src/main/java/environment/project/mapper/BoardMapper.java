@@ -31,6 +31,28 @@ public interface BoardMapper {
     @Select("SELECT start_date, end_date FROM board_period WHERE board_no = #{boardNo}")
     BoardPeriodGetDTO getBoardPeriodByBoardNo(Long boardNo);
 
+
+    @Select("SELECT \n" +
+            "   bo.board_no, bo.user_no, bo.club_no, bo.board_title, bo.board_pre_content,\n" +
+            "   bo.board_content, bo.board_active_content, bo.board_regular_content,\n" +
+            "   bo.board_etc_content, bo.board_views, bo.recruit_status, bo.regdate,\n" +
+            "   bo.updatedate, bp.start_date, bp.end_date\n" +
+            "   FROM board AS bo\n" +
+            "   LEFT JOIN board_period AS bp ON bo.board_no = bp.board_no\n" +
+            "   WHERE CURDATE() < end_date;")
+    List<BoardDTO> selectRecrutingBoard();
+
+    @Select("SELECT \n" +
+            "   bo.board_no, bo.user_no, bo.club_no, bo.board_title, bo.board_pre_content,\n" +
+            "   bo.board_content, bo.board_active_content, bo.board_regular_content,\n" +
+            "   bo.board_etc_content, bo.board_views, bo.recruit_status, bo.regdate,\n" +
+            "   bo.updatedate, bp.start_date, bp.end_date\n" +
+            "   FROM board AS bo\n" +
+            "   LEFT JOIN board_period AS bp ON bo.board_no = bp.board_no\n" +
+            "   WHERE CURDATE() < end_date" +
+            "   ORDER BY board_views DESC;")
+    List<BoardDTO> selectRecrutingBoardToSort();
+
     @Insert("INSERT INTO board (user_no, club_no, board_title, board_pre_content, board_content, board_active_content, board_regular_content, board_etc_content, regdate) VALUES (#{userNo}, #{clubNo}, #{boardTitle}, #{boardPreContent}, #{boardContent}, #{boardActiveContent}, #{boardRegularContent}, #{boardEtcContent}, now())")
     @Options(useGeneratedKeys = true, keyProperty = "boardNo", keyColumn="board_no")
     int createBoard(BoardCreateDTO boardCreateDTO);

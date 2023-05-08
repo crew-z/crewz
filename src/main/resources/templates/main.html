@@ -89,8 +89,7 @@
                                         <article class="d-flex flex-column card-body" th:onclick="|location.href='/boards/${board.boardNo}'|">
 
                                             <div>
-                                                <span th:if="${#dates.createNow() &lt;= board.endDate}" class="badge rounded-pill bg-warning text-dark mt-2"><i class="fas fa-bullhorn"></i>모집중</span>
-                                                <span th:if="${#dates.createNow() &gt; board.endDate}" class="badge rounded-pill bg-gray text-white mt-2">기간만료</span>
+                                                <span class="badge rounded-pill bg-warning text-dark mt-2">모집중 <i class="fas fa-bullhorn"></i></span>
                                             </div>
 
                                             <h2 class="title">
@@ -102,7 +101,7 @@
                                             </div>
                                             <hr>
                                             <div class="period">
-                                                <span class="me-2">모집기간</span><span class="fw-bold" th:text="| ~ ${board.endDate} |"></span>
+                                                <span class="me-2">모집기간</span><span class="fw-bold" th:text="| ${board.endDate} 까지 |"></span>
                                             </div>
 
                                         </article>
@@ -126,11 +125,15 @@
                     <div class="post-title">인기 있는 동아리<span class="moreSpan"><a href="" class="moreBtn">더 보기</a></span></div>
                     <div id="popularCarousel" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                         <div class="carousel-inner">
-                            <div class="carousel-item " th:each="arr, arrIndex : ${arrBoardList}" th:classappend="${arrIndex.index} == 0 ? 'active' ">
+                            <div class="carousel-item " th:each="arr, arrIndex : ${arrSortBoardList}" th:classappend="${arrIndex.index} == 0 ? 'active' ">
                                 <div class="row gy-4 posts-list">
 
                                     <div class="col-lg-3" th:each="board : ${arr}">
                                         <article class="d-flex flex-column card-body" th:onclick="|location.href='/boards/${board.boardNo}'|">
+
+                                            <div>
+                                                <span class="badge rounded-pill bg-warning text-dark mt-2"><i class="fas fa-bullhorn"></i>모집중</span>
+                                            </div>
 
                                             <h2 class="title" th:text="${board.boardTitle}">
                                             </h2>

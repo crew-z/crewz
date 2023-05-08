@@ -18,6 +18,9 @@ public interface BoardService {
 
     List<BoardDTO> selectBoardToSearch(String boardTitle);
 
+    List<BoardDTO> selectRecrutingBoard();
+    List<BoardDTO> selectRecrutingBoardToSort();
+
     void clickCount(Long boardNo);
 
     BoardPeriodGetDTO getBoardPeriodByBoardNo(Long boardNo);
