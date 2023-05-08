@@ -31,20 +31,20 @@
                     <textarea name="boardPreContent" placeholder="동아리 짧은 소개를 입력해주세요" th:text="${board.boardPreContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
-                    <p>동아리명 : 어떤 동아리인가요?</p>
-                    <textarea name="boardContent" placeholder="boardContent" th:text="${board.boardContent}"></textarea>
+                    <p>[[${board.boardTitle}]] : 어떤 동아리인가요?</p>
+                    <textarea name="boardContent" placeholder="동아리에 대한 소개를 자세하게 알려주세요" th:text="${board.boardContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
                     <p>저희는 주로 이런 활동을 해요</p>
-                    <textarea name="boardActiveContent" placeholder="boardActiveContent" th:text="${board.boardActiveContent}"></textarea>
+                    <textarea name="boardActiveContent" placeholder="동아리가 어떤 활동을 하는지 알려주세요" th:text="${board.boardActiveContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
-                    <p>일정은 다음과 같아요 </p>
-                    <textarea name="boardRegularContent" placeholder="boardRegularContent" th:text="${board.boardRegularContent}"></textarea>
+                    <p>일정은 다음과 같아요</p>
+                    <textarea name="boardRegularContent" placeholder="동아리가 정기적으로 언제 모이는지 알려주세요" th:text="${board.boardRegularContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
                     <p>기타사항은 다음과 같아요</p>
-                    <textarea name="boardEtcContent" placeholder="boardEtcContent" th:text="${board.boardEtcContent}"></textarea>
+                    <textarea name="boardEtcContent" placeholder="추가적으로 하고싶은 말 작성해주세요" th:text="${board.boardEtcContent}"></textarea>
                 </div>
             </div>
             <button type="submit">동아리 정보 수정 완료</button>
@@ -56,7 +56,9 @@
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <div id="preloader"></div>
     <link th:replace="~{/module/commonJs}">
+
 </div>
+
 
 </body>
 </html>

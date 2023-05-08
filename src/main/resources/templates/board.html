@@ -71,9 +71,8 @@
                 <p class="aside-card-title" th:unless="${dDay != null}">크루 모집기간이 아닙니다</p>
 
                 <div id="join-period">
-                    <p>모집기간</p>
-                    <p>[[${boardPeriod.endDate}]] 까지</p>
-                    <p th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
+                    <p>모집기간: [[${boardPeriod.endDate}]] 까지</p>
+                    <p id="d-day" th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
                 </div>
                 <div>
                     <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${hasApplied}">
