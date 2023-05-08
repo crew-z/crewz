@@ -47,8 +47,9 @@
     </div><!-- End Breadcrumbs -->
 
     <section class="mypage-main">
-        <h2 style="text-align: center">[[${user.userName}]]님의 마이페이지</h2>
-
+        <div class="section-header">
+            <h2 style="text-align: center">[[${user.userName}]]님의 마이페이지</h2>
+        </div>
         <!--나의 정보-->
         <section id="userInfo" class="contact">
             <div class="container">
@@ -116,9 +117,10 @@
             </div>
         </section><!-- End UerInfo Section -->
         <!--내가 활동중인 동아리-->
-        <section id="userClub" class="contact" th:if="${!#lists.isEmpty(joinClub)}">
+        <section id="userClub" class="contact pt-0" th:if="${!#lists.isEmpty(joinClub)}">
             <div class="clubBox">
             <div class="container">
+                <hr class="mb-5">
                 <div class="row gy-5 gx-lg-5 posts-list">
                     <div class="col-lg-4" th:each="joinClub:${joinClub}">
                         <div class="d-flex flex-column info">
@@ -150,10 +152,10 @@
             </div>
         </section>
         <!--내가 신청한 동아리-->
-        <section id="waitingClub" class="contact" th:if="${!#lists.isEmpty(waitclub)}">
+        <section id="waitingClub" class="contact pt-0" th:if="${!#lists.isEmpty(waitclub)}">
             <div class="clubBox">
-
                     <div class="container">
+                        <hr class="mb-5">
                         <div class="row gy-5 gx-lg-5">
                             <div class="col-lg-4" th:each="waitclub:${waitclub}">
                                 <div class="d-flex flex-column info">
@@ -180,10 +182,11 @@
             </div>
         </section>
         <!--내가 신설 요청한 동아리-->
-        <section id="approveClubResult" class="contact" th:if="${!#lists.isEmpty(clubResult)}">
-            <div class="clubBox">
+        <section id="approveClubResult" class="contact pt-0" th:if="${!#lists.isEmpty(clubResult)}">
 
+            <div class="clubBox">
                 <div class="container">
+                    <hr class="mb-5">
                     <div class="row gy-5 gx-lg-5">
                         <div class="col-lg-4" th:each="clubResult:${clubResult}">
                             <div class="d-flex flex-column info">
