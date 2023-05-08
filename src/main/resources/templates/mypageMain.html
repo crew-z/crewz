@@ -207,6 +207,7 @@
                                         <form id="postClubInfo" method="post">
                                             <input type="hidden" name="clubApplyNo" th:value="${clubResult.clubApplyNo}" />
                                             <input type="hidden" name="clubNo" th:value="${clubResult.clubNo}" />
+                                            <input type="hidden" name="boardNo" th:value="${clubResult.boardNo}" />
                                             <button type="submit" class="btn btn-outline-info" th:formaction="@{/newclubresult}">동아리 심사결과 조회</button>
                                             <th:block th:if="${clubResult.boardNo==null}">
                                             <button type="submit" class="btn btn-outline-success ms-4" th:formaction="@{/boards/new}">게시물 작성</button>
