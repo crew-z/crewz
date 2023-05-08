@@ -214,7 +214,7 @@ section {
 .header {
   padding: 15px 0;
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 1030;
 }
 
 .header.sticked {
@@ -264,6 +264,9 @@ section {
   }
 }
 
+#logo {
+  width: 100px;
+}
 /*--------------------------------------------------------------
 # Desktop Navigation 
 --------------------------------------------------------------*/
