@@ -57,7 +57,7 @@
                 </div>
                 <form method="POST" th:action="@{'/boards/' + ${board.boardNo} + '/replys'}">
                     <div id="create-review">
-                        <textarea name="replyContent" placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)"></textarea>
+                        <textarea name="replyContent" placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)" required></textarea>
                         <button type="submit">댓글 작성</button>
                     </div>
                 </form>
@@ -95,7 +95,7 @@
 <script>
     document.querySelectorAll('.update-review').forEach(function(updateBtn) {
         updateBtn.addEventListener('click', function(event) {
-            const replyNo = event.target.getAttribute('data-reply-no');
+            const replyNo = event.target.getAttribute('data-reply-no');인
             const boardNo = event.target.getAttribute('data-board-no');
             const replyElement = event.target.parentElement.parentElement;
             const replyContentElement = replyElement.querySelector('p');

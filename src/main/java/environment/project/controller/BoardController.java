@@ -66,19 +66,23 @@ public class BoardController {
 
     // 동아리 상세 내용 생성 페이지 READ
     // GET: /boards/new
-    @GetMapping("/new")
+    @PostMapping("/new")
     public String getBoardCreationPage(@RequestParam Long clubNo, Model model) {
         // boardTitle 가져오기
+        log.info("clubNo: {}", clubNo);
         String boardTitle = boardService.findBoardTitleByClubNo(clubNo);
-
-        model.addAttribute(clubNo);
-        model.addAttribute(boardTitle);
+        log.info("boardTitle: {}", boardTitle);
+        
+        model.addAttribute("clubNo", clubNo);
+        model.addAttribute("boardTitle", boardTitle);
+        
+        log.info("clubNo: {}", model);
         return "boardCreate";
     }
 
     // 동아리 상세 내용 수정 페이지 READ
     // GET: /boards/edit
-    @GetMapping("/edit")
+    @PostMapping("/edit")
     public String getBoardEditPageByBoardNo(@RequestParam Long boardNo, Model model) {
         BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNo);
 
@@ -94,7 +98,6 @@ public class BoardController {
     // POST: /boards
     @PostMapping
     public String createBoard(@ModelAttribute BoardCreateDTO boardCreateDTO) {
-        boardCreateDTO.setClubNo(1L);   // 해야됨
         Long userNo = (Long) httpSession.getAttribute("loginUser");
         boardCreateDTO.setUserNo(userNo);
 
