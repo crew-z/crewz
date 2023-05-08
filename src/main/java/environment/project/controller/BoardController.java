@@ -50,12 +50,12 @@ public class BoardController {
 
         boolean hasApplied = clubInfoService.checkUserInClub(boardGetDTO.getClubNo(), userNo);
 
-        model.addAttribute("hasApplied", hasApplied);
 
         // D-day 구현
         long dDay = dateDifference(boardPeriodGetDTO.getEndDate());
         if (dDay >= 0) model.addAttribute("dDay", dDay);
 
+        model.addAttribute("hasApplied", hasApplied);
         model.addAttribute("board", boardGetDTO);
         model.addAttribute("replys", boardReplyGetDTOS);
         model.addAttribute("replyCount", replyCount);
