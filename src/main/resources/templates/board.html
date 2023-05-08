@@ -34,13 +34,13 @@
                 </ul>
             </div>
             <div id="board-content">
-                <h3 class="board-contents">[[${board.boardTitle}]]: 어떤동아리인가요?(동아리소개)</h3>
+                <h3 class="board-contents">[[${board.boardTitle}]], 어떤 동아리인가요?</h3>
                 <p class="board-contents-p" th:text="${board.boardContent}"></p>
-                <h3 class="board-contents">활동내용</h3>
+                <h3 class="board-contents">저희는 주로 이런 활동을 해요</h3>
                 <p class="board-contents-p"  th:text="${board.boardActiveContent}"></p>
-                <h3 class="board-contents">정기모임</h3>
+                <h3 class="board-contents">일정은 다음과 같아요</h3>
                 <p class="board-contents-p" th:text="${board.boardRegularContent}"></p>
-                <h3 class="board-contents">기타</h3>
+                <h3 class="board-contents">기타사항은 다음과 같아요</h3>
                 <p class="board-contents-p" th:text="${board.boardEtcContent}"></p>
             </div>
             <hr>
