@@ -31,18 +31,18 @@
 
 
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
+    <div class="breadcrumbs" style="background-color: #e3f2fd;">
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <ol>
-                    <li><a th:href="@{/main}">Home</a></li>
-                        <li><a th:href="@{/mypagemain}">Mypage</a></li>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button th:onclick="|location.href='@{/mypagemain}'|" class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Mypage</button>
                         <th:block th:each="clubLeader:${clubLeader}">
-                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #FF5A5A"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
-                    </th:block>
-
-                </ol>
+                            <button th:if="${clubLeader.club_user_grade==2}" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|" >[[${clubLeader.club_name}]]동아리 신청 현황</button>
+                        </th:block>
+                    </div>
+                </nav>
             </div>
 
         </div>
@@ -165,6 +165,7 @@
         document.getElementById("clubNo2").value = clubNo;
         document.getElementById("form2").submit();
     }
+
 
     // function selectList(clubUserGrade) {
     //     document.getElementById("userGrade").value = clubUserGrade;
