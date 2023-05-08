@@ -27,24 +27,28 @@
         <input type="hidden" name="clubNo" id="clubNo" value="">
     </form>
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
+    <div class="breadcrumbs" style="background-color: #e3f2fd;">
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <ol>
-                    <li><a th:href="@{/main}">Home</a></li>
-                    <li>[[${user.userName}]]님의 Mypage</li>
-                    <th:block th:each="clubLeader:${clubLeader}">
-                        <li th:if="${clubLeader.club_user_grade==2}" style="color: #FF5A5A"><a th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황 </a></li>
-                    </th:block>
-                </ol>
+                <nav >
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Mypage</button>
+                        <th:block th:each="clubLeader:${clubLeader}">
+                        <button th:if="${clubLeader.club_user_grade==2}" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]]동아리 신청 현황</button>
+                        </th:block>
+                    </div>
+
+
+                </nav>
             </div>
 
         </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Blog Section ======= -->
     <section class="mypage-main">
+        <h2 style="text-align: center">[[${user.userName}]]님의 Mypage</h2>
+
         <!--나의 정보-->
         <section id="userInfo" class="contact">
             <div class="container">
@@ -264,6 +268,7 @@
         document.getElementById("form").action = "/boards/new";
         document.getElementById("form").submit();
     }
+
 
 </script>
 
