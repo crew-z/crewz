@@ -58,7 +58,7 @@ body {
     position: absolute;
     top: 7px;
     left: 37px;
-    width: 224px;
+    width: 335px;
     height:23px;
     border: none;
     background-color: #F6F6F6;
@@ -87,6 +87,11 @@ body {
 .card-body{
     border: 1px solid #ddd;
     border-radius: 8px;
+    cursor:pointer;
+}
+.card-body:hover{
+    border: 1px solid #FF5A5A;
+    border-radius: 8px;
 }
 .contact, .copyright, #credits {
     color: #8E8E8E;
@@ -113,7 +118,13 @@ body {
     width: 1.5rem;
     height: 1.5rem;
 }
-
+.items-button{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 /* signup, login*/
 .bi {
     vertical-align: -.125em;

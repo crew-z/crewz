@@ -42,10 +42,9 @@
 
                             <div class="col-lg-3" th:each="board : ${boardList}">
 
-                                <article class="d-flex flex-column card-body">
+                                <article class="d-flex flex-column card-body" th:onclick="|location.href='/boards/${board.boardNo}'|">
 
-                                    <h2 class="title">
-                                        <a th:href="@{/boards/{boardNo}(boardNo=${board.boardNo})}" th:text="${board.boardTitle}"></a>
+                                    <h2 class="title" th:text="${board.boardTitle}">
                                     </h2>
 
                                     <div class="content">

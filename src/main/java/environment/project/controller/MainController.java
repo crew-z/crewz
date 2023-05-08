@@ -42,7 +42,7 @@ public class MainController {
             UserDTO userDTO = userService.getUserByUserNo(userNo);
             model.addAttribute("user", userDTO);
         }
-
+        log.info("arrBoardList: {}",arrBoardList);
         model.addAttribute("list", list);
         model.addAttribute("arrBoardList", arrBoardList);
         return "main";
@@ -56,8 +56,6 @@ public class MainController {
         model.addAttribute("list", list);
         model.addAttribute("boardList", boardListToSearch);
         model.addAttribute("boardCount",boardListToSearch.size());
-        log.info("boardList: {}",boardListToSearch);
-        log.info("boardCount: {}",boardListToSearch.size());
 
         return "all";
     }
