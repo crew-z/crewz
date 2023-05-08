@@ -59,12 +59,21 @@ public class BoardServiceImpl implements BoardService {
         boardMapper.clickCount(boardNo);
     }
 
+//    @Override
+//    public String findBoardTitleByClubNo(Long clubNo) {
+//        BoardGetDTO board = boardMapper.findFirstByClubNo(clubNo);
+//        if (board == null) {
+//            throw new IllegalArgumentException("No board found with the given clubNo: " + clubNo);
+//        }
+//        return board.getBoardTitle();
+//    }
+
     @Override
     public String findBoardTitleByClubNo(Long clubNo) {
-        BoardGetDTO board = boardMapper.findFirstByClubNo(clubNo);
+        String board = boardMapper.findFirstByClubNo(clubNo);
         if (board == null) {
             throw new IllegalArgumentException("No board found with the given clubNo: " + clubNo);
         }
-        return board.getBoardTitle();
+        return board;
     }
 }

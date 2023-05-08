@@ -33,7 +33,7 @@ public class MypageController {
         List<HashMap<String, Object>> userWaitingClub = mypageService.selectUserJoinClub(userNo, 0);
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         List<ClubApplyDTO> clubResult = mypageService.loadClubApproveResult(userNo);
-
+        log.info("clubResult: {}",clubResult);
         model.addAttribute("user", userInfo);
         model.addAttribute("clubLeader", clubLeader);
         model.addAttribute("waitclub", userWaitingClub);
