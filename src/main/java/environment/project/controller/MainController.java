@@ -29,11 +29,16 @@ public class MainController {
     @GetMapping(path = { "/", "/main" })
     public String mainPage(Model model, HttpSession session) {
         List<UserDTO> list = userService.selectUser();
-        List<BoardDTO> boardList = boardService.selectBoard();
+        List<BoardDTO> boardList = boardService.selectRecrutingBoard();
         int limit = 4;
         ArrayList<Object> arrBoardList = new ArrayList<>();
         for (int id = 0; id < boardList.size(); id += limit) {
             arrBoardList.add(new ArrayList<>(boardList.subList(id, min(id + limit, boardList.size()))));
+        }
+        List<BoardDTO> sortBoardList = boardService.selectRecrutingBoardToSort();
+        ArrayList<Object> arrSortBoardList = new ArrayList<>();
+        for (int id = 0; id < sortBoardList.size(); id += limit) {
+            arrSortBoardList.add(new ArrayList<>(sortBoardList.subList(id, min(id + limit, sortBoardList.size()))));
         }
         // 회원가입 후 로그인
         Long userNo = (Long) session.getAttribute("loginUser");
@@ -45,6 +50,7 @@ public class MainController {
         log.info("arrBoardList: {}",arrBoardList);
         model.addAttribute("list", list);
         model.addAttribute("arrBoardList", arrBoardList);
+        model.addAttribute("arrSortBoardList", arrSortBoardList);
         return "main";
     }
 

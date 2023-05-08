@@ -55,6 +55,16 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<BoardDTO> selectRecrutingBoard() {
+        return boardMapper.selectRecrutingBoard();
+    }
+
+    @Override
+    public List<BoardDTO> selectRecrutingBoardToSort() {
+        return boardMapper.selectRecrutingBoardToSort();
+    }
+
+    @Override
     public void clickCount(Long boardNo) {
         boardMapper.clickCount(boardNo);
     }

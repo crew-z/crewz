@@ -44,6 +44,11 @@
 
                                 <article class="d-flex flex-column card-body" th:onclick="|location.href='/boards/${board.boardNo}'|">
 
+                                    <div>
+                                        <span th:if="${#dates.createNow() &lt;= board.endDate}" class="badge rounded-pill bg-warning text-dark mt-2"><i class="fas fa-bullhorn"></i>모집중</span>
+                                        <span th:if="${#dates.createNow() &gt; board.endDate}" class="badge rounded-pill bg-gray text-white mt-2">기간만료</span>
+                                    </div>
+
                                     <h2 class="title" th:text="${board.boardTitle}">
                                     </h2>
 
