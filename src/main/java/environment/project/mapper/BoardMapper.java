@@ -49,7 +49,6 @@ public interface BoardMapper {
             "   bo.updatedate, bp.start_date, bp.end_date\n" +
             "   FROM board AS bo\n" +
             "   LEFT JOIN board_period AS bp ON bo.board_no = bp.board_no\n" +
-            "   WHERE CURDATE() < end_date" +
             "   ORDER BY board_views DESC;")
     List<BoardDTO> selectRecrutingBoardToSort();
 

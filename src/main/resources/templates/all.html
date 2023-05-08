@@ -45,8 +45,9 @@
                                 <article class="d-flex flex-column card-body" th:onclick="|location.href='/boards/${board.boardNo}'|">
 
                                     <div>
-                                        <span th:if="${#dates.createNow() &lt;= board.endDate}" class="badge rounded-pill bg-warning text-dark mt-2"><i class="fas fa-bullhorn"></i>모집중</span>
-                                        <span th:if="${#dates.createNow() &gt; board.endDate}" class="badge rounded-pill bg-gray text-white mt-2">기간만료</span>
+                                        <span th:if="${#dates.createNow() &lt;= board.endDate}" class="badge rounded-pill bg-warning text-dark mt-2">모집중<i class="fas fa-bullhorn"></i></span>
+                                        <span th:if="${board.startDate != null} and ${#dates.createNow() &gt; board.endDate}" class="badge rounded-pill bg-gray text-white mt-2">모집완료</span>
+                                        <span th:if="${board.startDate == null}" class="badge rounded-pill bg-gray text-white mt-2">모집 전</span>
                                     </div>
 
                                     <h2 class="title" th:text="${board.boardTitle}">
@@ -57,7 +58,8 @@
                                     </div>
                                     <hr>
                                     <div class="period">
-                                        <span class="me-2">모집기간</span><span class="fw-bold" th:text="|${board.endDate} 까지|"></span>
+                                        <span class="me-2" th:unless="${board.endDate} == null">모집기간</span><span class="fw-bold" th:unless="${board.endDate} == null" th:text="| ${board.endDate} 까지 |"></span>
+                                        <span class="me-2" th:if="${board.endDate} == null">모집기간 <span class="fw-bold">미정</span></span>
                                     </div>
                                 </article>
 
