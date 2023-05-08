@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService{
         return userMapper.getUserByUserNo(id);
     }
 
+    @Override
+    public UserDTO getUserByLoginId(String loginId){
+        return userMapper.getUserByLoginId(loginId);
+    }
+
 }

@@ -201,7 +201,38 @@ body {
 }
 
 .apply-subject {
-    text-decoration: #FF5A5A underline 5px;
+    text-decoration: #ffb0b0 underline 6px;
     text-underline-offset: -1px;
     text-decoration-skip-ink: all;
+}
+.club-subject-success {
+    text-decoration: #198754 wavy underline 3px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: none;
+}
+.club-subject-danger {
+    text-decoration: #dc3545 wavy underline 3px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: none;
+}
+.club-subject-warning {
+    text-decoration: #ffc107 wavy underline 3px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: none;
+}
+.btn-y{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ff5a5a;
+    --bs-btn-border-color: #ff5a5a;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ff1a1a;
+    --bs-btn-hover-border-color: #ff1a1a;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ff1a1a;
+    --bs-btn-active-border-color: #ff1a1a;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ff5a5a;
+    --bs-btn-disabled-border-color: #ff5a5a;
 }

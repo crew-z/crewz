@@ -16,6 +16,7 @@ public interface ClubInfoMapper {
 
     // 이미 가입 신청 했는지 CHECK
     @Select("SELECT COUNT(*) FROM club_info WHERE club_no = #{clubNo} AND user_no = #{userNo}")
-    int checkUserInClub(@Param("clubNo") Long clubNo,
-                        @Param("userNo") Long userNo);
+
+    int checkUserInClub(@Param("clubNo") Long clubNo, @Param("userNo") Long userNo);
+
 }

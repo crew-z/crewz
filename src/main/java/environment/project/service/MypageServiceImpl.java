@@ -1,5 +1,7 @@
 package environment.project.service;
 
+import environment.project.dto.ClubApplyDTO;
+import environment.project.dto.ClubNameDTO;
 import environment.project.dto.UserDTO;
 import environment.project.mapper.MypageMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,15 @@ public class MypageServiceImpl implements MypageService{
         mypageMapper.updateUserInfo(userDTO);
     }
 
+    @Override
+    public List<ClubApplyDTO> loadClubApproveResult(Long userNo) {
+        return mypageMapper.selectClubApproveResult(userNo);
+    }
+
+    @Override
+    public ClubNameDTO viewClubNameByClubNo(Long clubNo){
+        return mypageMapper.selectClubName(clubNo);
+    }
     @Override
     public List<HashMap<String, Object>> selectUserJoinClub(Long userNo, int clubUserGrade) {
         return mypageMapper.selectUserClub(userNo, clubUserGrade);

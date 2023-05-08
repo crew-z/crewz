@@ -17,7 +17,10 @@ public class ClubApplyDTO {
     private Date updatedate;
 
     //JoinData
+    private Long clubNo;
+    private Long boardNo;
     private String userId;
     private String userName;
     private String userEmail;
+
 }
