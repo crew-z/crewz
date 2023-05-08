@@ -9,7 +9,12 @@ import java.util.List;
 
 @Mapper
 public interface BoardReplyMapper {
-    @Select("SELECT br.*, u.user_id FROM board_reply br JOIN user u ON br.user_no = u.user_no WHERE br.board_no = #{boardNo}")
+    @Select("SELECT \n" +
+            "    br.reply_no, br.board_no, br.user_no, br.club_no, br.reply_content, \n" +
+            "    br.regdate, br.updatedate, u.user_id\n" +
+            "FROM board_reply AS br\n" +
+            "JOIN user AS u ON br.user_no = u.user_no\n" +
+            "WHERE br.board_no = #{boardNo}")
     List<BoardReplyGetDTO> getAllReplyByBoardNo(Long boardNo);
 
     @Insert("INSERT INTO board_reply (board_no, user_no, club_no, reply_content, regdate) VALUES (#{boardNo}, #{userNo}, (SELECT club_no FROM board WHERE board_no = #{boardNo}), #{replyContent}, NOW())")
@@ -19,7 +24,5 @@ public interface BoardReplyMapper {
     int updateReplyByReplyNo(BoardReplyUpdateDTO boardReplyUpdateDTO);
 
     @Delete("DELETE FROM board_reply WHERE board_no = #{boardNo} AND reply_no = #{replyNo}")
-
     void deleteReplyByReplyNo(@Param("boardNo") Long boardNo, @Param("replyNo") Long replyNo);
-
 }
