@@ -67,31 +67,18 @@ public class BoardController {
     // GET: /boards/new
     @GetMapping("/new")
     public String getBoardCreationPage(@RequestParam Long clubNo, Model model) {
-        // 받은 clubNo를 가지고 boardTitle을 받아야함
+        // boardTitle 가져오기
         String boardTitle = boardService.findBoardTitleByClubNo(clubNo);
 
         model.addAttribute(clubNo);
         model.addAttribute(boardTitle);
         return "boardCreate";
     }
-//    @GetMapping("/new")
-//    public String getBoardCreationPage(@RequestParam Long clubNo) {
-//
-//        return "boardCreate";
-//    }
 
     // 동아리 상세 내용 수정 페이지 READ
-    // GET: /boards/edit/{boardNo}
-    // GET: /boards/edit 으로 변경
-    //@GetMapping("/edit/{boardNo}")
+    // GET: /boards/edit
     @GetMapping("/edit")
-    public String getBoardEditPageByBoardNo(
-            //@PathVariable String boardNo,
-            @RequestParam Long boardNo,
-            Model model) {
-        //Long boardNoNum = parseStringtoLong(boardNo);
-
-        //BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
+    public String getBoardEditPageByBoardNo(@RequestParam Long boardNo, Model model) {
         BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNo);
 
         // 예외처리: boardNo가 없는 페이지 불러올 때
