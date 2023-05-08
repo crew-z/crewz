@@ -115,10 +115,10 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 15px 0;
+  padding-top: 15px;
   background: rgba(var(--color-secondary-rgb), 0.05);
   min-height: 40px;
-  margin-top: 76px;
+  margin-top: 20px;
 }
 
 .breadcrumbs h2 {

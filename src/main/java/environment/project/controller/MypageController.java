@@ -71,6 +71,7 @@ public class MypageController {
         List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         ClubNameDTO clubName = mypageService.viewClubNameByClubNo(clubNo);
+        model.addAttribute("postClubNo", clubNo);
         model.addAttribute("clubLeader", clubLeader);
         model.addAttribute("clubInfo", applicateClubMem);
         model.addAttribute("clubName", clubName);
