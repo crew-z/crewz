@@ -38,6 +38,8 @@ public class BoardController {
         BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
         BoardPeriodGetDTO boardPeriodGetDTO = boardService.getBoardPeriodByBoardNo(boardNoNum);
 
+        boardService.clickCount(boardNoNum);
+
         // 예외처리: 없는 boardNo를 불러오면
         if (boardGetDTO == null) {
             throw new ResourceNotFoundException("Board not found with id: " + boardNo);

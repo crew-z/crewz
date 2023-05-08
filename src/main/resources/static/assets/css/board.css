@@ -114,10 +114,16 @@ hr {
 #join-period {
     display: inline-block;
     margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 #join-period > p {
     margin-bottom: -2px;
+}
+
+#d-day {
+    color: #FF5A5A;
 }
 
 .aside-card-title {
