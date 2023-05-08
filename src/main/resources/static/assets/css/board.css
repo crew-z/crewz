@@ -116,12 +116,20 @@ hr {
     margin-right: 10px;
 }
 
+#join-period > p {
+    margin-bottom: -2px;
+}
+
 .aside-card-title {
     font-size: 16px;
     font-weight: bold;
+    margin-bottom: -2px;
 }
 
+
+
 #club-join-btn {
+    cursor: pointer;
     width: 248px;
     height: 48px;
     font-size: 16px;
@@ -131,6 +139,12 @@ hr {
     background-color: #FF5A5A;
     color: #fff;
 }
+
+#club-join-btn > span {
+    color: #fff;
+}
+
+
 
 .board-reviews {
     margin-bottom: 40px;
@@ -209,6 +223,7 @@ hr {
 }
 
 #create-review > button {
+    cursor: pointer;
     font-size: 16px;
     color: #fff;
     background-color: #2e2e2e;
@@ -237,7 +252,39 @@ hr {
     font-size: 16px;
 }
 
+.review-btn {
+    font-size: 14px;
+    color: #929292;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.update-review {
+    font-size: 14px;
+    color: #929292;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.delete-review {
+    font-size: 14px;
+    color: #929292;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .editing-contents > div > textarea {
+    width: 100%;
+    font-size: 16px;
+    text-align: left;
+    padding: 16px;
+    border: none;
+    box-shadow: 0 0 0 1px #ddd inset;
+    border-radius: 8px;
+    resize: none;
+}
+
+.editing-review-textarea {
     width: 100%;
     font-size: 16px;
     text-align: left;

@@ -37,4 +37,7 @@ public interface BoardMapper {
     @Update("UPDATE board_views SET board_views = board_views +1  WHERE board_no = #{boardNo} ")
     void clickCount(Long boardNo);
 
+    @Select("SELECT * FROM board WHERE club_no = #{clubNo} LIMIT 1")
+    BoardGetDTO findFirstByClubNo(Long clubNo);
+
 }

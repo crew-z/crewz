@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>동아리 수정 페이지</title>
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/default.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/board.css" />
+
+    <link th:replace="~{/module/commonCss}">
 </head>
 <body>
 <div class="wrap">
-    <div class="header">
-        <div></div>
-    </div>
+    <div th:replace="~{/include/header}"></div>
     <div class="editing-container">
         <div class="editing-title">
             <h1>동아리 게시글 정보 수정하기</h1>
@@ -18,26 +24,26 @@
             <div class="editing-contents">
                 <div class="editing-content-s">
                     <p>동아리 이름</p>
-                    <textarea name="boardTitle" placeholder="동아리명을 입력해주세요" th:text="${board.boardTitle}"></textarea>
+                    <textarea readonly name="boardTitle" placeholder="동아리명을 입력해주세요" th:text="${board.boardTitle}"></textarea>
                 </div>
                 <div class="editing-content-s">
                     <p>동아리 짧은 소개</p>
                     <textarea name="boardPreContent" placeholder="동아리 짧은 소개를 입력해주세요" th:text="${board.boardPreContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
-                    <p>동아리 소개</p>
+                    <p>동아리명 : 어떤 동아리인가요?</p>
                     <textarea name="boardContent" placeholder="boardContent" th:text="${board.boardContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
-                    <p>활동 내용</p>
+                    <p>저희는 주로 이런 활동을 해요</p>
                     <textarea name="boardActiveContent" placeholder="boardActiveContent" th:text="${board.boardActiveContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
-                    <p>정기 모임</p>
+                    <p>일정은 다음과 같아요 </p>
                     <textarea name="boardRegularContent" placeholder="boardRegularContent" th:text="${board.boardRegularContent}"></textarea>
                 </div>
                 <div class="editing-content-l">
-                    <p>기타</p>
+                    <p>기타사항은 다음과 같아요</p>
                     <textarea name="boardEtcContent" placeholder="boardEtcContent" th:text="${board.boardEtcContent}"></textarea>
                 </div>
             </div>
@@ -45,7 +51,11 @@
         </form>
     </div>
 
-    <div id="footer">footer</div>
+    <div th:replace="~{/include/footer}"></div>
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <link th:replace="~{/module/commonJs}">
 </div>
 
 </body>
