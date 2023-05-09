@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    @Select("SELECT COUNT(board_no) FROM BOARD")
+    @Select("SELECT COUNT(board_no) FROM board")
     int selectCount();
 
     @Select("SELECT \n" +

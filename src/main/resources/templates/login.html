@@ -1,24 +1,13 @@
 <!DOCTYPE HTML>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>crew.z loginPage</title>
-
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/sign-in.css" rel="stylesheet">
-<link th:replace="~{/module/commonCss}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
 
 </head>
 <body class="text-center">
 <link href="/assets/css/default.css" rel="stylesheet">
+<link href="/assets/css/sign-in.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- ======= Header ======= -->
-<div th:replace="~{/include/header}"></div>
+<th:block th:replace="include/header :: header-fragment"></th:block>
 <!-- End Header -->
 
 <!-- ======= Body ======= -->
@@ -53,14 +42,14 @@
 </main><!-- End #main -->
 <!-- End -->
 <!-- ======= Footer ======= -->
-<div th:replace="~{/include/footer}"></div>
+<th:block th:replace="include/footer :: footer-fragment"></th:block>
 <!-- End Footer -->
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <div id="preloader"></div>
 
-<link th:replace="~{/module/commonJs}">
+<th:block th:replace="module/commonJs :: common-js"></th:block>
 
 </body>
 </html>
