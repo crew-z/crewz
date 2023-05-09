@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +23,6 @@ public class ClubApplyController {
     public String clubApplyForm(HttpSession session, Model model) {
         Long id = (Long) session.getAttribute("loginUser");
         UserDTO user = userService.getUserByUserNo(id);
-        log.info("user: {}",user);
         model.addAttribute("user",user);
         return "newclub";
     }
@@ -41,7 +39,6 @@ public class ClubApplyController {
     @PostMapping("/newclubresult")
     public String applyResult(ClubApplyDTO clubApplyDTO, Model model){
         ClubApplyDTO clubApply = clubapplyService.getApplicationByApplyNo(clubApplyDTO.getClubApplyNo());
-        log.info("clubApply : {}", clubApply);
         model.addAttribute("clubApply",clubApply);
         return "newclubresult";
     }

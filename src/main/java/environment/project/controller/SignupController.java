@@ -43,11 +43,9 @@ public class SignupController {
         }
 
         // 회원가입 성공시
-        int result = userService.insertUser(user);
+        userService.insertUser(user);
 
         session.setAttribute("loginUser", user.getUserNo());
-        log.info("userService.insertUser: {}",result);
-        log.info("id: {}",user.getUserNo());
         session.setAttribute("name",user.getUserName());
 
         return "signupSuccess";
