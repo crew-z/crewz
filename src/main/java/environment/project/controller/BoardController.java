@@ -57,11 +57,6 @@ public class BoardController {
 
         int replyCount = boardReplyGetDTOS.size();
 
-        // 작성자 여부 체크
-        boardReplyGetDTOS.stream()
-                .filter(item -> Objects.equals(item.getUserNo(), userNo))
-                .forEach(item -> System.out.println(item.getUserNo()));
-
         boolean hasApplied = clubInfoService.checkUserInClub(boardGetDTO.getClubNo(), userNo);
 
 
