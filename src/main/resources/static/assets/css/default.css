@@ -1,7 +1,24 @@
-@media screen and (max-width: 850px){
+html,
+body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    padding-top: 4rem;
+}
+@media screen and (max-width: 1200px){
     .header-menu{
         display: none;
     }
+}
+.logo{
+    z-index:1
+}
+
+.defaultFontColor{
+    color: #2E2E2E;
 }
 
 .header-menu{
@@ -9,6 +26,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
     font-size: 0;
 }
@@ -29,12 +47,20 @@
     font-size: 18px;
     text-align: center;
     line-height: 100px;
+    border-radius: 20px;
+}
+.header-botton{
+    margin:10px;
+    cursor: pointer;
+}
+.header-right{
+    z-index:1;
 }
 .search-input{
     position: absolute;
     top: 7px;
     left: 37px;
-    width: 224px;
+    width: 335px;
     height:23px;
     border: none;
     background-color: #F6F6F6;
@@ -44,4 +70,182 @@
     position: absolute;
     left: 10px;
     top: -32px;
+}
+
+#loginBtn{
+    color:#FF5A5A;
+}
+.post-title{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.moreSpan{
+    margin-left:10px;
+}
+.moreBtn{
+    font-size: 14px;
+    color: #FF5A5A;
+}
+.card-body{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor:pointer;
+}
+.card-body:hover{
+    border: 1px solid #FF5A5A;
+    border-radius: 8px;
+}
+.contact, .copyright, #credits {
+    color: #8E8E8E;
+}
+/*carousel*/
+.board-carousel-control-prev{
+    background-color: #e1e1e1;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-125%);
+}
+.board-carousel-control-next{
+    background-color: #e1e1e1;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(125%);
+}
+.board-carousel-control-prev span,
+.board-carousel-control-next span{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.items-button{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* signup, login*/
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+#signup-con {
+    max-width: 330px!important;
+    padding: 15px;
+}
+.tdBtnAdmin{
+    width: 100px;
+}
+/* admin CSS END*/
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+}
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+}
+#prompt-input{
+    height: 200px;
+    margin-bottom: 30px;
+}
+/* 버튼 스타일 */
+.modalBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* 전체동아리 페이지 CSS */
+.all-post-title{
+    width: auto;
+    height:35px;
+    font-size: 24px;
+    text-align: center;
+}
+.span-color{
+    color: #FF5A5A;
+}
+/* 어드민 탭 스타일링 코드 */
+.admin-tap-list {
+    text-align: center;
+    margin: 20px;
+}
+.admin-tap-list > a {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+.admin-tap-list > a:hover {
+    background-color: lightgray;
+}
+
+.apply-subject {
+    text-decoration: #ffb0b0 underline 6px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: all;
+}
+.club-subject-success {
+    text-decoration: #198754 wavy underline 3px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: none;
+}
+.club-subject-danger {
+    text-decoration: #dc3545 wavy underline 3px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: none;
+}
+.club-subject-warning {
+    text-decoration: #ffc107 wavy underline 3px;
+    text-underline-offset: -1px;
+    text-decoration-skip-ink: none;
+}
+.btn-y{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ff5a5a;
+    --bs-btn-border-color: #ff5a5a;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ff1a1a;
+    --bs-btn-hover-border-color: #ff1a1a;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ff1a1a;
+    --bs-btn-active-border-color: #ff1a1a;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ff5a5a;
+    --bs-btn-disabled-border-color: #ff5a5a;
 }

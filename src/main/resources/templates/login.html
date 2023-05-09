@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+</head>
+<body class="text-center">
+<link href="/assets/css/default.css" rel="stylesheet">
+<link href="/assets/css/sign-in.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- ======= Header ======= -->
+<th:block th:replace="include/header :: header-fragment"></th:block>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- main -->
+<main class="form-signin w-100 m-auto">
+        <form action="/login" id="login-form" method="POST" class="needs-validation" novalidate>
+            <h1 class="h3 mb-3 fw-bold">로그인</h1>
+            <p class="mb-3 text-body-secondary fw-light">크루즈 여행에 합류해보세요!</p>
+
+            <div class="form-floating has-validation">
+                <input type="text" class="form-control " id="userId" placeholder="ID" name="loginId" required>
+                <label for="userId">ID</label>
+                <div class="invalid-feedback">
+                    아이디를 입력하세요.
+                </div>
+            </div>
+            <div class="form-floating has-validation">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="loginPassword" required>
+                <label for="password">Password</label>
+                <div id="invalid-password" style="display:none;color:red;">Invalid password</div>
+                <div id="id-not-found" style="display:none;color:red;">User ID not found</div>
+                <div class="invalid-feedback">
+                    비밀번호를 입력하세요.
+                </div>
+            </div>
+                <button class="w-100 btn btn-lg btn-y" type="submit">로그인</button>
+            <div class="text-center">
+                <br>
+                <p>처음이신가요? <a href="/signup">회원가입</a></p>
+            </div>
+        </form>
+</main><!-- End #main -->
+<!-- End -->
+<!-- ======= Footer ======= -->
+<th:block th:replace="include/footer :: footer-fragment"></th:block>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<th:block th:replace="module/commonJs :: common-js"></th:block>
+
+</body>
+</html>

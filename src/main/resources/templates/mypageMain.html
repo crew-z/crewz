@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+
+<!-- ======= Header ======= -->
+<th:block th:replace="include/header :: header-fragment"></th:block>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- 구성하고자 하는 화면 설계 -->
+<main id="main" class="col">
+    <form id="form" action="/clubleaderpage" method="post">
+        <input type="hidden" name="clubNo" id="clubNo" value="">
+    </form>
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" style="background-color: whitesmoke;">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <nav >
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">마이페이지</button>
+                        <th:block th:each="clubLeader:${clubLeader}">
+                        <button th:if="${clubLeader.club_user_grade==2}" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false" th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]] 동아리 신청 현황</button>
+                        </th:block>
+                    </div>
+
+
+                </nav>
+            </div>
+
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <section class="mypage-main">
+        <div class="section-header">
+            <h2 style="text-align: center">[[${user.userName}]]님의 마이페이지</h2>
+        </div>
+        <!--나의 정보-->
+        <section id="userInfo" class="contact">
+            <div class="container">
+                <div class="row gy-5 gx-lg-5">
+                    <div class="col-lg-4">
+                        <div class="info">
+                            <h3>[[${user.userName}]]님의 회원정보</h3>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-emoji-wink flex-shrink-0"></i>
+                                <div class="pt-2">
+                                    <h4>Nickname : [[${user.userNickname}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-envelope flex-shrink-0"></i>
+                                <div class="pt-2">
+                                    <h4>Email : [[${user.userEmail}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-phone flex-shrink-0"></i>
+                                <div class="pt-2">
+                                    <h4>Tel : [[${user.userTel}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <div>
+                                    <button id="modifyUserInfoBtn" type="button" class="btn btn-outline-info">회원정보 수정</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <form th:action="@{/mypagemain}" th:method="post" role="form" class="php-email-form" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <h5 style="color:#000;">이름</h5>
+                                    <input type="text" class="form-control" name="userName" id="userName" th:field="*{user.userName}" th:readonly="readonly">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h5 style="color:#000;">아이디</h5>
+                                    <input type="text" class="form-control" name="userId" id="userId" th:field="*{user.userId}" th:readonly="readonly">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h5>닉네임</h5>
+                                    <input type="text" class="form-control" name="userNickname" id="userNickname" th:field="*{user.userNickname}">
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <h5>이메일</h5>
+                                    <input type="email" class="form-control" name="userEmail" id="userEmail" th:field="*{user.userEmail}" th:readonly="readonly">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <h5>전화번호</h5>
+                                    <input type="text" class="form-control" name="userTel" id="userTel" th:field="*{user.userTel}">
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="text-center"><button type="submit">변경내용 저장</button></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End UerInfo Section -->
+        <!--내가 활동중인 동아리-->
+        <section id="userClub" class="contact pt-0" th:if="${!#lists.isEmpty(joinClub)}">
+            <div class="clubBox">
+            <div class="container">
+                <hr class="mb-5">
+                <div class="row gy-5 gx-lg-5 posts-list">
+                    <div class="col-lg-4" th:each="joinClub:${joinClub}">
+                        <div class="d-flex flex-column info">
+                            <h3>[[${joinClub.user_name}]]님이 활동중인 동아리</h3>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-suit-club flex-shrink-0"></i>
+                                <div class="pt-2">
+                                    <h4>[[${joinClub.club_name}]]</h4>
+                                </div>
+                            </div>
+                            <div class="info-item d-flex">
+                                <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
+                                <div class="pt-2">
+                                    <h4>[[${joinClub.club_activities}]]</h4>
+                                </div>
+                            </div>
+
+                            <div class="info-item d-flex">
+                                <div>
+                                    <button th:onclick="|location.href='@{/boards/{boardNo}(boardNo=${joinClub.board_no})}'|" type="button" class="btn btn-outline-info">동아리 리뷰남기기</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </section>
+        <!--내가 신청한 동아리-->
+        <section id="waitingClub" class="contact pt-0" th:if="${!#lists.isEmpty(waitclub)}">
+            <div class="clubBox">
+                    <div class="container">
+                        <hr class="mb-5">
+                        <div class="row gy-5 gx-lg-5">
+                            <div class="col-lg-4" th:each="waitclub:${waitclub}">
+                                <div class="d-flex flex-column info">
+                                    <h3>[[${waitclub.user_name}]]님이 신청한 동아리</h3>
+                                    <div class="info-item d-flex">
+                                        <i class="bi bi-suit-club flex-shrink-0"></i>
+                                        <div class="pt-2">
+                                            <h4>[[${waitclub.club_name}]]</h4>
+                                        </div>
+                                    </div>
+                                    <div class="info-item d-flex">
+                                        <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
+                                        <div class="pt-2">
+                                            <h4>[[${waitclub.club_activities}]]</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+        </section>
+        <!--내가 신설 요청한 동아리-->
+        <section id="approveClubResult" class="contact pt-0" th:if="${!#lists.isEmpty(clubResult)}">
+
+            <div class="clubBox">
+                <div class="container">
+                    <hr class="mb-5">
+                    <div class="row gy-5 gx-lg-5">
+                        <div class="col-lg-4" th:each="clubResult:${clubResult}">
+                            <div class="d-flex flex-column info">
+                                <h3>신설 요청 동아리</h3>
+                                <div class="info-item d-flex">
+                                    <i class="bi bi-suit-club flex-shrink-0"></i>
+                                    <div class="pt-2">
+                                        <h4>[[${clubResult.clubName}]]</h4>
+                                    </div>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <i class="bi bi-arrow-through-heart flex-shrink-0"></i>
+                                    <div class="pt-2">
+                                        <h4>[[${clubResult.clubPurpose}]]</h4>
+                                    </div>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <i class="bi bi-bookmark-heart-fill flex-shrink-0"></i>
+                                    <div class="pt-2">
+                                        <h4>[[${clubResult.clubActivities}]]</h4>
+                                    </div>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <div>
+                                        <form id="postClubInfo" method="post">
+                                            <input type="hidden" name="clubApplyNo" th:value="${clubResult.clubApplyNo}" />
+                                            <input type="hidden" name="clubNo" th:value="${clubResult.clubNo}" />
+                                            <input type="hidden" name="boardNo" th:value="${clubResult.boardNo}" />
+                                            <button type="submit" class="btn btn-outline-info" th:formaction="@{/newclubresult}">동아리 심사결과 조회</button>
+                                            <th:block th:if="${clubResult.clubApproveYn == 'Y'} and ${clubResult.boardNo==null}">
+                                            <button type="submit" class="btn btn-outline-success ms-4" th:formaction="@{/boards/new}">게시물 작성</button>
+                                            </th:block>
+                                            <th:block th:if="${clubResult.clubApproveYn == 'Y'} and ${clubResult.boardNo != null}">
+                                                <button type="submit" class="btn btn-outline-success ms-4" th:formaction="@{/boards/edit}">게시물 수정</button>
+                                            </th:block>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+            <!-- End UerClub Section -->
+
+
+    </section>
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<th:block th:replace="include/footer :: footer-fragment"></th:block>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<th:block th:replace="module/commonJs :: common-js"></th:block>
+
+</body>
+
+<script th:inline="javascript">
+
+    const modifyUserInfoBtn = document.querySelector('#modifyUserInfoBtn');
+    modifyUserInfoBtn.addEventListener('click', function() {
+        const updateUserInfoForm = document.querySelector('form.php-email-form');
+        updateUserInfoForm.style.display = 'block';
+    });
+
+    function goLeaderPage(clubNo){
+        document.getElementById("clubNo").value = clubNo;
+        document.getElementById("form").submit();
+    }
+
+    function goCreateBoard(clubNo){
+        document.getElementById("clubNo").value = clubNo;
+        document.getElementById("form").action = "/boards/new";
+        document.getElementById("form").submit();
+    }
+
+
+</script>
+
+</html>

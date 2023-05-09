@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+<body>
+<link href="/assets/css/default.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/board.css" />
+
+<th:block th:replace="include/header :: header-fragment"></th:block>
+
+<div class="wrap">
+
+    <div id="board-container">
+        <div id="contents">
+            <div id="board-title">
+                <h1 th:text="${board.boardTitle}"></h1>
+                <h2 th:text="${board.boardPreContent}"></h2>
+            </div>
+            <div id="board-categories">
+                <ul>
+                    <li><a>카테고리1</a></li>
+                    <li><a>카테고리2</a></li>
+                    <li><a>카테고리3</a></li>
+                </ul>
+            </div>
+            <div id="board-content">
+                <h3 class="board-contents">[[${board.boardTitle}]], 어떤 동아리인가요?</h3>
+                <p class="board-contents-p" th:text="${board.boardContent}"></p>
+                <h3 class="board-contents">저희는 주로 이런 활동을 해요</h3>
+                <p class="board-contents-p"  th:text="${board.boardActiveContent}"></p>
+                <h3 class="board-contents">일정은 다음과 같아요</h3>
+                <p class="board-contents-p" th:text="${board.boardRegularContent}"></p>
+                <h3 class="board-contents">기타사항은 다음과 같아요</h3>
+                <p class="board-contents-p" th:text="${board.boardEtcContent}"></p>
+            </div>
+            <hr>
+            <div id="board-review">
+                <h3><span>[[${replyCount}]]개</span>의 크루원 리뷰가 있습니다</h3>
+                <div class="board-reviews" th:each="item, status : ${replysWithMetadata}">
+                    <h4 th:text="${item.reply.userId}"></h4>
+                    <p th:text="${item.reply.replyContent}"></p>
+                    <div th:if="${item.isAuthor}">
+                        <a class="update-review" th:data-reply-no="${item.reply.replyNo}" th:data-board-no="${board.boardNo}">수정</a>
+                        <a class="delete-review" th:data-reply-no="${item.reply.replyNo}" th:data-board-no="${board.boardNo}">삭제</a>
+                    </div>
+                    <hr th:unless="${status.last}">
+                </div>
+                <form id="create-review-form" method="POST" th:action="@{'/boards/' + ${board.boardNo} + '/replys'}">
+                    <div id="create-review">
+                        <textarea name="replyContent" placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)" required></textarea>
+                        <button type="submit">리뷰 작성</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div id="aside">
+            <div id="aside-card">
+                <p class="aside-card-title">[[${board.boardTitle}]]은 현재</p>
+                <p class="aside-card-title" th:if="${dDay != null}">크루 모집중입니다</p>
+                <p class="aside-card-title" th:unless="${dDay != null}">크루 모집기간이 아닙니다</p>
+
+                <div id="join-period">
+                    <p>모집기간: [[${boardPeriod.endDate}]] 까지</p>
+                    <p id="d-day" th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
+                </div>
+                <div>
+                    <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${hasApplied}">
+                        <span th:if="${hasApplied}">가입 신청 완료</span>
+                        <span th:unless="${hasApplied}">동아리에 합류하기</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="include/footer :: footer-fragment"></th:block>
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <th:block th:replace="module/commonJs :: common-js"></th:block>
+
+</div>
+<script>
+    document.querySelectorAll('.update-review').forEach(function(updateBtn) {
+        updateBtn.addEventListener('click', function(event) {
+            const replyNo = event.target.getAttribute('data-reply-no');
+            const boardNo = event.target.getAttribute('data-board-no');
+            const replyElement = event.target.parentElement.parentElement;
+            const replyContentElement = replyElement.querySelector('p');
+            const originalContent = replyContentElement.textContent;
+            const textarea = document.createElement('textarea');
+            textarea.classList.add('editing-review-textarea');
+
+            textarea.value = originalContent;
+            replyContentElement.replaceWith(textarea);
+
+            const saveBtn = document.createElement('a');
+
+            saveBtn.textContent = '저장';
+            event.target.replaceWith(saveBtn);
+            saveBtn.classList.add('review-btn');
+            saveBtn.addEventListener('click', function() {
+                const replyContent = textarea.value;
+
+                // AJAX를 사용하여 서버에 댓글 수정 요청을 전송합니다.
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', `/boards/${boardNo}/replys/${replyNo}`);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.send(JSON.stringify({ replyContent: replyContent }));
+                console.log(xhr);
+
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        // 수정이 성공적으로 완료된 경우, textarea를 다시 p 태그로 변경하고 버튼도 되돌립니다.
+                        const newContentElement = document.createElement('p');
+                        newContentElement.textContent = replyContent;
+                        textarea.replaceWith(newContentElement);
+                        saveBtn.replaceWith(updateBtn);
+                    } else {
+                        alert('댓글 수정에 실패했습니다.');
+                    }
+                };
+            });
+        });
+    });
+
+    document.querySelectorAll('.delete-review').forEach(function(deleteBtn) {
+        deleteBtn.addEventListener('click', function(event) {
+            const replyNo = event.target.getAttribute('data-reply-no');
+            const boardNo = event.target.getAttribute('data-board-no');
+            const replyElement = event.target.parentElement.parentElement;
+
+            // 삭제 확인 창을 표시합니다.
+            if (!confirm('댓글을 삭제하시겠습니까?')) {
+                return;
+            }
+
+            // AJAX를 사용하여 서버에 댓글 삭제 요청을 전송합니다.
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `/boards/${boardNo}/replys/delete/${replyNo}`);
+            xhr.send();
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // 삭제가 성공적으로 완료된 경우, 해당 댓글 요소를 제거합니다.
+                    replyElement.remove();
+                } else {
+                    alert('댓글 삭제에 실패했습니다.');
+                }
+            };
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const clubJoinBtn = document.getElementById('club-join-btn');
+        clubJoinBtn.addEventListener('click', function () {
+            const clubNo = clubJoinBtn.getAttribute('data-club-no');
+            console.log(clubNo);
+            fetch(`/club-info/${clubNo}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ clubNo: clubNo })
+            }).then(res => {
+                if (res.ok) {
+                    clubJoinBtn.disabled = true;
+                    clubJoinBtn.innerText = '가입 신청 완료';
+                } else {
+                    alert('가입 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+                }
+            });
+        });
+    });
+</script>
+
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = /*[[${isLoggedIn}]]*/ 'default';
+        const createReviewForm = document.getElementById('create-review-form');
+
+        createReviewForm.addEventListener('submit', function(event) {
+            if (!isLoggedIn) {
+                event.preventDefault();
+                window.location.href = '/login';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+

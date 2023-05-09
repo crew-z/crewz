@@ -1,6 +1,14 @@
 package environment.project.service;
 
 
-public interface UserService {
+import environment.project.dto.UserDTO;
 
+import java.util.List;
+
+public interface UserService {
+    List<UserDTO> selectUser();
+    int insertUser(UserDTO userDTO);
+    Long login(String loginId, String loginPassword);
+    UserDTO getUserByUserNo(Long id);
+    UserDTO getUserByLoginId(String loginId);
 }

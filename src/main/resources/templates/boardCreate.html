@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+<body>
+<link href="/assets/css/default.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/board.css" />
+<th:block th:replace="include/header :: header-fragment"></th:block>
+<div class="wrap">
+
+  <div class="editing-container">
+    <div class="editing-title">
+      <h1>
+        동아리 게시글 생성하기
+      </h1>
+    </div>
+    <form th:method="POST" th:action="@{/boards}" th:object="${boardCreateDTO}">
+      <div class="editing-contents">
+        <input type="hidden" name="clubNo" th:value="${clubNo}" />
+        <div class="editing-content-s">
+          <p>동아리 이름</p>
+<!--          <textarea readonly name="boardTitle" placeholder="동아리명을 입력해주세요" th:text="${board.boardTitle}></textarea>-->
+          <textarea readonly name="boardTitle" th:text="${boardTitle}"></textarea>
+        </div>
+        <div class="editing-content-s">
+          <p>동아리 짧은 소개</p>
+          <textarea name="boardPreContent" placeholder="동아리 짧은 소개를 알려주세요"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>[[${boardTitle}]] : 어떤 동아리인가요?</p>
+          <textarea name="boardContent" placeholder="동아리에 대한 소개를 자세하게 알려주세요"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>저희는 주로 이런 활동을 해요</p>
+          <textarea name="boardActiveContent" placeholder="동아리가 어떤 활동을 하는지 알려주세요"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>일정은 다음과 같아요</p>
+          <textarea name="boardRegularContent" placeholder="동아리가 정기적으로 언제 모이는지 알려주세요"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>기타사항은 다음과 같아요</p>
+          <textarea name="boardEtcContent" placeholder="추가적으로 하고싶은 말 작성해주세요"></textarea>
+        </div>
+        <div class="editing-content-l">
+          <p>모집기간</p>
+          <input name="startDate" type="date">
+          <input name="endDate" type="date">
+        </div>
+      </div>
+      <button type="submit">new 동아리 생성 완료</button>
+    </form>
+  </div>
+
+  <th:block th:replace="include/footer :: footer-fragment"></th:block>
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+  <th:block th:replace="module/commonJs :: common-js"></th:block>
+</div>
+
+</body>
+</html>

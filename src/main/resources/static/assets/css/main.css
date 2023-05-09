@@ -115,10 +115,10 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 15px 0;
+  padding-top: 15px;
   background: rgba(var(--color-secondary-rgb), 0.05);
   min-height: 40px;
-  margin-top: 76px;
+  margin-top: 20px;
 }
 
 .breadcrumbs h2 {
@@ -133,7 +133,7 @@ section {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: 17px;
 }
 
 .breadcrumbs ol li+li {
@@ -214,7 +214,7 @@ section {
 .header {
   padding: 15px 0;
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 1030;
 }
 
 .header.sticked {
@@ -264,6 +264,9 @@ section {
   }
 }
 
+#logo {
+  width: 100px;
+}
 /*--------------------------------------------------------------
 # Desktop Navigation 
 --------------------------------------------------------------*/
@@ -3143,7 +3146,8 @@ section {
 
 .footer .footer-legal {
   padding: 30px 0;
-  background: var(--color-secondary-dark);
+  background: #F6F6F6;
+  /*background: var(--color-secondary-dark);*/
 }
 
 .footer .footer-legal .credits {

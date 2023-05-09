@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+<body>
+<link href="/assets/css/club-apply.css" rel="stylesheet">
+<link href="/assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<th:block th:replace="include/header :: header-fragment"></th:block>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<main id="main">
+  <!-- ======= Blog Section ======= -->
+  <section class="inner-page">
+ <!--동아리 이름, 동아리 개설 목적, 동아리 활동 계획,-->
+    <div class="container">
+      <div class="row align-items-stretch justify-content-center no-gutters">
+        <div class="col-md-7">
+          <div class="form h-100 contact-wrap shadow border border-light p-5">
+            <h3 class="text-center mb-5">동아리 개설 신청서</h3>
+            <form class="mb-5 needs-validation" method="post" action="/newclub" id="contactForm" name="contactForm" novalidate>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="userName" class="col-form-label">신청자 *</label>
+                  <input type="hidden" class="form-control" name="userId" id="userId" th:value="${user.getUserId()}">
+                  <input type="hidden" class="form-control" name="userEmail" id="userEmail" th:value="${user.getUserEmail()}">
+                  <input type="hidden" class="form-control" name="userNo" id="userNo" th:value="${user.getUserNo()}">
+                  <input type="text" class="form-control" name="userName" id="userName" readonly th:value="${user.getUserName()}" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="clubName" class="col-form-label">동아리 이름 *</label>
+                  <input type="text" class="form-control" name="clubName" id="clubName"
+                         pattern="[가-힣a-zA-Z0-9\s+]{2,20}" placeholder="동아리 이름" aria-label="동아리 이름" aria-describedby="button-addon2" required>
+<!--                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복 확인</button>-->
+                  <div class="invalid-feedback">
+                    동아리 이름은 특수문자를 포함하지 않은 2~20자리로 지어주세요.
+                  </div>
+                </div>
+              </div>
+
+<!--              <div class="input-group mb-3">-->
+<!--                <input type="text" class="form-control"  placeholder="동아리 이름" aria-label="동아리 이름" aria-describedby="button-addon2" required>-->
+<!--                <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복 확인</button>-->
+<!--              </div>-->
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="clubPurpose" class="col-form-label">개설 목적 *</label>
+                  <textarea class="form-control text-wrap" name="clubPurpose" id="clubPurpose" cols="30" rows="4" placeholder="동아리 개설 목적" required></textarea>
+                  <div class="invalid-feedback">
+                    개설 목적을 작성해주세요.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-5">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="clubActivities" class="col-form-label">활동 계획 *</label>
+                  <textarea class="form-control" name="clubActivities" id="clubActivities" cols="30" rows="5" placeholder="동아리 활동 계획" required></textarea>
+                  <div class="invalid-feedback">
+                    활동 계획을 작성해주세요.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-center">
+                <div class="col-md-5 form-group text-center">
+                  <input type="submit" value="제출하기" class="btn btn-block btn-y py-2 px-4">
+                  <span class="submitting"></span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Inner Page -->
+
+</main><!-- End #main -->
+<!-- End Body -->
+
+<!-- ======= Footer ======= -->
+<th:block th:replace="include/footer :: footer-fragment"></th:block>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<th:block th:replace="module/commonJs :: common-js"></th:block>
+</body>
+
+</html>

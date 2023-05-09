@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+<body class="text-center">
+<link href="/assets/css/sign-in.css" rel="stylesheet">
+<link href="/assets/css/default.css" rel="stylesheet">
+<!-- ======= Header ======= -->
+<th:block th:replace="include/header :: header-fragment"></th:block>
+<!-- End Header -->
+
+<!-- ======= Body ======= -->
+<!-- Main -->
+<main class="w-100 m-auto">
+    <div class="container" id="signup-con">
+        <h1 class="h3 mb-3 fw-bold">회원가입</h1>
+            <form method="POST" action="/signup" class="needs-validation" novalidate>
+                <div class="row mb-3 form-floating form-group has-validation">
+                    <input type="text" class="form-control" id="inputName" name="userName" placeholder="사용자 이름" required>
+                    <label for="inputName">이름</label>
+                    <div class="invalid-feedback">
+                        이름을 입력하세요.
+                    </div>
+                </div>
+                <div class="row mb-3 form-floating form-group has-validation">
+                    <input type="text" class="form-control" id="inputNickname" name="userNickname" placeholder="사용자 닉네임"
+                           pattern="[가-힣a-zA-Z0-9]{2,10}" required>
+                    <label for="inputNickname">닉네임</label>
+                    <div class="invalid-feedback">
+                        닉네임은 특수문자를 포함하지 않은 2~10자리입니다.
+                    </div>
+                </div>
+                <div class="row mb-3 form-floating form-group has-validation">
+                    <input type="text" class="form-control" id="inputID" name="userId" placeholder="사용자 아이디"
+                           pattern="[a-z0-9]{4,20}" required>
+                    <label for="inputID">아이디</label>
+                    <div class="invalid-feedback">
+                        아이디는 영어 소문자와 숫자만 사용하여 4~20자리입니다.
+                    </div>
+                </div>
+                <div class="row mb-3 form-floating form-group has-validation">
+                    <input type="password" class="form-control" id="inputPassword1" name="userPassword" placeholder="사용자 비밀번호"
+                           pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}" required>
+                    <label for="inputPassword1">비밀번호</label>
+                    <div class="invalid-feedback">
+                        비밀번호는 8~16자리수입니다. 영문 대소문자, 숫자, 특수문자를 1개 이상 포함해야 합니다.
+                    </div>
+                </div>
+                <div class="row mb-3 form-floating form-group has-validation">
+                    <input type="email" class="form-control" id="inputEmail" name="userEmail" placeholder="사용자 이메일" required>
+                    <label for="inputEmail">이메일</label>
+                    <div class="invalid-feedback">
+                        이메일 형식에 맞지 않습니다.
+                    </div>
+                </div>
+                <div class="row mb-3 form-floating form-group has-validation">
+                    <input type="tel" class="form-control" id="inputTel" name="userTel"
+                           placeholder="사용자 전화번호" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
+                    <label for="inputTel">전화번호</label>
+                    <div class="invalid-feedback">
+                        전화번호를 입력하세요.
+                    </div>
+                </div>
+            <button type="submit" class="btn btn-y">가입 완료</button>
+        </form>
+    </div>
+</main>
+<!-- ======= Footer ======= -->
+<th:block th:replace="include/footer :: footer-fragment"></th:block>
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<th:block th:replace="module/commonJs :: common-js"></th:block>
+</body>
+</html>

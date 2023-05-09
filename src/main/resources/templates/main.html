@@ -1,59 +1,61 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>crew.z Main</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <link th:replace="~{/module/commonCss}">
-
-</head>
-
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
 <body>
-<link href="assets/css/default.css" rel="stylesheet">
+<link href="/assets/css/default.css" rel="stylesheet">
 <!-- ======= Header ======= -->
-<div th:replace="~{/include/header}"></div>
+<th:block th:replace="include/header :: header-fragment"></th:block>
 <!-- End Header -->
 
-<main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-        <div class="container">
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/img/blog/blog-1.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/blog/blog-2.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/blog/blog-3.jpg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
+<main id="main" class="col">
+    <!-- ======= Carousel ======= -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-    </div><!-- End Breadcrumbs -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/assets/img/banner/yellowBanner.png" class="d-block w-100" alt="...">
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h3 class="defaultFontColor">모든 동아리 보러가기!!</h3>
+                        <p class="defaultFontColor">여러분들의 동아리를 확인하세요</p>
+                        <p><a class="btn btn-sm btn-light" href="/all">더 보기</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/img/banner/pinkBanner.png" class="d-block w-100" alt="...">
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h3 class="defaultFontColor">자바 스프링 스터디 새롭게 오픈</h3>
+                        <p class="defaultFontColor">Java Spring Boot 공부하고 스펙업!</p>
+                        <p><a class="btn btn-sm btn-light" href="#">더 보기</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/img/banner/blueBanner.png" class="d-block w-100" alt="...">
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h3 class="defaultFontColor">자바 스프링 스터디 새롭게 오픈</h3>
+                        <p class="defaultFontColor">Java Spring Boot 공부하고 스펙업!</p>
+                        <p><a class="btn btn-sm btn-light" href="#">더 보기</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
 
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
@@ -62,211 +64,102 @@
             <div class="row g-5">
 
                 <div class="col-lg-12">
+                    <div class="post-title">현재 모집 중인 동아리<span class="moreSpan"><a href="" class="moreBtn">더 보기</a></span></div>
 
-                    <div class="row gy-4 posts-list">
+                    <div id="boardCarousel" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item" th:each="arr, arrIndex : ${arrBoardList}" th:classappend="${arrIndex.index} == 0 ? 'active' ">
+                                <div class="row gy-4 posts-list">
 
-                        <div class="col-lg-4">
-                            <article class="d-flex flex-column">
+                                    <div class="col-lg-3" th:each="board : ${arr}">
 
-                                <div class="post-img">
-                                    <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                                </div>
+                                        <article class="d-flex flex-column card-body" th:onclick="|location.href='/boards/${board.boardNo}'|">
 
-                                <h2 class="title">
-                                    <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                                </h2>
+                                            <div>
+                                                <span class="badge rounded-pill bg-warning text-dark mt-2">모집중 <i class="fas fa-bullhorn"></i></span>
+                                            </div>
 
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
-                                    </ul>
-                                </div>
+                                            <h2 class="title">
+                                                <span th:text="${board.boardTitle}"></span>
+                                            </h2>
 
-                                <div class="content">
-                                    <p>
-                                        Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                    </p>
-                                </div>
+                                            <div class="content">
+                                                <p th:text="${board.boardPreContent}"></p>
+                                            </div>
+                                            <hr>
+                                            <div class="period">
+                                                <span class="me-2" th:unless="${board.endDate} == null">모집기간</span><span class="fw-bold" th:unless="${board.endDate} == null" th:text="| ${board.endDate} 까지 |"></span>
+                                                <span class="me-2" th:if="${board.endDate} == null">모집기간 <span class="fw-bold">미정</span></span>
+                                            </div>
 
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="blog-details.html">Read More</a>
-                                </div>
+                                        </article>
 
-                            </article>
-                        </div><!-- End post list item -->
+                                    </div><!-- End post list item -->
 
-                        <div class="col-lg-4">
-                            <article class="d-flex flex-column">
+                                </div><!-- End blog posts list -->
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev board-carousel-control-prev" type="button" data-bs-target="#boardCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next board-carousel-control-next" type="button" data-bs-target="#boardCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
 
-                                <div class="post-img">
-                                    <img src="assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
-                                </div>
+                    <section></section>
+                    <div class="post-title">인기 있는 동아리<span class="moreSpan"><a href="" class="moreBtn">더 보기</a></span></div>
+                    <div id="popularCarousel" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item " th:each="arr, arrIndex : ${arrSortBoardList}" th:classappend="${arrIndex.index} == 0 ? 'active' ">
+                                <div class="row gy-4 posts-list">
 
-                                <h2 class="title">
-                                    <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
-                                </h2>
+                                    <div class="col-lg-3" th:each="board : ${arr}">
+                                        <article class="d-flex flex-column card-body" th:onclick="|location.href='/boards/${board.boardNo}'|">
 
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
-                                    </ul>
-                                </div>
+                                            <div>
+                                                <span th:if="${#dates.createNow() &lt;= board.endDate}" class="badge rounded-pill bg-warning text-dark mt-2">모집중<i class="fas fa-bullhorn"></i></span>
+                                                <span th:if="${board.startDate != null} and ${#dates.createNow() &gt; board.endDate}" class="badge rounded-pill bg-gray text-white mt-2">모집완료</span>
+                                                <span th:if="${board.startDate == null}" class="badge rounded-pill bg-gray text-white mt-2">모집 전</span>
+                                            </div>
 
-                                <div class="content">
-                                    <p>
-                                        Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                                    </p>
-                                </div>
+                                            <h2 class="title" th:text="${board.boardTitle}">
+                                            </h2>
 
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="blog-details.html">Read More</a>
-                                </div>
+                                            <div class="content">
+                                                <p th:text="${board.boardPreContent}"></p>
+                                            </div>
+                                            <hr>
+                                            <div class="period">
+                                                <span class="me-2" th:unless="${board.endDate} == null">모집기간</span><span class="fw-bold" th:unless="${board.endDate} == null" th:text="| ${board.endDate} 까지 |"></span>
+                                                <span class="me-2" th:if="${board.endDate} == null">모집기간 <span class="fw-bold">미정</span></span>
+                                            </div>
+                                        </article>
+                                    </div><!-- End post list item -->
 
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-4">
-                            <article class="d-flex flex-column">
-
-                                <div class="post-img">
-                                    <img src="assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
-                                </div>
-
-                                <h2 class="title">
-                                    <a href="blog-details.html">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</a>
-                                </h2>
-
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="content">
-                                    <p>
-                                        Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis et. Eum temporibus fugiat voluptate enim tenetur sunt omnis.
-                                    </p>
-                                </div>
-
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="blog-details.html">Read More</a>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-4">
-                            <article class="d-flex flex-column">
-
-                                <div class="post-img">
-                                    <img src="assets/img/blog/blog-4.jpg" alt="" class="img-fluid">
-                                </div>
-
-                                <h2 class="title">
-                                    <a href="blog-details.html">Non rem rerum nam cum quo minus. Dolor distinctio deleniti explicabo eius exercitationem.</a>
-                                </h2>
-
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="content">
-                                    <p>
-                                        Aspernatur rerum perferendis et sint. Voluptates cupiditate voluptas atque quae. Rem veritatis rerum enim et autem. Saepe atque cum eligendi eaque iste omnis a qui.
-                                    </p>
-                                </div>
-
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="blog-details.html">Read More</a>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-4">
-                            <article class="d-flex flex-column">
-
-                                <div class="post-img">
-                                    <img src="assets/img/blog/blog-5.jpg" alt="" class="img-fluid">
-                                </div>
-
-                                <h2 class="title">
-                                    <a href="blog-details.html">Accusamus quaerat aliquam qui debitis facilis consequatur</a>
-                                </h2>
-
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="content">
-                                    <p>
-                                        In itaque assumenda aliquam voluptatem qui temporibus iusto nisi quia. Autem vitae quas aperiam nesciunt mollitia tempora odio omnis. Ipsa odit sit ut amet necessitatibus. Quo ullam ut corrupti autem consequuntur totam dolorem.
-                                    </p>
-                                </div>
-
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="blog-details.html">Read More</a>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-4">
-                            <article class="d-flex flex-column">
-
-                                <div class="post-img">
-                                    <img src="assets/img/blog/blog-6.jpg" alt="" class="img-fluid">
-                                </div>
-
-                                <h2 class="title">
-                                    <a href="blog-details.html">Distinctio provident quibusdam numquam aperiam aut</a>
-                                </h2>
-
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="content">
-                                    <p>
-                                        Expedita et temporibus eligendi enim molestiae est architecto praesentium dolores. Illo laboriosam officiis quis. Labore officia quia sit voluptatem nisi est dignissimos totam. Et voluptate et consectetur voluptatem id dolor magni impedit. Omnis dolores sit.
-                                    </p>
-                                </div>
-
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="blog-details.html">Read More</a>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                    </div><!-- End blog posts list -->
-
+                                </div><!-- End blog posts list -->
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev board-carousel-control-prev" type="button" data-bs-target="#popularCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next board-carousel-control-next" type="button" data-bs-target="#popularCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!--
                     <div class="blog-pagination">
                         <ul class="justify-content-center">
                             <li><a href="#">1</a></li>
                             <li class="active"><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                         </ul>
-                    </div><!-- End blog pagination -->
-
+                    </div>
+                    End blog pagination-->
                 </div>
 
             </div>
@@ -277,14 +170,14 @@
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<div th:replace="~{/include/footer}"></div>
+<th:block th:replace="include/footer :: footer-fragment"></th:block>
 <!-- End Footer -->
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <div id="preloader"></div>
 
-<link th:replace="~{/module/commonJs}">
+<th:block th:replace="module/commonJs :: common-js"></th:block>
 
 </body>
 
