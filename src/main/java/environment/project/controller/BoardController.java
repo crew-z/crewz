@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static environment.project.util.BoardUtil.parseStringtoLong;
 import static environment.project.util.DateUtil.dateDifference;
@@ -33,9 +35,12 @@ public class BoardController {
         Long boardNoNum = parseStringtoLong(boardNo);
         Long userNo = (Long) httpSession.getAttribute("loginUser");
 
+        boolean isLoggedIn = userNo != null;
+
         // board 정보 불러오는 것
         BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
         BoardPeriodGetDTO boardPeriodGetDTO = boardService.getBoardPeriodByBoardNo(boardNoNum);
+
 
         boardService.clickCount(boardNoNum);
 
@@ -46,7 +51,16 @@ public class BoardController {
 
         // boardNo를 가지고 있는 reply
         List<BoardReplyGetDTO> boardReplyGetDTOS = boardReplyService.getAllReplyByBoardNo(boardNoNum);
+        List<BoardReplyWithMetadata> boardReplyWithMetadatas = boardReplyGetDTOS.stream()
+                .map(reply -> new BoardReplyWithMetadata(reply, Objects.equals(reply.getUserNo(), userNo)))
+                .collect(Collectors.toList());
+
         int replyCount = boardReplyGetDTOS.size();
+
+        // 작성자 여부 체크
+        boardReplyGetDTOS.stream()
+                .filter(item -> Objects.equals(item.getUserNo(), userNo))
+                .forEach(item -> System.out.println(item.getUserNo()));
 
         boolean hasApplied = clubInfoService.checkUserInClub(boardGetDTO.getClubNo(), userNo);
 
@@ -57,9 +71,10 @@ public class BoardController {
 
         model.addAttribute("hasApplied", hasApplied);
         model.addAttribute("board", boardGetDTO);
-        model.addAttribute("replys", boardReplyGetDTOS);
         model.addAttribute("replyCount", replyCount);
         model.addAttribute("boardPeriod", boardPeriodGetDTO);
+        model.addAttribute("replysWithMetadata", boardReplyWithMetadatas);
+        model.addAttribute("isLoggedIn", isLoggedIn);
         return "board";
     }
 

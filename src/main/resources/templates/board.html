@@ -46,16 +46,16 @@
             <hr>
             <div id="board-review">
                 <h3><span>[[${replyCount}]]개</span>의 크루원 리뷰가 있습니다</h3>
-                <div class="board-reviews" th:each="reply, status : ${replys}">
-                    <h4 th:text="${reply.getUserId()}"><span>동아리장</span></h4>
-                    <p th:text="${reply.getReplyContent()}"></p>
-                    <div>
-                        <a class="update-review" th:data-reply-no="${reply.replyNo}" th:data-board-no="${board.boardNo}">수정</a>
-                        <a class="delete-review" th:data-reply-no="${reply.replyNo}" th:data-board-no="${board.boardNo}">삭제</a>
+                <div class="board-reviews" th:each="item, status : ${replysWithMetadata}">
+                    <h4 th:text="${item.reply.userId}"></h4>
+                    <p th:text="${item.reply.replyContent}"></p>
+                    <div th:if="${item.isAuthor}">
+                        <a class="update-review" th:data-reply-no="${item.reply.replyNo}" th:data-board-no="${board.boardNo}">수정</a>
+                        <a class="delete-review" th:data-reply-no="${item.reply.replyNo}" th:data-board-no="${board.boardNo}">삭제</a>
                     </div>
                     <hr th:unless="${status.last}">
                 </div>
-                <form method="POST" th:action="@{'/boards/' + ${board.boardNo} + '/replys'}">
+                <form id="create-review-form" method="POST" th:action="@{'/boards/' + ${board.boardNo} + '/replys'}">
                     <div id="create-review">
                         <textarea name="replyContent" placeholder="리뷰 작성하기 (크루원만 작성할 수 있습니다)" required></textarea>
                         <button type="submit">리뷰 작성</button>
@@ -183,6 +183,20 @@
                     alert('가입 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
                 }
             });
+        });
+    });
+</script>
+
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = /*[[${isLoggedIn}]]*/ 'default';
+        const createReviewForm = document.getElementById('create-review-form');
+
+        createReviewForm.addEventListener('submit', function(event) {
+            if (!isLoggedIn) {
+                event.preventDefault();
+                window.location.href = '/login';
+            }
         });
     });
 </script>
