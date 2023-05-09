@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import static java.lang.Math.min;
 import java.util.ArrayList;
 import java.util.List;
-import static java.lang.Math.min;
 
 @Slf4j
 @Controller
@@ -47,7 +46,7 @@ public class MainController {
             UserDTO userDTO = userService.getUserByUserNo(userNo);
             model.addAttribute("user", userDTO);
         }
-        log.info("arrBoardList: {}",arrBoardList);
+
         model.addAttribute("list", list);
         model.addAttribute("arrBoardList", arrBoardList);
         model.addAttribute("arrSortBoardList", arrSortBoardList);

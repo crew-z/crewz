@@ -5,7 +5,6 @@ import environment.project.dto.ClubNameDTO;
 import environment.project.dto.UserDTO;
 import environment.project.mapper.MypageMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

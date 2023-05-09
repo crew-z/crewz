@@ -4,7 +4,6 @@ import environment.project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -26,9 +25,8 @@ public class LoginController {
         return "login";
     }
     @PostMapping(value = "/login" )
-    public String login(String loginId, String loginPassword, HttpSession session, Model model) {
+    public String login(String loginId, String loginPassword, HttpSession session) {
         if (userService.getUserByLoginId(loginId) == null){
-//            model.addAttribute("msg","아이디 또는 비밀번호를 잘못 입력했습니다.");
             return "login";
         }
         Long userNo = userService.login(loginId, loginPassword);
