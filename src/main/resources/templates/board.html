@@ -1,22 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>동아리 상세 페이지</title>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
 
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/default.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/board.css" />
-
-    <link th:replace="~{/module/commonCss}">
-</head>
 <body>
+<link href="/assets/css/default.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/board.css" />
 
-<div th:replace="~{/include/header}"></div>
+<th:block th:replace="include/header :: header-fragment"></th:block>
 
 <div class="wrap">
 
@@ -84,11 +73,11 @@
         </div>
     </div>
 
-    <div th:replace="~{/include/footer}"></div>
+    <th:block th:replace="include/footer :: footer-fragment"></th:block>
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <div id="preloader"></div>
-    <link th:replace="~{/module/commonJs}">
+    <th:block th:replace="module/commonJs :: common-js"></th:block>
 
 </div>
 <script>

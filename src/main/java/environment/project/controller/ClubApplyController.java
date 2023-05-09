@@ -33,14 +33,14 @@ public class ClubApplyController {
         Long clubApplyNo = clubApplyDTO.getClubApplyNo();
         ClubApplyDTO clubApply = clubapplyService.getApplicationByApplyNo(clubApplyNo);
         model.addAttribute("clubApply",clubApply);
-        return "newclubview";
+        return "newclubView";
     }
 
     @PostMapping("/newclubresult")
     public String applyResult(ClubApplyDTO clubApplyDTO, Model model){
         ClubApplyDTO clubApply = clubapplyService.getApplicationByApplyNo(clubApplyDTO.getClubApplyNo());
         model.addAttribute("clubApply",clubApply);
-        return "newclubresult";
+        return "newclubResult";
     }
 
 

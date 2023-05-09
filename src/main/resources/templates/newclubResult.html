@@ -1,22 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>crew.z Main</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <link th:replace="~{/module/commonCss}">
-
-</head>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
 
 <body>
-<link href="assets/css/default.css" rel="stylesheet">
+<link href="/assets/css/default.css" rel="stylesheet">
 <!-- ======= Header ======= -->
-<div th:replace="~{/include/header}"></div>
+<th:block th:replace="include/header :: header-fragment"></th:block>
 <!-- End Header -->
 
 <!-- ======= Body ======= -->
@@ -46,14 +34,14 @@
   </div>
 </main><!-- End #main -->
 <!-- ======= Footer ======= -->
-<div th:replace="~{/include/footer}"></div>
+<th:block th:replace="include/footer :: footer-fragment"></th:block>
 <!-- End Footer -->
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <div id="preloader"></div>
 
-<link th:replace="~{/module/commonJs}">
+<th:block th:replace="module/commonJs :: common-js"></th:block>
 
 </body>
 
