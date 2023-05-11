@@ -28,6 +28,8 @@ public class AdminController {
     public String admin(@RequestParam(defaultValue = "all",required = false) String viewType,Model model){
         List<ClubApplyDTO> clubApplyList = null;
 
+        log.debug("viewType: {}",viewType);
+
         switch (viewType) {
             case "approve":
                 clubApplyList = clubApplyService.selectClubApplyListToApproveYn("Y");
@@ -57,6 +59,8 @@ public class AdminController {
         model.addAttribute("list",clubApplyList);
         int result;
 
+        log.debug("method: {}",method);
+
         if(method.equals("approve")){
             dto.setClubApplyNo(clubApplyNo);
             dto.setClubApproveYn("Y");
@@ -68,6 +72,8 @@ public class AdminController {
             dto.setClubRefuseReason(refuseReason);
             result = clubApplyService.updateApproveYn(dto);
         }
+
+        log.debug("result: {}",result);
 
         if(result != 0){
             clubDTO.setClubApplyNo(clubApplyNo);
