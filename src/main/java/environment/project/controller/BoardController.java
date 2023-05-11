@@ -110,6 +110,8 @@ public class BoardController {
         int boardNo = boardService.createBoard(boardCreateDTO);
         boardService.createBoardPeriod(boardCreateDTO);
 
+        log.debug("boardNo: {}",boardNo);
+
         // 예외처리: DB에 새로운 값 생성 실패했을 경우
         if (boardNo != 1) {
             throw new IllegalStateException("Failed to create board");

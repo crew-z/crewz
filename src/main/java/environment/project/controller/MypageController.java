@@ -80,6 +80,8 @@ public class MypageController {
     @RequestMapping(value = "/applyMem", method = RequestMethod.POST)
     public String updateClubMem(Long userNo, Long clubNo, String method, RedirectAttributes redirectAttributes){
 
+        log.debug("method: {}",method);
+
         if(method.equals("ok")){
             mypageService.updateClubMemGrade(userNo,clubNo);
         } else if (method.equals("nok")) {

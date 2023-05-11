@@ -20,6 +20,9 @@ public class LoginController {
     @GetMapping("/login")
     public String login(HttpSession session){
         Long id = (Long) session.getAttribute("loginUser");
+
+        log.debug("session: {}",id);
+
         if (id != null)
             return "redirect:/";
         return "login";
@@ -35,6 +38,9 @@ public class LoginController {
             return "login";
         }
         session.setAttribute("loginUser", userNo);
+
+        log.debug("set Session: {}",userNo);
+
         return "redirect:/";
     }
     @GetMapping(value = "/logout")
