@@ -32,6 +32,9 @@ public class BoardReplyController {
 
         // 예외처리: 데이터 값이 잘 들어가지 않았을 때
         int insertReply = boardReplyService.createReplyByBoardNo(boardReplyCreateDTO);
+
+        log.debug("insertReply: {}",insertReply);
+
         if (insertReply != 1) {
             throw new IllegalStateException("Failed to create reply");
         }
