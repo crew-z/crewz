@@ -17,9 +17,9 @@
             </div>
             <div id="board-categories">
                 <ul>
-                    <li><a>카테고리1</a></li>
-                    <li><a>카테고리2</a></li>
-                    <li><a>카테고리3</a></li>
+                    <li th:each="boardCategoryInfo : ${boardCategoryInfo}">
+                        <a>[[ ${boardCategoryInfo.categoryName} ]]</a>
+                    </li>
                 </ul>
             </div>
             <div id="board-content">

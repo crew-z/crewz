@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="module/common-css :: head-fragment"></th:block>
 
 <body>
@@ -14,6 +15,14 @@
       </h1>
     </div>
     <form th:method="POST" th:action="@{/boards}" th:object="${boardCreateDTO}">
+      <!-- 카테고리   -->
+      <div class="btn-group mb-5" role="group" aria-label="Basic checkbox toggle button group">
+        <th:block th:each="categoryInfo, index : ${categoryList}">
+          <input type="checkbox" class="btn-check" name="categoryInfo" th:id="|category_${categoryInfo.categoryNo}|" th:value="${categoryInfo.categoryNo}" >
+          <label class="btn btn-outline-primary rounded-pill m-2" th:for="|category_${categoryInfo.categoryNo}|" th:text="${categoryInfo.categoryName}"></label>
+        </th:block>
+      </div>
+      <!--  카테고리 끝   -->
       <div class="editing-contents">
         <input type="hidden" name="clubNo" th:value="${clubNo}" />
         <div class="editing-content-s">
