@@ -1,5 +1,5 @@
 # crew.z
-> 크루즈 : 사내 동아리 웹서비스.
+![readme01](https://github.com/crew-z/crewz/assets/53293867/ceefa2a2-5fd8-4fe9-b208-03838b99705d)
 
 ## Team.
 > dktechin fullstack 채용확정형 1기 1팀<br>
