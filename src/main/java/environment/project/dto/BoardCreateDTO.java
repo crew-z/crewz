@@ -3,6 +3,7 @@ package environment.project.dto;
 import lombok.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
 public class BoardCreateDTO {
@@ -19,4 +20,7 @@ public class BoardCreateDTO {
     // board_period TB
     private Date startDate;
     private Date endDate;
+
+    // category_info TB
+    private List<Long> categoryInfo;
 }

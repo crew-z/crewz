@@ -11,6 +11,14 @@
             <h1>동아리 게시글 정보 수정하기</h1>
         </div>
         <form method="POST" th:action="@{'/boards/' + ${board.boardNo}}">
+            <!-- 카테고리   -->
+            <div class="btn-group mb-5" role="group" aria-label="Basic checkbox toggle button group">
+                <th:block th:each="categoryInfo, index : ${categoryList}">
+                    <input type="checkbox" class="btn-check" name="categoryInfo" th:id="|category_${categoryInfo.categoryNo}|" th:value="${categoryInfo.categoryNo}" th:checked="${boardCategoryList.![categoryNo].contains(categoryInfo.categoryNo)}">
+                    <label class="btn btn-outline-primary rounded-pill m-2" th:for="|category_${categoryInfo.categoryNo}|" th:text="${categoryInfo.categoryName}"></label>
+                </th:block>
+            </div>
+            <!--  카테고리 끝   -->
             <div class="editing-contents">
                 <div class="editing-content-s">
                     <p>동아리 이름</p>

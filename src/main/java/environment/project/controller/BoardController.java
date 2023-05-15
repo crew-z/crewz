@@ -4,6 +4,7 @@ import environment.project.dto.*;
 import environment.project.exception.ResourceNotFoundException;
 import environment.project.service.BoardReplyService;
 import environment.project.service.BoardService;
+import environment.project.service.CategoryInfoService;
 import environment.project.service.ClubInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +28,7 @@ public class BoardController {
     private final BoardReplyService boardReplyService;
     private final HttpSession httpSession;
     private final ClubInfoService clubInfoService;
-
+    private final CategoryInfoService categoryInfoService;
     // 동아리 상세 페이지 READ
     // GET: /boards/{boardNo}
     @GetMapping("/{boardNo}")
@@ -40,7 +41,7 @@ public class BoardController {
         // board 정보 불러오는 것
         BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
         BoardPeriodGetDTO boardPeriodGetDTO = boardService.getBoardPeriodByBoardNo(boardNoNum);
-
+        List<BoardCategoryDTO> boardCategoryDTOS = categoryInfoService.selectBoardCategoryInfo(boardNoNum);
 
         boardService.clickCount(boardNoNum);
 
@@ -68,6 +69,7 @@ public class BoardController {
         model.addAttribute("board", boardGetDTO);
         model.addAttribute("replyCount", replyCount);
         model.addAttribute("boardPeriod", boardPeriodGetDTO);
+        model.addAttribute("boardCategoryInfo", boardCategoryDTOS);
         model.addAttribute("replysWithMetadata", boardReplyWithMetadatas);
         model.addAttribute("isLoggedIn", isLoggedIn);
         return "board";
@@ -79,9 +81,12 @@ public class BoardController {
     public String getBoardCreationPage(@RequestParam Long clubNo, Model model) {
         // boardTitle 가져오기
         String boardTitle = boardService.findBoardTitleByClubNo(clubNo);
-
+        // categoryList 가져오기
+        List<CategoryInfoDTO> categoryList = categoryInfoService.selectCategoryInfo();
+        log.info("categoryList: {}",categoryList);
         model.addAttribute("clubNo", clubNo);
         model.addAttribute("boardTitle", boardTitle);
+        model.addAttribute("categoryList", categoryList);
         return "boardCreate";
     }
 
@@ -90,6 +95,8 @@ public class BoardController {
     @PostMapping("/edit")
     public String getBoardEditPageByBoardNo(@RequestParam Long boardNo, Model model) {
         BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNo);
+        List<CategoryInfoDTO> categoryList = categoryInfoService.selectCategoryInfo();
+        List<BoardCategoryDTO> boardCategoryDTOS = categoryInfoService.selectBoardCategoryInfo(boardNo);
 
         // 예외처리: boardNo가 없는 페이지 불러올 때
         if (boardGetDTO == null) {
@@ -97,6 +104,8 @@ public class BoardController {
         }
 
         model.addAttribute("board", boardGetDTO);
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("boardCategoryList", boardCategoryDTOS);
         return "boardEdit";
     }
 
@@ -108,16 +117,24 @@ public class BoardController {
         boardCreateDTO.setUserNo(userNo);
 
         int boardNo = boardService.createBoard(boardCreateDTO);
-        boardService.createBoardPeriod(boardCreateDTO);
-
         log.debug("boardNo: {}",boardNo);
 
         // 예외처리: DB에 새로운 값 생성 실패했을 경우
         if (boardNo != 1) {
             throw new IllegalStateException("Failed to create board");
+        }else{
+            // 게시물이 정상적으로 등록 되었을 때 기간 및 카테고리 등록
+            boardService.createBoardPeriod(boardCreateDTO);
+
+            if(boardCreateDTO.getCategoryInfo().size() != 0){
+                for(Long categoryNo : boardCreateDTO.getCategoryInfo()){
+                    categoryInfoService.createBoardCategory(boardCreateDTO.getBoardNo(),categoryNo);
+                }
+            }
         }
 
         return "redirect:/boards/" + boardCreateDTO.getBoardNo();
+
     }
 
     // 동아리 상세 페이지 UPDATE
@@ -125,7 +142,15 @@ public class BoardController {
     @PostMapping("/{boardNo}")
     public String updateBoardByBoarNo(@PathVariable String boardNo, BoardUpdateDTO boardUpdateDTO) {
         Long boardNoNum = parseStringtoLong(boardNo);
+        List<BoardCategoryDTO> boardCategoryDTOS = categoryInfoService.selectBoardCategoryInfo(boardNoNum);
         boardUpdateDTO.setBoardNo(boardNoNum);
+
+        // 카테고리 수정
+        if(boardUpdateDTO.getCategoryInfo() != null){
+            categoryInfoService.updateBoardCategoryInfo(boardNoNum,boardCategoryDTOS,boardUpdateDTO.getCategoryInfo());
+        }else{
+            categoryInfoService.allDeleteBoardCategory(boardNoNum);
+        }
 
         // 예외처리: DB에 기존 데이터 업데이트가 제대로 되지 않았을 때
         if(!boardService.updateBoardByBoardNo(boardUpdateDTO)) {
@@ -133,5 +158,6 @@ public class BoardController {
         }
 
         return "redirect:/boards/" + boardUpdateDTO.getBoardNo();
+
     }
 }
