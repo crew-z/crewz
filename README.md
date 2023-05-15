@@ -5,10 +5,10 @@
 > dktechin fullstack 채용확정형 1기 1팀<br>
 > 개발기간 : 2023.04 ~ 2023.05
 
-| 홍종민(Jay) | 김예원(Aster) | 이권석(Quan) | 이승인(Mona) |
-|----------|------------|-----------|-----------|
-| test1    | test2      | test3     | test4     |
-||||
+| 홍종민(Jay)            | 김예원(Aster)                  | 이권석(Quan)                            | 이승인(Mona)             |
+|---------------------|-----------------------------|--------------------------------------|-----------------------|
+| test1               | test2                       | test3                                | test4                 |
+| - 메인페이지<br>- 관리자페이지 | - 로그인, 회원가입<br>- 동아리 신설 페이지 | - 동아리 모집공고 페이지<br>- 동아리 상세보기 & 리뷰페이지 | - 마이페이지<br>- 동아리장 페이지 |
 
 ## Skill.
 <b>Language :</b> Java 11 <br>
@@ -24,14 +24,19 @@
 <br>
 
 ## System Architechture.
+![readme03](https://github.com/crew-z/crewz/assets/53293867/a9967f1b-c9b2-4dba-94de-63b2334091de)
+
 
 <br>
 
 ## Service Flow.
+![readme03]()
 
 <br>
 
 ## DB ERD.
+![readme04](https://github.com/crew-z/crewz/assets/53293867/8d5a7c65-3d8b-4271-bbc8-6eaf72fb1403)
+
 
 <br>
 
