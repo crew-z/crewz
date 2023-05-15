@@ -7,7 +7,7 @@
 
 | 홍종민(Jay)            | 김예원(Aster)                  | 이권석(Quan)                            | 이승인(Mona)             |
 |---------------------|-----------------------------|--------------------------------------|-----------------------|
-| test1               | test2                       | test3                                | test4                 |
+| ![crew1](https://github.com/crew-z/crewz/assets/53293867/e653e3c0-e403-4e7a-9f94-5ac4f06db95a)          | ![crew2](https://github.com/crew-z/crewz/assets/53293867/11f5fbe3-77db-4095-b935-1ab8fab097b6)                  | ![crew3](https://github.com/crew-z/crewz/assets/53293867/66691b48-f039-4995-bafd-a4917b5a6ff0)                           | ![crew4](https://github.com/crew-z/crewz/assets/53293867/60bb25c6-01e5-40b4-87b6-f060ece54f88)            |
 | - 메인페이지<br>- 관리자페이지 | - 로그인, 회원가입<br>- 동아리 신설 페이지 | - 동아리 모집공고 페이지<br>- 동아리 상세보기 & 리뷰페이지 | - 마이페이지<br>- 동아리장 페이지 |
 
 ## Skill.
@@ -18,11 +18,6 @@
 
 <br>
 
-## Overview.
-
-
-<br>
-
 ## System Architechture.
 ![readme03](https://github.com/crew-z/crewz/assets/53293867/a9967f1b-c9b2-4dba-94de-63b2334091de)
 
@@ -30,7 +25,7 @@
 <br>
 
 ## Service Flow.
-![readme03]()
+![readme03](https://github.com/crew-z/crewz/assets/53293867/81db40cf-a92d-4805-83f3-aa8b9f383193)
 
 <br>
 
