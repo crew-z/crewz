@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -117,7 +119,18 @@ public class MypageController {
         return "redirect:/clubleaderpage";
     }
 
+		if (method.equals("ok")) {
+			mypageService.updateClubMemGrade(userNo, clubNo);
+		} else if (method.equals("nok")) {
+			mypageService.delteApplicatedUserInfo(userNo, clubNo);
+		}
 
+		List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
+		ClubNameDTO clubName = mypageService.viewClubNameByClubNo(clubNo);
+		redirectAttributes.addFlashAttribute("clubInfo", applicateClubMem);
+		redirectAttributes.addFlashAttribute("clubName", clubName);
+		return "redirect:/clubleaderpage";
+	}
 
 
 
