@@ -32,7 +32,6 @@ public interface MypageMapper {
     List<HashMap<String, Object>> selectUserClub(@Param("userNo") Long userNo, @Param("clubUserGrade") int clubUserGrade);
 
     // 동아리 신청현황 조회
-    // club_no조회를 위하여 쿼리 수정
     @Select("SELECT c.club_no,ca.club_apply_no,club_name,club_purpose,club_activities, club_approve_yn, board_no" +
             " FROM club_apply ca" +
             " LEFT JOIN club c ON ca.club_apply_no = c.club_apply_no" +
@@ -41,7 +40,7 @@ public interface MypageMapper {
     List<ClubApplyDTO> selectClubApproveResult(Long userNo);
 
     // 동아리장인 경우에 동아리별로 동아리페이지 보기
-    @Select("SELECT ca.club_name, ci.club_user_grade, ci.user_no, c.club_no " +
+    @Select("SELECT ca.club_name, ci.club_user_grade, ci.user_no, c.club_no, ca.club_approve_yn " +
             "FROM club_info ci " +
             "LEFT JOIN club c ON ci.club_no = c.club_no " +
             "LEFT JOIN club_apply ca ON c.club_apply_no = ca.club_apply_no " +

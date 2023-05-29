@@ -11,9 +11,13 @@
 <!-- ======= Body ======= -->
 <!-- 구성하고자 하는 화면 설계 -->
 <main id="main" class="col">
-    <form id="form" action="/clubleaderpage" method="post">
+    <form id="form">
         <input type="hidden" name="clubNo" id="clubNo" value="">
     </form>
+    <form id="form2" action="/clubleaderpage" method="post">
+    <input type="hidden" name="clubNo" id="clubNo2" value="">
+    <input type="hidden" name="clubUserGrade" id="clubUserGrade" value="">
+</form>
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" style="background-color: whitesmoke;">
         <div class="container">
@@ -23,7 +27,7 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">마이페이지</button>
                         <th:block th:each="clubLeader:${clubLeader}">
-                        <button th:if="${clubLeader.club_user_grade==2}" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false" th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}')|">[[${clubLeader.club_name}]] 동아리 신청 현황</button>
+                        <button th:if="${clubLeader.club_user_grade==2 && clubLeader.club_approve_yn == 'Y'}" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false" th:onclick="|javascript:goLeaderPage('${clubLeader.club_no}','${clubLeader.club_user_grade}')|">[[${clubLeader.club_name}]] 동아리 관리페이지</button>
                         </th:block>
                     </div>
 
@@ -249,9 +253,10 @@
         updateUserInfoForm.style.display = 'block';
     });
 
-    function goLeaderPage(clubNo){
-        document.getElementById("clubNo").value = clubNo;
-        document.getElementById("form").submit();
+    function goLeaderPage(clubNo,clubUserGrade){
+        document.getElementById("clubNo2").value = clubNo;
+        document.getElementById("clubUserGrade").value = clubUserGrade;
+        document.getElementById("form2").submit();
     }
 
     function goCreateBoard(clubNo){

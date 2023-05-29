@@ -1,21 +1,30 @@
 package environment.project.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import environment.project.dto.ClubApplyDTO;
 import environment.project.dto.ClubNameDTO;
 import environment.project.dto.UserDTO;
 import environment.project.service.ClubApplyService;
 import environment.project.service.MypageService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
 @Slf4j
 @Controller
 public class MypageController {
@@ -25,11 +34,11 @@ public class MypageController {
     @Autowired
     private ClubApplyService clubApplyService;
 
-    @GetMapping(path = {  "/mypagemain" })
+    @GetMapping(path = {"/mypagemain"})
     public String loadMypageMain(Model model, HttpSession session) {
-        Long userNo = (Long) session.getAttribute("loginUser");
+        Long userNo = (Long)session.getAttribute("loginUser");
         UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
-        List<HashMap<String, Object>> userJoinClub = mypageService.selectUserJoinClub(userNo,1);
+        List<HashMap<String, Object>> userJoinClub = mypageService.selectUserJoinClub(userNo, 1);
         List<HashMap<String, Object>> userWaitingClub = mypageService.selectUserJoinClub(userNo, 0);
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         List<ClubApplyDTO> clubResult = mypageService.loadClubApproveResult(userNo);
@@ -42,8 +51,10 @@ public class MypageController {
     }
 
     @PostMapping(path = {"/mypagemain"})
-    public String modifyUserInfo(@RequestParam(required = false) String userNickname,@RequestParam(required = false) String userTel,@RequestParam(required = false) String userEmail, HttpSession session, Model model){
-        Long userNo = (Long) session.getAttribute("loginUser");
+    public String modifyUserInfo(@RequestParam(required = false) String userNickname,
+        @RequestParam(required = false) String userTel, @RequestParam(required = false) String userEmail,
+        HttpSession session, Model model) {
+        Long userNo = (Long)session.getAttribute("loginUser");
         UserDTO userInfo = mypageService.selectUserInfoByUserNo(userNo);
         userInfo.setUserNickname(userNickname);
         userInfo.setUserEmail(userEmail);
@@ -52,6 +63,7 @@ public class MypageController {
         model.addAttribute("user", userInfo);
         return "redirect:/mypagemain";
     }
+
     @PostMapping(path = {"result"})
     public String newClubResult(@RequestParam("clubApplyNo") Long clubApplyNo, Model model) {
         ClubApplyDTO clubApply = clubApplyService.getApplicationByApplyNo(clubApplyNo);
@@ -60,32 +72,42 @@ public class MypageController {
     }
 
     @GetMapping(path = {"/clubleaderpage"})
-    public String getTest(){
+    public String getTest() {
+
         return "clubLeaderPage";
     }
 
-    @PostMapping(path = {  "/clubleaderpage" })
-    public String loadClubleaderPage(@RequestParam(required = false) Long clubNo, Model model, HttpSession session) {
-        Long userNo = (Long) session.getAttribute("loginUser");
-        List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
+    @PostMapping(path = {"/clubleaderpage"})
+    public String loadClubleaderPage(@RequestParam(required = false) Long clubNo, @RequestParam(required = false) int clubUserGrade, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        Long userNo = (Long)session.getAttribute("loginUser");
+
+        List<HashMap<String, Object>> applicateClubMem = null;
+        if (clubUserGrade == 0) {
+            applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
+        } else if (clubUserGrade == 1) {
+            applicateClubMem = mypageService.selectClubApplicatedMemList(1, clubNo);
+        }
+
         List<HashMap<String, Object>> clubLeader = mypageService.checkMemGrade(userNo);
         ClubNameDTO clubName = mypageService.viewClubNameByClubNo(clubNo);
         model.addAttribute("postClubNo", clubNo);
         model.addAttribute("clubLeader", clubLeader);
         model.addAttribute("clubInfo", applicateClubMem);
         model.addAttribute("clubName", clubName);
+        redirectAttributes.addFlashAttribute("clubInfo", applicateClubMem);
+        redirectAttributes.addFlashAttribute("clubName", clubName);
         return "clubLeaderPage";
     }
 
     @RequestMapping(value = "/applyMem", method = RequestMethod.POST)
-    public String updateClubMem(Long userNo, Long clubNo, String method, RedirectAttributes redirectAttributes){
+    public String updateClubMem(Long userNo, Long clubNo, String method, RedirectAttributes redirectAttributes) {
 
-        log.debug("method: {}",method);
+        log.debug("method: {}", method);
 
-        if(method.equals("ok")){
-            mypageService.updateClubMemGrade(userNo,clubNo);
+        if (method.equals("ok")) {
+            mypageService.updateClubMemGrade(userNo, clubNo);
         } else if (method.equals("nok")) {
-            mypageService.delteApplicatedUserInfo(userNo,clubNo);
+            mypageService.delteApplicatedUserInfo(userNo, clubNo);
         }
 
         List<HashMap<String, Object>> applicateClubMem = mypageService.selectClubApplicatedMemList(0, clubNo);
@@ -97,4 +119,10 @@ public class MypageController {
 
 
 
+
+
+
+
 }
+
+
