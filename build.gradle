@@ -27,7 +27,6 @@ dependencies {
     implementation 'javax.servlet:jstl'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
-
 }
 
 tasks.named('test') {
