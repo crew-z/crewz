@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -97,5 +98,5 @@ public interface BoardMapper {
 		"AND ci.user_no = #{userNo} " +
 		"AND b.board_no = #{boardNoNum} " +
 		") as exist")
-	int isUserInClubExists(Long userNo, Long boardNoNum);
+	int isUserInClubExists(@Param("userNo") Long userNo, @Param("boardNoNum") Long boardNoNum);
 }
