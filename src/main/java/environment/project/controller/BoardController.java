@@ -32,8 +32,6 @@ import environment.project.service.BoardService;
 import environment.project.service.CategoryInfoService;
 import environment.project.service.ClubInfoService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,12 +49,6 @@ public class BoardController {
 	// 동아리 상세 페이지 READ
 	// GET: /boards/{boardNo}
 	@Operation(summary = "getBoardByBoardNo", description = "보드 1개 불러오기")
-	@ApiResponses({
-		@ApiResponse(responseCode = "200", description = "OK !!"),
-		@ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-		@ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-		@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
-	})
 	@GetMapping("/{boardNo}")
 	public String getBoardByBoardNo(@PathVariable String boardNo, Model model) {
 		Long boardNoNum = parseStringtoLong(boardNo);
@@ -144,11 +136,6 @@ public class BoardController {
 	// 동아리 상세 페이지 CREATE
 	// POST: /boards
 	@Operation(summary = "Create a new board", description = "Create a new board with the given request")
-	@ApiResponses({
-		@ApiResponse(responseCode = "201", description = "Successfully created a new board"),
-		@ApiResponse(responseCode = "400", description = "Invalid request body"),
-		@ApiResponse(responseCode = "500", description = "An error occurred while creating a new board")
-	})
 	@PostMapping
 	public String createBoard(@ModelAttribute BoardCreateDTO boardCreateDTO) {
 		Long userNo = (Long)httpSession.getAttribute("loginUser");
@@ -177,12 +164,6 @@ public class BoardController {
 	// 동아리 상세 페이지 UPDATE
 	// POST: /boards/{boardNo}
 	@Operation(summary = "Update a board", description = "Update a board with the given board number and request")
-	@ApiResponses({
-		@ApiResponse(responseCode = "201", description = "Successfully updated the board"),
-		@ApiResponse(responseCode = "400", description = "Invalid request body"),
-		@ApiResponse(responseCode = "404", description = "Board not found with the given board number"),
-		@ApiResponse(responseCode = "500", description = "An error occurred while updating the board")
-	})
 	@PostMapping("/{boardNo}")
 	public String updateBoardByBoarNo(@PathVariable String boardNo, BoardUpdateDTO boardUpdateDTO) {
 		Long boardNoNum = parseStringtoLong(boardNo);
