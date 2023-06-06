@@ -31,7 +31,6 @@ import environment.project.service.BoardReplyService;
 import environment.project.service.BoardService;
 import environment.project.service.CategoryInfoService;
 import environment.project.service.ClubInfoService;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,7 +47,6 @@ public class BoardController {
 
 	// 동아리 상세 페이지 READ
 	// GET: /boards/{boardNo}
-	@Operation(summary = "getBoardByBoardNo", description = "보드 1개 불러오기")
 	@GetMapping("/{boardNo}")
 	public String getBoardByBoardNo(@PathVariable String boardNo, Model model) {
 		Long boardNoNum = parseStringtoLong(boardNo);
@@ -135,7 +133,6 @@ public class BoardController {
 
 	// 동아리 상세 페이지 CREATE
 	// POST: /boards
-	@Operation(summary = "Create a new board", description = "Create a new board with the given request")
 	@PostMapping
 	public String createBoard(@ModelAttribute BoardCreateDTO boardCreateDTO) {
 		Long userNo = (Long)httpSession.getAttribute("loginUser");
@@ -163,7 +160,6 @@ public class BoardController {
 
 	// 동아리 상세 페이지 UPDATE
 	// POST: /boards/{boardNo}
-	@Operation(summary = "Update a board", description = "Update a board with the given board number and request")
 	@PostMapping("/{boardNo}")
 	public String updateBoardByBoarNo(@PathVariable String boardNo, BoardUpdateDTO boardUpdateDTO) {
 		Long boardNoNum = parseStringtoLong(boardNo);
