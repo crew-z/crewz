@@ -64,9 +64,10 @@
                     <p id="d-day" th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
                 </div>
                 <div>
-                    <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${hasApplied}">
-                        <span th:if="${hasApplied}">가입 신청 완료</span>
-                        <span th:unless="${hasApplied}">동아리에 합류하기</span>
+                    <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${hasApplied || isClubMember}">
+                        <span th:if="${hasApplied && !isClubMember}">가입 신청 완료</span>
+                        <span th:if="${isClubMember}">가입된 동아리</span>
+                        <span th:unless="${hasApplied || isClubMember}">동아리에 합류하기</span>
                     </button>
                 </div>
             </div>
@@ -179,12 +180,16 @@
 <script th:inline="javascript">
     document.addEventListener('DOMContentLoaded', function () {
         const isLoggedIn = /*[[${isLoggedIn}]]*/ 'default';
+        const isClubMember = /*[[${isClubMember}]]*/ 'default';
         const createReviewForm = document.getElementById('create-review-form');
 
         createReviewForm.addEventListener('submit', function(event) {
             if (!isLoggedIn) {
                 event.preventDefault();
                 window.location.href = '/login';
+            } else if (!isClubMember) {
+                event.preventDefault();
+                alert('동아리 회원이 아닙니다');
             }
         });
     });

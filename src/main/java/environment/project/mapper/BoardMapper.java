@@ -88,4 +88,14 @@ public interface BoardMapper {
 
 	@Select("SELECT c.club_name FROM club_apply AS c JOIN club AS cl ON c.club_apply_no = cl.club_apply_no WHERE cl.club_no = #{clubNo}")
 	String findFirstByClubNo(Long clubNo);
+  
+	@Select("SELECT EXISTS ( " +
+		"SELECT 1 " +
+		"FROM club_info AS ci " +
+		"JOIN board AS b ON ci.club_no = b.club_no " +
+		"WHERE ci.club_user_grade <> 0 " +
+		"AND ci.user_no = #{userNo} " +
+		"AND b.board_no = #{boardNoNum} " +
+		") as exist")
+	int isUserInClubExists(Long userNo, Long boardNoNum);
 }

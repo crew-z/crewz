@@ -115,7 +115,6 @@ public class MypageController {
 		redirectAttributes.addFlashAttribute("clubName", clubName);
 		return "redirect:/clubleaderpage";
 	}
-
 }
 
 

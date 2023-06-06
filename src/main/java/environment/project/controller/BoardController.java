@@ -31,6 +31,7 @@ import environment.project.service.BoardReplyService;
 import environment.project.service.BoardService;
 import environment.project.service.CategoryInfoService;
 import environment.project.service.ClubInfoService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,17 +48,23 @@ public class BoardController {
 
 	// 동아리 상세 페이지 READ
 	// GET: /boards/{boardNo}
+	@Operation(summary = "getBoardByBoardNo", description = "보드 1개 불러오기")
 	@GetMapping("/{boardNo}")
 	public String getBoardByBoardNo(@PathVariable String boardNo, Model model) {
 		Long boardNoNum = parseStringtoLong(boardNo);
 		Long userNo = (Long)httpSession.getAttribute("loginUser");
-
 		boolean isLoggedIn = userNo != null;
+		boolean isClubMember = false;
 
 		// board 정보 불러오는 것
 		BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
 		BoardPeriodGetDTO boardPeriodGetDTO = boardService.getBoardPeriodByBoardNo(boardNoNum);
 		List<BoardCategoryDTO> boardCategoryDTOS = categoryInfoService.selectBoardCategoryInfo(boardNoNum);
+
+		// 해당 동아리에 가입되어 있는지?
+		if (isLoggedIn) {
+			isClubMember = boardService.isClubMember(userNo, boardNoNum);
+		}
 
 		boardService.clickCount(boardNoNum);
 
@@ -88,6 +95,7 @@ public class BoardController {
 		model.addAttribute("boardCategoryInfo", boardCategoryDTOS);
 		model.addAttribute("replysWithMetadata", boardReplyWithMetadatas);
 		model.addAttribute("isLoggedIn", isLoggedIn);
+		model.addAttribute("isClubMember", isClubMember);
 		return "board";
 	}
 
@@ -127,13 +135,13 @@ public class BoardController {
 
 	// 동아리 상세 페이지 CREATE
 	// POST: /boards
+	@Operation(summary = "Create a new board", description = "Create a new board with the given request")
 	@PostMapping
 	public String createBoard(@ModelAttribute BoardCreateDTO boardCreateDTO) {
 		Long userNo = (Long)httpSession.getAttribute("loginUser");
 		boardCreateDTO.setUserNo(userNo);
 
 		int boardNo = boardService.createBoard(boardCreateDTO);
-		log.debug("boardNo: {}", boardNo);
 
 		// 예외처리: DB에 새로운 값 생성 실패했을 경우
 		if (boardNo != 1) {
@@ -155,6 +163,7 @@ public class BoardController {
 
 	// 동아리 상세 페이지 UPDATE
 	// POST: /boards/{boardNo}
+	@Operation(summary = "Update a board", description = "Update a board with the given board number and request")
 	@PostMapping("/{boardNo}")
 	public String updateBoardByBoarNo(@PathVariable String boardNo, BoardUpdateDTO boardUpdateDTO) {
 		Long boardNoNum = parseStringtoLong(boardNo);
