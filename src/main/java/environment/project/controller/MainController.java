@@ -64,7 +64,8 @@ public class MainController {
 		model.addAttribute("list", list);
 		model.addAttribute("boardList", boardListToSearch);
 		model.addAttribute("boardCount", boardListToSearch.size());
-
+		model.addAttribute("searchValue", searchValue);
+		
 		return "all";
 	}
 

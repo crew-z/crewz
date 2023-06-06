@@ -46,7 +46,8 @@ public interface BoardMapper {
 		"   bo.updatedate, bp.start_date, bp.end_date\n" +
 		"   FROM board AS bo\n" +
 		"   LEFT JOIN board_period AS bp ON bo.board_no = bp.board_no\n" +
-		"   WHERE CURDATE() < end_date;")
+		"   LEFT JOIN club AS c ON bo.club_no = c.club_no\n" +
+		"   WHERE CURDATE() < end_date AND c.club_close_yn = 'N';")
 	List<BoardDTO> selectRecrutingBoard();
 
 	@Select("SELECT \n" +
@@ -56,6 +57,8 @@ public interface BoardMapper {
 		"   bo.updatedate, bp.start_date, bp.end_date\n" +
 		"   FROM board AS bo\n" +
 		"   LEFT JOIN board_period AS bp ON bo.board_no = bp.board_no\n" +
+		"   LEFT JOIN club AS c ON bo.club_no = c.club_no\n" +
+		"   WHERE c.club_close_yn = 'N'\n" +
 		"   ORDER BY board_views DESC;")
 	List<BoardDTO> selectRecrutingBoardToSort();
 
@@ -76,7 +79,8 @@ public interface BoardMapper {
 		"    bo.updatedate, bp.start_date, bp.end_date\n" +
 		"FROM board AS bo\n" +
 		"LEFT JOIN board_period AS bp ON bo.board_no = bp.board_no\n" +
-		"WHERE bo.board_title LIKE '%${boardTitle}%'")
+		"LEFT JOIN club AS c ON bo.club_no = c.club_no\n" +
+		"WHERE bo.board_title LIKE '%${boardTitle}%' AND c.club_close_yn = 'N';")
 	List<BoardDTO> selectServiceToSearch(String boardTitle);
 
 	@Update("UPDATE board SET board_views = board_views +1  WHERE board_no = #{boardNo} ")
@@ -84,7 +88,7 @@ public interface BoardMapper {
 
 	@Select("SELECT c.club_name FROM club_apply AS c JOIN club AS cl ON c.club_apply_no = cl.club_apply_no WHERE cl.club_no = #{clubNo}")
 	String findFirstByClubNo(Long clubNo);
-
+  
 	@Select("SELECT EXISTS ( " +
 		"SELECT 1 " +
 		"FROM club_info AS ci " +
