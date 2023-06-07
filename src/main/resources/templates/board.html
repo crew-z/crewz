@@ -36,7 +36,7 @@
             <div id="board-review">
                 <h3><span>[[${replyCount}]]개</span>의 크루원 리뷰가 있습니다</h3>
                 <div class="board-reviews" th:each="item, status : ${replysWithMetadata}">
-                    <h4 th:text="${item.reply.userId}"></h4>
+                    <h4><span th:text="${item.reply.userName}"></span> (<span th:text="${item.reply.userId}"></span>)</h4>
                     <p th:text="${item.reply.replyContent}"></p>
                     <div th:if="${item.isAuthor}">
                         <a class="update-review" th:data-reply-no="${item.reply.replyNo}" th:data-board-no="${board.boardNo}">수정</a>
@@ -158,7 +158,8 @@
         const clubJoinBtn = document.getElementById('club-join-btn');
         clubJoinBtn.addEventListener('click', function () {
             const clubNo = clubJoinBtn.getAttribute('data-club-no');
-            console.log(clubNo);
+            console.log(typeof clubNo);
+
             fetch(`/club-info/${clubNo}`, {
                 method: 'POST',
                 headers: {
