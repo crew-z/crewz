@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <th:block th:replace="module/common-css :: head-fragment"></th:block>
+<style>
+    .category-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: flex-start;
+        font-size: 12px;
+    }
+    .btn {
+        font-size:12px;
+    }
+</style>
 
 <body>
 <link href="/assets/css/default.css" rel="stylesheet">
@@ -11,14 +23,24 @@
             <h1>동아리 게시글 정보 수정하기</h1>
         </div>
         <form method="POST" th:action="@{'/boards/' + ${board.boardNo}}">
-            <!-- 카테고리   -->
-            <div class="btn-group mb-5" role="group" aria-label="Basic checkbox toggle button group">
-                <th:block th:each="categoryInfo, index : ${categoryList}">
-                    <input type="checkbox" class="btn-check" name="categoryInfo" th:id="|category_${categoryInfo.categoryNo}|" th:value="${categoryInfo.categoryNo}" th:checked="${boardCategoryList.![categoryNo].contains(categoryInfo.categoryNo)}">
-                    <label class="btn btn-outline-primary rounded-pill m-2" th:for="|category_${categoryInfo.categoryNo}|" th:text="${categoryInfo.categoryName}"></label>
-                </th:block>
+            <div class="editing-contents">
+                <div class="editing-content-s">
+                    <p>카테고리를 선택해주세요 (복수선택 가능)</p>
+                    <div class="category-list" role="group" aria-label="Basic checkbox toggle button group">
+                        <th:block th:each="categoryInfo, index : ${categoryList}">
+                            <div class="category-item btn-group">
+                                <input type="checkbox" class="btn-check" name="categoryInfo"
+                                       th:id="|category_${categoryInfo.categoryNo}|"
+                                       th:value="${categoryInfo.categoryNo}"  th:checked="${boardCategoryList.![categoryNo].contains(categoryInfo.categoryNo)}">
+                                <label class="btn btn-outline-primary rounded-pill m-0"
+                                       th:for="|category_${categoryInfo.categoryNo}|"
+                                       th:text="${categoryInfo.categoryName}"></label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
             </div>
-            <!--  카테고리 끝   -->
+
             <div class="editing-contents">
                 <div class="editing-content-s">
                     <p>동아리 이름</p>
