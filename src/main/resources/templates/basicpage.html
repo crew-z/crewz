@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+    body {
+
+    }
+    </style>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+
+<!-- ======= Body ======= -->
+
+<section id="pricing" class="pricing">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+
+        <div class="section-header">
+            <i class="fas fa-solid fa-anchor fa-bounce fa-4x" style="color: #01579B; --fa-animation-duration: 3s;"></i>
+            <h2>1조 미니프로젝트 결과물</h2>
+            <p>홍종민, 김예원, 이권석, 이승인</p>
+        </div>
+
+        <div class="row gy-4">
+
+            <div class="col-lg-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+                <div class="pricing-item">
+
+                    <div class="pricing-header1">
+                        <h3>crewz</h3>
+                        <h4>사내 동아리 서비스</h4>
+                    </div>
+                    <h5>crewz는 이런 서비스입니다.</h5>
+                    <ul class="ul1">
+                        <li><i class="bi bi-person-fill"></i><span>편리한 동아리 신설</span></li>
+                        <li><i class="bi bi-person-fill"></i><span>한눈에 알아보는 동아리 활동 계획</span></li>
+                        <li><i class="bi bi-person-fill"></i><span>편리한 동아리 신청 및 동아리원 관리</span></li>
+                        <li><i class="bi bi-person-fill"></i><span>자유로운 후기 남기기</span></li>
+                    </ul>
+
+                    <div class="text-center mt-auto">
+                        <a href="main" class="buy-btn1" onclick="showLoadingIcon()">1차 프로젝트</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="600">
+                <div class="pricing-item">
+
+                    <div class="pricing-header2">
+                        <h3>crewz-admin</h3>
+                        <h4>사내동아리 관리 서비스</h4>
+                    </div>
+                    <h5>crewz-admin은 이런 서비스입니다.</h5>
+                    <ul class="ul2">
+                        <li><i class="bi bi-person-fill-lock"></i><span>간편한 동아리 관리</span></li>
+                        <li><i class="bi bi-person-fill-lock"></i><span>한눈에 보는 활동중인 동아리 현황</span></li>
+                        <li><i class="bi bi-person-fill-lock"></i><span>관리자 고유 아이디로 다수의 관리자 동시 접속 가능</span></li>
+                        <li><i class="bi bi-person-fill-lock"></i><span>관리자 role에 따른 권한제어</span></li>
+                    </ul>
+
+                    <div class="text-center mt-auto">
+                        <a href="http://localhost:8082" class="buy-btn2" onclick="showLoadingIcon()">2차 프로젝트</a>
+                    </div>
+                </div>
+            </div><!-- End Pricing Item -->
+
+        </div>
+
+    </div>
+</section>
+</body>
+<script th:inline="javascript" src="https://use.fontawesome.com/releases/v6.0.0/js/all.js"></script>
+<script th:inline="javascript">
+    function showLoadingIcon() {
+        var icons = document.querySelectorAll('.fa-solid');
+        for (var i = 0; i < icons.length; i++) {
+            icons[i].style.display = 'none';
+        }
+
+        var loadingIcon = document.createElement('i');
+        loadingIcon.className = 'fa-solid fa-ship fa-beat-fade fa-7x';
+        loadingIcon.style = 'color: #01579B; --fa-animation-duration: 3s;';
+        document.body.appendChild(loadingIcon);
+    }
+
+
+</script>
+
+</html>
