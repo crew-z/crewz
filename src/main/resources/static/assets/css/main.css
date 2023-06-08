@@ -85,7 +85,7 @@ h6 {
 --------------------------------------------------------------*/
 section {
   padding: 60px 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .section-header {
@@ -1466,11 +1466,17 @@ section {
 /*--------------------------------------------------------------
 # Features Section
 --------------------------------------------------------------*/
-.features .nav-tabs {
-  border: 0;
+.features1 .arch-con h4{
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 500;
 }
 
-.features .nav-link {
+.features1 .nav-tabs {
+  border: 0;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+.features1 .nav-link {
   border: 0;
   padding: 25px 20px;
   color: var(--color-secondary);
@@ -1484,21 +1490,69 @@ section {
   cursor: pointer;
   height: 100%;
 }
+.features1 .icon-container {
+  display: flex;
+  align-items: center;
+}
 
-.features .nav-link i {
-  font-size: 32px;
+.features1 .nav-link i {
+  font-size: 50px;
+  color: #FF5A5A;
   line-height: 0;
 }
 
-.features .nav-link h4 {
+.features1 .nav-link h4 {
   font-size: 20px;
   font-weight: 600;
   margin: 10px 0 0 0;
   color: var(--color-secondary);
 }
 
-.features .nav-link:hover {
-  color: var(--color-primary);
+
+.features2 .arch-con h4{
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 500;
+}
+
+.features2 .arch-con {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 500;
+}
+
+.features2 .nav-tabs {
+  border: 0;
+}
+
+.features2 .nav-link {
+  border: 0;
+  padding: 25px 20px;
+  color: var(--color-secondary);
+  box-shadow: 5px 5px 25px rgba(var(--color-secondary-rgb), 0.15);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: 0s;
+  cursor: pointer;
+  height: 100%;
+}
+.features2 .icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.features2 .nav-link i {
+  font-size: 50px;
+  color: #FDD835;
+  line-height: 0;
+}
+
+.features2 .nav-link h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 0 0 0;
+  color: var(--color-secondary);
 }
 
 .features .nav-link.active {
@@ -1767,7 +1821,7 @@ section {
   flex-direction: column;
   border: 4px solid var(--color-white);
   border-radius: 10px;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .pricing .pricing-header1 {
