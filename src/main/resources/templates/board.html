@@ -63,13 +63,16 @@
                     <p>모집기간: [[${boardPeriod.endDate}]] 까지</p>
                     <p id="d-day" th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
                 </div>
+
                 <div>
-                    <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${hasApplied || isClubMember}">
-                        <span th:if="${hasApplied && !isClubMember}">가입 신청 완료</span>
-                        <span th:if="${isClubMember}">가입된 동아리</span>
-                        <span th:unless="${hasApplied || isClubMember}">동아리에 합류하기</span>
+                    <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${dDay == null || hasApplied || isClubMember}">
+                        <span th:if="${hasApplied && !isClubMember && dDay != null}" class="applied">가입 신청 완료</span>
+                        <span th:if="${isClubMember}" class="joined">이미 가입하셨습니다</span>
+                        <span th:if="${dDay != null && !(hasApplied || isClubMember)}" class="joinable">동아리에 합류하기</span>
+                        <span th:if="${dDay == null && !(isClubMember)}" class="closed">동아리가 마감되었습니다</span>
                     </button>
                 </div>
+
             </div>
         </div>
     </div>
