@@ -85,7 +85,7 @@ h6 {
 --------------------------------------------------------------*/
 section {
   padding: 60px 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .section-header {
@@ -1466,11 +1466,17 @@ section {
 /*--------------------------------------------------------------
 # Features Section
 --------------------------------------------------------------*/
-.features .nav-tabs {
-  border: 0;
+.features1 .arch-con h4{
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 500;
 }
 
-.features .nav-link {
+.features1 .nav-tabs {
+  border: 0;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+.features1 .nav-link {
   border: 0;
   padding: 25px 20px;
   color: var(--color-secondary);
@@ -1484,21 +1490,69 @@ section {
   cursor: pointer;
   height: 100%;
 }
+.features1 .icon-container {
+  display: flex;
+  align-items: center;
+}
 
-.features .nav-link i {
-  font-size: 32px;
+.features1 .nav-link i {
+  font-size: 50px;
+  color: #FF5A5A;
   line-height: 0;
 }
 
-.features .nav-link h4 {
+.features1 .nav-link h4 {
   font-size: 20px;
   font-weight: 600;
   margin: 10px 0 0 0;
   color: var(--color-secondary);
 }
 
-.features .nav-link:hover {
-  color: var(--color-primary);
+
+.features2 .arch-con h4{
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 500;
+}
+
+.features2 .arch-con {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 500;
+}
+
+.features2 .nav-tabs {
+  border: 0;
+}
+
+.features2 .nav-link {
+  border: 0;
+  padding: 25px 20px;
+  color: var(--color-secondary);
+  box-shadow: 5px 5px 25px rgba(var(--color-secondary-rgb), 0.15);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: 0s;
+  cursor: pointer;
+  height: 100%;
+}
+.features2 .icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.features2 .nav-link i {
+  font-size: 50px;
+  color: #FDD835;
+  line-height: 0;
+}
+
+.features2 .nav-link h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 0 0 0;
+  color: var(--color-secondary);
 }
 
 .features .nav-link.active {
@@ -1747,6 +1801,15 @@ section {
 --------------------------------------------------------------*/
 .pricing {
   background: rgba(var(--color-secondary-rgb), 0.04);
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+.pricing .section-header h2{
+  font-size: 50px;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+.pricing .section-header p{
+  font-size: 25px;
 }
 
 .pricing .pricing-item {
@@ -1758,11 +1821,18 @@ section {
   flex-direction: column;
   border: 4px solid var(--color-white);
   border-radius: 10px;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
-.pricing .pricing-header {
-  background: linear-gradient(rgba(var(--color-secondary-rgb), 0.9), rgba(var(--color-secondary-rgb), 0.9)), url("../img/pricing-bg.jpg") center center;
+.pricing .pricing-header1 {
+  background: #FF5A5A;
+  background-size: cover;
+  text-align: center;
+  padding: 40px;
+  margin: -60px -40px 0;
+}
+.pricing .pricing-header2 {
+  background: #FDD835;
   background-size: cover;
   text-align: center;
   padding: 40px;
@@ -1770,18 +1840,28 @@ section {
 }
 
 .pricing h3 {
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 5px;
-  font-size: 36px;
+  font-size: 50px;
   color: var(--color-white);
 }
 
 .pricing h4 {
-  font-size: 48px;
-  color: var(--color-white);
-  font-weight: 400;
-  font-family: var(--font-primary);
+  font-size: 30px;
+  color: black;
+  font-weight: 500;
+  font-family: 'Gowun Dodum', sans-serif;
   margin-bottom: 0;
+}
+
+.pricing h5 {
+  text-align: center;
+  font-size: 30px;
+  color: black;
+  font-weight: 500;
+  font-family: 'Gowun Dodum', sans-serif;
+  margin-bottom: 0;
+  padding-top: 30px;
 }
 
 .pricing h4 sup {
@@ -1807,10 +1887,20 @@ section {
   align-items: center;
 }
 
-.pricing ul i {
-  color: var(--color-primary);
+.pricing ul li span {
+  font-size: 20px;
+}
+
+.pricing .ul1 i {
+  color: #FF5A5A;
   font-size: 36px;
-  padding-right: 3px;
+  padding-right: 5px;
+  line-height: 0;
+}
+.pricing .ul2 i {
+  color: #FDD835;
+  font-size: 36px;
+  padding-right: 5px;
   line-height: 0;
 }
 
@@ -1828,20 +1918,35 @@ section {
   text-decoration: line-through;
 }
 
-.pricing .buy-btn {
+.pricing .buy-btn1 {
   display: inline-block;
   padding: 12px 40px;
   border-radius: 6px;
-  color: var(--color-primary);
+  color: #FF1A1A;
   transition: none;
   font-size: 16px;
   font-weight: 700;
   transition: 0.3s;
-  border: 1px solid var(--color-primary);
+  border: 3px solid #FF1A1A;
+}
+.pricing .buy-btn2 {
+  display: inline-block;
+  padding: 12px 40px;
+  border-radius: 6px;
+  color: #F9A825;
+  transition: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.3s;
+  border: 3px solid #F9A825;
 }
 
-.pricing .buy-btn:hover {
-  background: var(--color-primary);
+.pricing .buy-btn1:hover {
+  background: #FF5A5A;
+  color: var(--color-white);
+}
+.pricing .buy-btn2:hover {
+  background: #FDD835;
   color: var(--color-white);
 }
 
@@ -1849,12 +1954,19 @@ section {
   border-color: var(--color-primary);
 }
 
-.pricing .featured .pricing-header {
+.pricing .featured .pricing-header1 {
+  background: linear-gradient(rgba(var(--color-primary-rgb), 0.9), rgba(var(--color-primary-rgb), 0.9)), url("../img/pricing-bg.jpg") center center;
+}
+.pricing .featured .pricing-header2 {
   background: linear-gradient(rgba(var(--color-primary-rgb), 0.9), rgba(var(--color-primary-rgb), 0.9)), url("../img/pricing-bg.jpg") center center;
 }
 
-.pricing .featured .buy-btn {
-  background: var(--color-primary);
+.pricing .featured .buy-btn1 {
+  background: #FF5A5A;
+  color: var(--color-white);
+}
+.pricing .featured .buy-btn2 {
+  background: #FDD835;
   color: var(--color-white);
 }
 
