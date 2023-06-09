@@ -1,30 +1,37 @@
 package environment.project.service;
 
-import environment.project.dto.*;
-
 import java.util.List;
 
+import environment.project.dto.BoardCreateDTO;
+import environment.project.dto.BoardDTO;
+import environment.project.dto.BoardGetDTO;
+import environment.project.dto.BoardPeriodGetDTO;
+import environment.project.dto.BoardUpdateDTO;
+
 public interface BoardService {
-    int selectBoardCount();
+	int selectBoardCount();
 
-    List<BoardDTO> selectBoard();
+	List<BoardDTO> selectBoard();
 
-    BoardGetDTO getBoardByBoardNo(Long boardNo);
-    int createBoard(BoardCreateDTO boardCreateDTO);
+	BoardGetDTO getBoardByBoardNo(Long boardNo);
 
-    int createBoardPeriod(BoardCreateDTO boardCreateDTO);
+	int createBoard(BoardCreateDTO boardCreateDTO);
 
-    boolean updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO);
+	int createBoardPeriod(BoardCreateDTO boardCreateDTO);
 
-    List<BoardDTO> selectBoardToSearch(String boardTitle);
+	boolean updateBoardByBoardNo(BoardUpdateDTO boardUpdateDTO);
 
-    List<BoardDTO> selectRecrutingBoard();
-    List<BoardDTO> selectRecrutingBoardToSort();
+	List<BoardDTO> selectBoardToSearch(String boardTitle);
 
-    void clickCount(Long boardNo);
+	List<BoardDTO> selectRecrutingBoard();
 
-    BoardPeriodGetDTO getBoardPeriodByBoardNo(Long boardNo);
+	List<BoardDTO> selectRecrutingBoardToSort();
 
-    String findBoardTitleByClubNo(Long clubNo);
+	void clickCount(Long boardNo);
 
+	BoardPeriodGetDTO getBoardPeriodByBoardNo(Long boardNo);
+
+	String findBoardTitleByClubNo(Long clubNo);
+
+	boolean isClubMember(Long userNo, Long boardNoNum);
 }

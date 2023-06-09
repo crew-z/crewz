@@ -36,7 +36,7 @@
             <div id="board-review">
                 <h3><span>[[${replyCount}]]개</span>의 크루원 리뷰가 있습니다</h3>
                 <div class="board-reviews" th:each="item, status : ${replysWithMetadata}">
-                    <h4 th:text="${item.reply.userId}"></h4>
+                    <h4><span th:text="${item.reply.userName}"></span> (<span th:text="${item.reply.userId}"></span>)</h4>
                     <p th:text="${item.reply.replyContent}"></p>
                     <div th:if="${item.isAuthor}">
                         <a class="update-review" th:data-reply-no="${item.reply.replyNo}" th:data-board-no="${board.boardNo}">수정</a>
@@ -63,12 +63,16 @@
                     <p>모집기간: [[${boardPeriod.endDate}]] 까지</p>
                     <p id="d-day" th:if="${dDay != null}">(<span th:text="${dDay}"></span>일 남았어요)</p>
                 </div>
+
                 <div>
-                    <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${hasApplied}">
-                        <span th:if="${hasApplied}">가입 신청 완료</span>
-                        <span th:unless="${hasApplied}">동아리에 합류하기</span>
+                    <button id="club-join-btn" th:data-club-no="${board.clubNo}" th:disabled="${dDay == null || hasApplied || isClubMember}">
+                        <span th:if="${hasApplied && !isClubMember && dDay != null}" class="applied">가입 신청 완료</span>
+                        <span th:if="${isClubMember}" class="joined">이미 가입하셨습니다</span>
+                        <span th:if="${dDay != null && !(hasApplied || isClubMember)}" class="joinable">동아리에 합류하기</span>
+                        <span th:if="${dDay == null && !(isClubMember)}" class="closed">동아리가 마감되었습니다</span>
                     </button>
                 </div>
+
             </div>
         </div>
     </div>
@@ -157,7 +161,8 @@
         const clubJoinBtn = document.getElementById('club-join-btn');
         clubJoinBtn.addEventListener('click', function () {
             const clubNo = clubJoinBtn.getAttribute('data-club-no');
-            console.log(clubNo);
+            console.log(typeof clubNo);
+
             fetch(`/club-info/${clubNo}`, {
                 method: 'POST',
                 headers: {
@@ -179,12 +184,16 @@
 <script th:inline="javascript">
     document.addEventListener('DOMContentLoaded', function () {
         const isLoggedIn = /*[[${isLoggedIn}]]*/ 'default';
+        const isClubMember = /*[[${isClubMember}]]*/ 'default';
         const createReviewForm = document.getElementById('create-review-form');
 
         createReviewForm.addEventListener('submit', function(event) {
             if (!isLoggedIn) {
                 event.preventDefault();
                 window.location.href = '/login';
+            } else if (!isClubMember) {
+                event.preventDefault();
+                alert('동아리 회원이 아닙니다');
             }
         });
     });

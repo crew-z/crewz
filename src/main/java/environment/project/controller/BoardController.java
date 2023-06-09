@@ -51,13 +51,18 @@ public class BoardController {
 	public String getBoardByBoardNo(@PathVariable String boardNo, Model model) {
 		Long boardNoNum = parseStringtoLong(boardNo);
 		Long userNo = (Long)httpSession.getAttribute("loginUser");
-
 		boolean isLoggedIn = userNo != null;
+		boolean isClubMember = false;
 
 		// board 정보 불러오는 것
 		BoardGetDTO boardGetDTO = boardService.getBoardByBoardNo(boardNoNum);
 		BoardPeriodGetDTO boardPeriodGetDTO = boardService.getBoardPeriodByBoardNo(boardNoNum);
 		List<BoardCategoryDTO> boardCategoryDTOS = categoryInfoService.selectBoardCategoryInfo(boardNoNum);
+
+		// 해당 동아리에 가입되어 있는지?
+		if (isLoggedIn) {
+			isClubMember = boardService.isClubMember(userNo, boardNoNum);
+		}
 
 		boardService.clickCount(boardNoNum);
 
@@ -88,6 +93,7 @@ public class BoardController {
 		model.addAttribute("boardCategoryInfo", boardCategoryDTOS);
 		model.addAttribute("replysWithMetadata", boardReplyWithMetadatas);
 		model.addAttribute("isLoggedIn", isLoggedIn);
+		model.addAttribute("isClubMember", isClubMember);
 		return "board";
 	}
 
@@ -133,7 +139,6 @@ public class BoardController {
 		boardCreateDTO.setUserNo(userNo);
 
 		int boardNo = boardService.createBoard(boardCreateDTO);
-		log.debug("boardNo: {}", boardNo);
 
 		// 예외처리: DB에 새로운 값 생성 실패했을 경우
 		if (boardNo != 1) {

@@ -6,11 +6,14 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import environment.project.dto.UserDTO;
@@ -31,6 +34,7 @@ public class SignupController {
 
 	@PostMapping("/signup")
 	public String signup(@Valid UserDTO user, Errors errors, Model model, HttpSession session) {
+
 		if (errors.hasErrors()) {
 			model.addAttribute("userDTO", user);
 			Map<String, String> validateMap = new HashMap<>();
@@ -45,7 +49,6 @@ public class SignupController {
 			}
 			return "signup";
 		}
-
 		// 회원가입 성공시
 		userService.insertUser(user);
 
@@ -54,4 +57,15 @@ public class SignupController {
 
 		return "signupSuccess";
 	}
+
+	@GetMapping("/signup/validationCheck/{inputId}")
+	public ResponseEntity<String> validationCheck(@PathVariable String inputId) {
+		UserDTO userDTO = userService.getUserByLoginId(inputId);
+		if (userDTO == null) {
+			return new ResponseEntity<>("fail", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("success", HttpStatus.OK);
+		}
+	}
+
 }

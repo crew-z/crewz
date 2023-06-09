@@ -40,8 +40,6 @@ public class BoardReplyController {
 		// 예외처리: 데이터 값이 잘 들어가지 않았을 때
 		int insertReply = boardReplyService.createReplyByBoardNo(boardReplyCreateDTO);
 
-		log.debug("insertReply: {}", insertReply);
-
 		if (insertReply != 1) {
 			throw new IllegalStateException("Failed to create reply");
 		}
@@ -52,7 +50,8 @@ public class BoardReplyController {
 	// 리뷰 수정 UPDATE
 	// POST: /boards/{boardNo}/replys/{replyNo}
 	@PostMapping("/{replyNo}")
-	public String updateReplyByReplyNo(@PathVariable String boardNo, @PathVariable String replyNo,
+	public String updateReplyByReplyNo(@PathVariable String boardNo,
+		@PathVariable String replyNo,
 		@RequestBody BoardReplyUpdateDTO boardReplyUpdateDTO) {
 		Long boardNoNum = parseStringtoLong(boardNo);
 		Long replyNoNum = parseStringtoLong(replyNo);
