@@ -28,7 +28,12 @@ public class MainController {
 	@Autowired
 	private BoardService boardService;
 
-	@GetMapping(path = {"/", "/main"})
+	@GetMapping(path = { "/","basicpage"})
+	public String basicPage(){
+		return "basicpage";
+	}
+
+	@GetMapping(path = { "/main"})
 	public String mainPage(Model model, HttpSession session) {
 		List<UserDTO> list = userService.selectUser();
 		List<BoardDTO> boardList = boardService.selectRecrutingBoard();

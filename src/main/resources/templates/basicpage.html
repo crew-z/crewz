@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<th:block th:replace="module/common-css :: head-fragment"></th:block>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+</style>
+
+<body>
+<link href="assets/css/default.css" rel="stylesheet">
+
+<!-- ======= Body ======= -->
+
+<section id="pricing" class="pricing">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+
+        <div class="section-header">
+            <i class="fas fa-solid fa-anchor fa-bounce fa-4x" style="color: #01579B; --fa-animation-duration: 3s;"></i>
+            <h2>1조 미니프로젝트 결과물</h2>
+            <p>홍종민, 김예원, 이권석, 이승인</p>
+        </div>
+
+        <div class="row gy-4">
+
+            <div class="col-lg-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+                <div class="pricing-item">
+
+                    <div class="pricing-header1">
+                        <h3>crewz</h3>
+                        <h4>사내 동아리 서비스</h4>
+                    </div>
+                    <h5>crewz는 이런 서비스입니다.</h5>
+                    <ul class="ul1">
+                        <li><i class="bi bi-person-fill"></i><span>편리한 동아리 신설</span></li>
+                        <li><i class="bi bi-person-fill"></i><span>한눈에 알아보는 동아리 활동 계획</span></li>
+                        <li><i class="bi bi-person-fill"></i><span>편리한 동아리 신청 및 동아리원 관리</span></li>
+                        <li><i class="bi bi-person-fill"></i><span>자유로운 후기 남기기</span></li>
+                        <hr>
+                        <li><i class="bi bi-person-badge"></i><span class="span1">회원1&nbspID: crewz &nbsp PW: crewzcrewz1@</span>
+                        </li>
+                        <li><i class="bi bi-person-badge"></i><span class="span1">회원2&nbspID: crush &nbsp PW: crush123@</span>
+                        </li>
+                    </ul>
+
+                    <div class="text-center mt-auto">
+                        <a href="main" class="buy-btn1" onclick="showLoadingIcon()">1차 프로젝트</a>
+                        <a href="https://github.com/crew-z/crewz" class="buy-btn1" onclick="showLoadingIcon()">crewz
+                            깃허브</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="600">
+                <div class="pricing-item">
+
+                    <div class="pricing-header2">
+                        <h3>crewz-admin</h3>
+                        <h4>사내동아리 관리 서비스</h4>
+                    </div>
+                    <h5>crewz-admin은 이런 서비스입니다.</h5>
+                    <ul class="ul2">
+                        <li><i class="bi bi-person-fill-lock"></i><span>간편한 동아리 관리</span></li>
+                        <li><i class="bi bi-person-fill-lock"></i><span>한눈에 보는 활동중인 동아리 현황</span></li>
+                        <li><i class="bi bi-person-fill-lock"></i><span>관리자 고유 아이디로 다수의 관리자 동시 접속 가능</span></li>
+                        <li><i class="bi bi-person-fill-lock"></i><span>관리자 role에 따른 권한제어</span></li>
+                        <hr>
+                        <li><i class="bi bi-person-badge"></i><span class="span1">관리자&nbspID: admin &nbsp PW: admin</span></li>
+                        <li><i class="bi bi-person-badge-fill"></i><span
+                                class="span1">슈퍼관리자&nbspID: crewzcaptain &nbsp PW: crewzcaptain</span>
+                        </li>
+                    </ul>
+
+                    <div class="text-center mt-auto">
+                        <a href="http://localhost:8082" class="buy-btn2" onclick="showLoadingIcon()">2차 프로젝트</a>
+                        <a href="https://github.com/crew-z/crewz-admin" class="buy-btn2" onclick="showLoadingIcon()">admin
+                            깃허브</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="loading" style="text-align: center"></div>
+<section>
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+        <div class="row gy-4">
+            <div class="col-lg-6">
+                <div id="features1" class="features1">
+                    <div class="arch-con">
+                        <i class="fa-solid fa-code fa-3x" style="color: #FF5A5A; display: inline-block;"></i>
+                        <h4 style="display: inline-block; margin-left: 10px;">1차 System Architecture</h4>
+                    </div>
+                    <ul class="nav nav-tabs row gy-4 d-flex" role="tablist">
+
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presenttion">
+                            <a class="nav-link">
+
+                                <i class="fa-brands fa-java fa-2x" style="color: #1E8CBE;"></i>
+
+                                <h4>JAVA</h4>
+                            </a>
+                        </li>
+
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <!--                                <i class="fa-solid fa-leaf fa-2x" style="color: #6DB33F;"></i>-->
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/spring-logo.png"
+                                     alt="spring-logo"/>
+                                <h4>Spring</h4>
+                            </a>
+                        </li>
+
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <i class="fa-solid fa-database fa-2x" style="color: #4479A1;"></i>
+                                <h4>MYSQL</h4>
+                                <h4>MyBatis</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <!--                                <i class="fa-brands fa-js fa-2x" style="color: #F7DF1E"></i>-->
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/javascript--v1.png"
+                                     alt="javascript--v1"/>
+                                <h4>JavaScript</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <i class="fa-solid fa-repeat fa-rotate-90 fa-2x" style="color: #268ae8;"></i>
+                                <h4>Ajax</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <!--                                <i class="fa-solid fa-leaf fa-2x" style="color: #005f0f;"></i>-->
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/thymeleaf.png"
+                                     alt="thymeleaf"/>
+                                <h4>Thymleaf</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <div class="icon-container">
+                                    <i class="fa-brands fa-html5 fa-2x" style="color: #E34F26;"></i>
+                                    <i class="fa-brands fa-css3 fa-2x" style="color: #1572B6;"></i>
+                                </div>
+                                <h4>HTML5</h4>
+                                <h4>CSS3</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <i class="fa-brands fa-github fa-2x" style="color: #181717"></i>
+                                <h4>GitHub</h4>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div id="features2" class="features2">
+                    <div class="arch-con">
+                        <i class="fa-solid fa-code fa-3x" style="color: #FFEB3B; display: inline-block;"></i>
+                        <h4 style="display: inline-block; margin-left: 10px;">2차 System Architecture</h4>
+                    </div>
+                    <ul class="nav nav-tabs row gy-4 d-flex" role="tablist">
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presenttion">
+                            <a class="nav-link">
+                                <i class="fa-brands fa-java fa-2x" style="color: #1E8CBE;"></i>
+
+                                <h4>JAVA</h4>
+                            </a>
+                        </li>
+
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <!--                                <i class="fa-solid fa-leaf fa-2x" style="color: #6DB33F;"></i>-->
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/spring-logo.png"
+                                     alt="spring-logo"/>
+                                <h4>Spring</h4>
+                            </a>
+                        </li>
+
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <i class="fa-solid fa-database fa-2x" style="color: #4479A1;"></i>
+                                <h4>MYSQL</h4>
+                                <h4>JPA</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <!--                                <i class="fa-brands fa-js fa-2x" style="color: #F7DF1E"></i>-->
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/javascript--v1.png"
+                                     alt="javascript--v1"/>
+                                <h4>JavaScript</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <div class="icon-container">
+                                    <i class="fa-brands fa-vuejs fa-2x" style="color: #4FC08D;">
+                                    </i>
+                                    <i class="fa-solid fa-arrow-right-arrow-left fa-rotate-90 fa-2x"
+                                       style="color: #438bea;"></i>
+                                </div>
+                                <h4>Vue</h4>
+                                <h4>Axios</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+
+                                <!--                                <i class="fa-solid fa-shield fa-2x" style="color: #6DB33F;"></i>-->
+                                <img width="40" height="40" src="https://img.icons8.com/office/40/spring-logo.png"
+                                     alt="spring-logo"/>
+
+                                <h4>Spring</h4>
+                                <h4>Security</h4>
+
+
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/java-web-token.png"
+                                     alt="java-web-token"/>
+                                <h4>JWT</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-4 col-lg-3" role="presentation">
+                            <a class="nav-link">
+                                <i class="fa-brands fa-github fa-2x" style="color: #181717"></i>
+                                <h4>GitHub</h4>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+<script th:inline="javascript" src="https://use.fontawesome.com/releases/v6.0.0/js/all.js"></script>
+<script th:inline="javascript">
+    function showLoadingIcon() {
+        var icons = document.querySelectorAll('.fa-solid');
+        for (var i = 0; i < icons.length; i++) {
+            icons[i].style.display = 'none';
+        }
+
+        var loadingIcon = document.createElement('i');
+        loadingIcon.className = 'fa-solid fa-ship fa-beat-fade fa-7x';
+        loadingIcon.style = 'color: #01579B; --fa-animation-duration: 3s;';
+        document.getElementById('loading').appendChild(loadingIcon);
+    }
+
+
+</script>
+
+</html>
