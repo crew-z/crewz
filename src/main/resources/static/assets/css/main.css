@@ -1897,6 +1897,10 @@ section {
 .pricing ul li span {
     font-size: 20px;
 }
+.pricing ul li .span1 {
+    color: black;
+    font-weight: 400;
+}
 
 .pricing .ul1 i {
     color: #FF5A5A;
