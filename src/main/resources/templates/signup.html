@@ -80,10 +80,18 @@
 <script>
     function validationCheck(){
         const inputId = document.getElementById("inputID").value;
+        const inputNickname = document.getElementById("inputNickname").value;
+        const inputName = document.getElementById("inputName").value;
+        const inputPassword1 = document.getElementById("inputPassword1").value;
+        const inputEmail = document.getElementById("inputEmail").value;
+        const inputTel = document.getElementById("inputTel").value;
         const form = document.getElementById("form");
         if(inputId === ''){
             document.getElementById("duplicateFeedback").style.display = "none";
             document.getElementById("idstyleFeedback").style.display = "block";
+            return false;
+        }else if(inputNickname === '' || inputNickname === '' || inputName === '' || inputPassword1 === '' || inputEmail === '' || inputTel === ''){
+            return false;
         }else{
             const xhr = new XMLHttpRequest();
             xhr.open('GET', `/signup/validationCheck/${inputId}`);
