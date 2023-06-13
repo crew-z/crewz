@@ -24,7 +24,7 @@ public class LoginController {
 		log.debug("session: {}", id);
 
 		if (id != null)
-			return "redirect:/";
+			return "redirect:/main";
 		return "login";
 	}
 
@@ -42,13 +42,13 @@ public class LoginController {
 
 		log.debug("set Session: {}", userNo);
 
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	@GetMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/main";
 	}
 }
