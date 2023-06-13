@@ -147,7 +147,7 @@ public class BoardController {
 			// 게시물이 정상적으로 등록 되었을 때 기간 및 카테고리 등록
 			boardService.createBoardPeriod(boardCreateDTO);
 
-			if (boardCreateDTO.getCategoryInfo().size() != 0) {
+			if (boardCreateDTO.getCategoryInfo() != null) {
 				for (Long categoryNo : boardCreateDTO.getCategoryInfo()) {
 					categoryInfoService.createBoardCategory(boardCreateDTO.getBoardNo(), categoryNo);
 				}
