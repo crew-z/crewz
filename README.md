@@ -2,7 +2,6 @@
 ![readme01](https://github.com/crew-z/crewz/assets/53293867/ceefa2a2-5fd8-4fe9-b208-03838b99705d)
 
 ## Team.
-> dktechin fullstack 채용확정형 1기 1팀<br>
 > 개발기간 : 2023.04 ~ 2023.05
 
 | 홍종민(Jay)            | 김예원(Aster)                  | 이권석(Quan)                            | 이승인(Mona)             |
