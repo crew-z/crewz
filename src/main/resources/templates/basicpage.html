@@ -70,7 +70,7 @@
                     </ul>
 
                     <div class="text-center mt-auto">
-                        <a href="http://localhost:8082" class="buy-btn2" onclick="showLoadingIcon()">2차 프로젝트</a>
+                        <a href="#" class="buy-btn2" onclick="redirectToDynamicURL()">2차 프로젝트</a>
                     </div>
 
                 </div>
@@ -261,7 +261,13 @@
         document.getElementById('loading').appendChild(loadingIcon);
     }
 
-
+    function redirectToDynamicURL() {
+        var hostname = window.location.hostname;
+        var port = '8082';
+        var url = 'http://' + hostname + ':' + port;
+        window.location.href = url;
+        showLoadingIcon();
+    }
 </script>
 
 </html>
